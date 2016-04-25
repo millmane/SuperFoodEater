@@ -1,4 +1,4 @@
-# Phase 2: Flux Architecture and Note CRUD (2 days)
+# Phase 2: Flux Architecture and Listing CRUD (2 days)
 
 ## Rails
 ### Models
@@ -9,29 +9,32 @@
 
 ## Flux
 ### Views (React Components)
-* NotesIndex
-  - NotesIndexItem
-* NoteForm
+* ListingsIndex
+  - ListingsIndexItem
+* ListingFiltersForm
+  - DateFilterForm
+  - RoomTypeFilterForm
+  - PriceRangeFilterForm
 
 ### Stores
-* Note
+* Listing
 
 ### Actions
-* ApiActions.receiveAllNotes -> triggered by ApiUtil
-* ApiActions.receiveSingleNote
-* ApiActions.deleteNote
-* NoteActions.fetchAllNotes -> triggers ApiUtil
-* NoteActions.fetchSingleNote 
-* NoteActions.createNote
-* NoteActions.editNote 
-* NoteActions.destroyNote
+* ApiActions.receiveAllListings -> triggered by ApiUtil
+* ApiActions.receiveSingleListing
+* ApiActions.deleteListing
+* ListingActions.fetchAllListings -> triggers ApiUtil
+* ListingActions.fetchSingleListing
+* ListingActions.createListing
+* ListingActions.editListing
+* ListingActions.destroyListing
 
 ### ApiUtil
-* ApiUtil.fetchAllNotes
-* ApiUtil.fetchSingleNote
-* ApiUtil.createNote
-* ApiUtil.editNote
-* ApiUtil.destroyNote
+* ApiUtil.fetchAllListings
+* ApiUtil.fetchSingleListing
+* ApiUtil.createListing
+* ApiUtil.editListing
+* ApiUtil.destroyListing
 
 ## Gems/Libraries
 * Flux Dispatcher (npm)

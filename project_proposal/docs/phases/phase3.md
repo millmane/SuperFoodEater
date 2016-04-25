@@ -2,23 +2,20 @@
 
 ## Rails
 ### Models
-* Notebook
-* Tag
-* Tagging
+* Reservation
 
 ### Controllers
-* Api::NotebooksController (create, destroy, index, show, update)
+* Api::ReservationsController (create, destroy, index, show, update)
 
 ### Views
-* notebooks/index.json.jbuilder
-* notebooks/show.json.jbuilder
-* tags/show.json.jbuilder
+* reservations/index.json.jbuilder
+* reservations/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* NotebooksIndex
-  - NotebookIndexItem
-* NotebookForm
+* ReservationsIndex
+  - ReservationIndexItem
+* ReservationForm
 * SearchIndex
 
 ### Stores
