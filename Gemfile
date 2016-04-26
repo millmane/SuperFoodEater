@@ -4,6 +4,8 @@ gem 'better_errors'
 gem 'binding_of_caller'
 gem 'pry-rails'
 gem 'annotate'
+gem 'bcrypt'
+gem 'rename'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
