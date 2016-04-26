@@ -3,14 +3,14 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   validates :username, :password_digest, :session_token, presence: true
-  validates :username, :email, uniqueness: true
+  validates :username, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: :true
 
   after_initialize :ensure_session_token
   before_validation :ensure_session_token_uniqueness
 
-  def self.find_by_credentials(email, password)
-    user = User.find_by(email: email)
+  def self.find_by_credentials(username, password)
+    user = User.find_by(username: username)
 
     user && user.is_password?(password) ? user : nil
   end
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   def reset_session_token!
     self.session_token = new_session_token
-    ensure_session_token_unqiueness
+    ensure_session_token_uniqueness
     self.save!
     self.session_token
   end

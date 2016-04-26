@@ -11,7 +11,7 @@ UserStore.__onDispatch = function (payload) {
     case UserConstants.LOGIN:
       UserStore.login(payload.user);
       break;
-    case UserConstants.LOGIN:
+    case UserConstants.LOGOUT:
       UserStore.logout();
       break;
     case UserConstants.ERROR:
@@ -22,28 +22,28 @@ UserStore.__onDispatch = function (payload) {
   };
 
   UserStore.login = function(user){
-    _current_user = user;
-    _errors = null;
+    _currentUser = user;
+    _authErrors = null;
   };
 
   UserStore.logout = function(){
-    _currentUser = null;
-    _errors = null;
+    _currentUser = undefined;
+    _authErrors = null;
   };
 
   UserStore.setErrors = function(errors){
-    _errors = errors;
+    _authErrors = errors;
   };
 
   UserStore.currentUser = function(){
-    if (_current_user) {
+    if (_currentUser) {
       return $.extend({}, _currentUser);
     }
   };
 
   UserStore.errors = function(){
-    if (_errors){
-      return [].slice.call(_errors);
+    if (_authErrors){
+      return [].slice.call(_authErrors);
     }
   };
 

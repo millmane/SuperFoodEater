@@ -10,7 +10,8 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render "api/users/show"
     else
-      render "api/shared/error", status: 401
+      @errors = ["not a valid user, session can't be created"]
+      render "api/shared/error", status: 404
     end
   end
 
@@ -30,7 +31,7 @@ class Api::SessionsController < ApplicationController
       @user = current_user
       render = "api/users/show"
     else
-      @errors = nil
+      @errors = ["not a valid user, user can't be shown"]
       render "api/shared/error", status: 404
     end
   end

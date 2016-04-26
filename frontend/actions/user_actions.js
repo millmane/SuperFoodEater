@@ -9,6 +9,15 @@ var UserActions = {
     UserApiUtil.fetchCurrentUser(UserActions.receiveCurrentUser, UserActions.handleError);
   },
 
+  signup: function(user){
+    UserApiUtil.post({
+      url: "/api/user",
+      user: user,
+      success: UserActions.receiveCurrentUser,
+      error: UserActions.handleError
+    });
+  },
+
   login: function(user){
     UserApiUtil.post({
       url: "/api/session",
@@ -22,13 +31,11 @@ var UserActions = {
     UserApiUtil.logout(UserActions.removeCurrentUser, UserActions.handleError);
   },
 
-  // create: function(user){
-  //   UserApiUtil.create(UserActions.createUser, UserActions.handleError);
-  // },
-  //
-  // destroy: function (user){
-  //   UserApiUtil.destroy(UserActions.destroyUser, UserActions.handleError);
-  // },
+  guestLogin: function(){
+    UsersActions.login(
+      {username: "guest", password: "password"}
+    );
+  },
 
   receiveCurrentUser: function(user){
     AppDispatcher.dispatch({

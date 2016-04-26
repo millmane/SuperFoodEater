@@ -23,13 +23,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/millmane/SuperFoodEater.git"
+    "url": "git+https://github.com/millmane/foodeater.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/millmane/SuperFoodEater/issues"
+    "url": "https://github.com/millmane/foodeater/issues"
   },
-  "homepage": "https://github.com/millmane/SuperFoodEater#readme"
+  "homepage": "https://github.com/millmane/foodeater#readme"
 }
