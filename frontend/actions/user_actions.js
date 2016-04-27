@@ -32,7 +32,7 @@ var UserActions = {
   },
 
   guestLogin: function(){
-    UsersActions.login(
+    UserActions.login(
       {username: "guest", password: "password"}
     );
   },

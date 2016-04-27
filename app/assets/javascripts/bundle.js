@@ -53,14 +53,19 @@
 	var Route = ReactRouter.Route;
 	var IndexRoute = ReactRouter.IndexRoute;
 	var hashHistory = ReactRouter.hashHistory;
+	// var Modal = require('react-modal');
+	
 	//Components
 	var Search = __webpack_require__(225);
 	// var ListingForm = require('./components/ListingForm');
 	// var ListingShow = require('./components/ListingShow');
+	// var LoginModal = require('./components/LoginModal');
 	var LoginForm = __webpack_require__(226);
 	//Mixins
 	var CurrentUserState = __webpack_require__(256);
+	// <LoginModal/>
 	
+	// Modal.setAppElement( document.getElementById('content'));
 	var App = React.createClass({
 	  displayName: 'App',
 	
@@ -25511,7 +25516,7 @@
 	
 		mixins: [CurrentUserState],
 		getInitialState: function () {
-			return { form: "login", username: "" };
+			return { form: "", username: "" };
 		},
 	
 		setForm: function (e) {
@@ -25524,6 +25529,8 @@
 				username: this.state.username,
 				password: this.state.password
 			});
+	
+			this.setState({ username: "", password: "" });
 		},
 	
 		logout: function (e) {
@@ -25571,6 +25578,8 @@
 			if (this.state.currentUser) {
 				return;
 			}
+	
+			//TO REMOVE ERROR, SET VALUE="" ON USERNAME/PASSWORD INPUTS
 			return React.createElement(
 				"form",
 				{ onSubmit: this.handleSubmit },
@@ -25581,13 +25590,13 @@
 						"label",
 						null,
 						" Username:",
-						React.createElement("input", { type: "text", onChange: this.handleUsername })
+						React.createElement("input", { type: "text", value: this.state.username, onChange: this.handleUsername })
 					),
 					React.createElement(
 						"label",
 						null,
 						" Password:",
-						React.createElement("input", { type: "password", onChange: this.handlePassword })
+						React.createElement("input", { type: "password", value: this.state.password, onChange: this.handlePassword })
 					)
 				),
 				React.createElement(
@@ -25606,26 +25615,32 @@
 						React.createElement("input", { type: "Radio", name: "action", value: "signup", onChange: this.setForm })
 					)
 				),
-				React.createElement("input", { type: "Submit", value: "Submit" })
+				React.createElement("input", { type: "submit", value: "Submit" }),
+				React.createElement(
+					"button",
+					{ type: "submit", value: "guestLogin", onClick: this.guestLogin },
+					"Guest Login"
+				)
 			);
 		},
 	
+		guestLogin: function (e) {
+			e.preventDefault();
+			UserActions.guestLogin();
+			this.setState({ username: "", password: "" });
+		},
+	
 		handleUsername: function (e) {
-			// e.preventDefault();
+			e.preventDefault();
 			this.setState({ username: e.currentTarget.value });
 		},
 	
 		handlePassword: function (e) {
-			// e.preventDefault();
+			e.preventDefault();
 			this.setState({ password: e.currentTarget.value });
 		},
 	
 		render: function () {
-			// return (
-			//   <div>
-			//     <h5>LoginForm Render</h5>
-			//   </div>
-			// );
 			return React.createElement(
 				"div",
 				{ id: "login-form" },
@@ -25685,7 +25700,7 @@
 	  },
 	
 	  guestLogin: function () {
-	    UsersActions.login({ username: "guest", password: "password" });
+	    UserActions.login({ username: "guest", password: "password" });
 	  },
 	
 	  receiveCurrentUser: function (user) {
@@ -32597,11 +32612,12 @@
 	  componentDidMount: function () {
 	    UserStore.addListener(this.updateUser);
 	    if (typeof UserStore.currentUser() === 'undefined') {
-	      UserActions.fetchCurrentUser();
+	      // UserActions.fetchCurrentUser(); //WHY THIS? CAUSING ERROR
 	    }
 	  },
 	
 	  updateUser: function () {
+	    // debugger
 	    this.setState({
 	      currentUser: UserStore.currentUser(),
 	      userErrors: UserStore.errors()

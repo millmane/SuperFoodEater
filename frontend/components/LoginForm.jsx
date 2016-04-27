@@ -6,7 +6,7 @@ var CurrentUserState = require("../mixins/current_user_state");
 var LoginForm = React.createClass({
 	mixins: [CurrentUserState],
 	getInitialState: function(){
-		return {form: "login", username: ""};
+		return {form: "", username: ""};
 	},
 
 	setForm: function(e){
@@ -19,6 +19,8 @@ var LoginForm = React.createClass({
 			username: this.state.username,
 			password: this.state.password
 		});
+
+    this.setState({username: "", password: ""});
 	},
 
 	logout: function(e){
@@ -56,15 +58,17 @@ var LoginForm = React.createClass({
 		if (this.state.currentUser) {
 			return;
 		}
+
+    //TO REMOVE ERROR, SET VALUE="" ON USERNAME/PASSWORD INPUTS
 		return(
 			<form onSubmit={this.handleSubmit}>
-				<section>
+        <section>
 					<label> Username:
-						<input type="text" onChange={this.handleUsername}/>
+						<input type="text" value={this.state.username} onChange={this.handleUsername}/>
 					</label>
 
 					<label> Password:
-						<input type="password" onChange={this.handlePassword}/>
+						<input type="password" value={this.state.password} onChange={this.handlePassword}/>
 					</label>
 				</section>
 
@@ -78,27 +82,30 @@ var LoginForm = React.createClass({
 					</label>
 				</section>
 
-				<input type="Submit" value="Submit"/>
+				<input type="submit" value="Submit"/>
+        <button type="submit" value="guestLogin" onClick={this.guestLogin}>Guest Login</button>
+
 			</form>
 		);
 	},
 
+  guestLogin: function(e){
+    e.preventDefault();
+    UserActions.guestLogin();
+    this.setState({username: "", password: ""});
+  },
+
   handleUsername: function(e){
-    // e.preventDefault();
+    e.preventDefault();
     this.setState({username: e.currentTarget.value});
   },
 
   handlePassword: function(e){
-    // e.preventDefault();
+    e.preventDefault();
     this.setState({password: e.currentTarget.value});
   },
 
 	render: function(){
-    // return (
-    //   <div>
-    //     <h5>LoginForm Render</h5>
-    //   </div>
-    // );
 		return (
 			<div id="login-form">
         <h5>LoginForm Render</h5>

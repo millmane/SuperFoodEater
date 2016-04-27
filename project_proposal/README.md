@@ -6,7 +6,7 @@
 
 ## Minimum Viable Product
 
-SuperFoodEater is a web application inspired by AirBnB that will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+FoodEater is a web application inspired by AirBnB that will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
 
 - [ ] New account creation, login, and guest/demo login
 - [ ] Smooth, bug-free navigation
@@ -18,12 +18,12 @@ SuperFoodEater is a web application inspired by AirBnB that will be built using 
 
 ## Product Goals and Priorities
 
-SuperFoodEater will allow users to do the following:
+FoodEater will allow users to do the following:
 
 <!-- This is a Markdown checklist. Use it to keep track of your
 progress. Put an x between the brackets for a checkmark: [x] -->
 
-- [ ] Create an account (MVP)
+- [x] Create an account (MVP)
 - [ ] Log in / Log out, including as a Guest/Demo User (MVP)
 - [ ] Create, read, edit, and delete Reservations (MVP)
 - [ ] Create, read, edit, and delete Listings (MVP)

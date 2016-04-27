@@ -13,11 +13,12 @@ var CurrentUserState = {
   componentDidMount: function(){
     UserStore.addListener(this.updateUser);
     if (typeof UserStore.currentUser() === 'undefined') {
-      UserActions.fetchCurrentUser();
+      // UserActions.fetchCurrentUser(); //WHY THIS? CAUSING ERROR
     }
   },
 
   updateUser: function() {
+    // debugger
     this.setState({
       currentUser: UserStore.currentUser(),
       userErrors: UserStore.errors()
