@@ -7,25 +7,37 @@ var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
-// var Modal = require('react-modal');
+var Modal = require('react-modal');
 
 //Components
+var NavBar = require('./components/NavBar.jsx');
+var Logo = require('./components/Logo.jsx');
 var Search = require('./components/Search');
+var LoginForm = require('./components/LoginForm');
+// var UsernamePasswordForm = require('./components/UsernamePasswordForm');
+var LandingBackground = require('./components/LandingBackground');
 // var ListingForm = require('./components/ListingForm');
 // var ListingShow = require('./components/ListingShow');
-// var LoginModal = require('./components/LoginModal');
-var LoginForm = require('./components/LoginForm');
 //Mixins
 var CurrentUserState = require('./mixins/current_user_state');
 // <LoginModal/>
 
 // Modal.setAppElement( document.getElementById('content'));
+
+var UserApiUtil = require('./util/user_api_util.js');
+var UserStore = require('./stores/user_store.js');
+var UserActions = require('./actions/user_actions.js');
+
+if (typeof UserStore.currentUser() === 'undefined') {
+  UserActions.fetchCurrentUser();
+}
+
 var App = React.createClass({
   render: function () {
     return (
-      <div>
-        <header><h1>foodeater!</h1></header>
-        <LoginForm/>
+      <div className="landing-page">
+        <NavBar/>
+        <LandingBackground/>
         {this.props.children}
       </div>
     );
@@ -41,6 +53,8 @@ var Router = (
 );
 
 document.addEventListener('DOMContentLoaded', function(){
-  var root = document.getElementById('content');
+  var appElement = document.getElementById('content');
+  Modal.setAppElement(appElement);
+  var root = appElement;
   ReactDOM.render(Router, root);
 });

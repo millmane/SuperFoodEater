@@ -11,14 +11,17 @@ var CurrentUserState = {
   },
 
   componentDidMount: function(){
-    UserStore.addListener(this.updateUser);
-    if (typeof UserStore.currentUser() === 'undefined') {
-      // UserActions.fetchCurrentUser(); //WHY THIS? CAUSING ERROR
-    }
+    this.userListener = UserStore.addListener(this.updateUser);
+    // if (typeof UserStore.currentUser() === 'undefined') {
+    //   UserActions.fetchCurrentUser();
+    // }
+  },
+
+  componentWillUnmount: function (){
+    this.userListener.remove();
   },
 
   updateUser: function() {
-    // debugger
     this.setState({
       currentUser: UserStore.currentUser(),
       userErrors: UserStore.errors()

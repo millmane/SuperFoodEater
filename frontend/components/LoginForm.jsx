@@ -1,12 +1,17 @@
-var React = require("react");
+	var React = require("react");
 // var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var UserActions = require("../actions/user_actions");
 var CurrentUserState = require("../mixins/current_user_state");
+var Modal = require('react-modal');
+var GuestLogin = require ('./GuestLogin.jsx');
+var UsernamePasswordForm = require('./UsernamePasswordForm');
+var SignUpModal = require('./SignUpModal.jsx');
+
 
 var LoginForm = React.createClass({
 	mixins: [CurrentUserState],
 	getInitialState: function(){
-		return {form: "", username: ""};
+		return {form: "", password: "", username: ""};
 	},
 
 	setForm: function(e){
@@ -35,7 +40,7 @@ var LoginForm = React.createClass({
 		return (
 			<div>
 				<h2>Hi, {this.state.currentUser.username}!</h2>
-				<input type="submit" value="logout" onClick={this.logout}/>
+        <button type="submit" value="logout" onClick={this.logout}>Log Out</button>
 			</div>
 		);
 	},
@@ -47,9 +52,12 @@ var LoginForm = React.createClass({
 		var self = this;
 		return (<ul>
 		{
-			Object.keys(this.state.userErrors).map(function(key, i){
-				return (<li key={i}>{self.state.userErrors[key]}</li>);
+			this.state.userErrors.map(function(el){
+				return (<li key={el + 1}>{el}</li>);
 			})
+			// Object.keys(this.state.userErrors).map(function(key, i){
+			// 	return (<li key={i}>{self.state.userErrors[key]}</li>);
+			// })
 		}
 		</ul>);
 	},
@@ -59,33 +67,39 @@ var LoginForm = React.createClass({
 			return;
 		}
 
-    //TO REMOVE ERROR, SET VALUE="" ON USERNAME/PASSWORD INPUTS
+    var customStyles = {
+      content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)'
+      }
+    };
+
 		return(
-			<form onSubmit={this.handleSubmit}>
-        <section>
-					<label> Username:
-						<input type="text" value={this.state.username} onChange={this.handleUsername}/>
-					</label>
+      <div className="nav-bar-item">
+				<form onSubmit={this.handleSubmit}>
+					<section>
+						<label> Username:
+							<input type="text" value={this.state.username} onChange={this.handleUsername}/>
+						</label>
+						<br></br>
 
-					<label> Password:
-						<input type="password" value={this.state.password} onChange={this.handlePassword}/>
-					</label>
-				</section>
+						<label> Password:
+							<input type="text" value={this.state.password} onChange={this.handlePassword}/>
+						</label>
+					</section>
 
-				<section>
-					<label> Login
-						<input type="Radio" name="action" value="login" onChange={this.setForm}/>
-					</label>
+					<button type="submit" value="login" onClick={this.setForm}>Log In</button>
+					<br></br>
+					<SignUpModal/>
+					<GuestLogin/>
+				</form>
+        {this.errors()}
 
-					<label> Sign Up
-						<input type="Radio" name="action" value="signup" onChange={this.setForm}/>
-					</label>
-				</section>
-
-				<input type="submit" value="Submit"/>
-        <button type="submit" value="guestLogin" onClick={this.guestLogin}>Guest Login</button>
-
-			</form>
+      </div>
 		);
 	},
 
@@ -106,14 +120,20 @@ var LoginForm = React.createClass({
   },
 
 	render: function(){
-		return (
-			<div id="login-form">
-        <h5>LoginForm Render</h5>
-				{this.greeting()}
-				{this.errors()}
-				{this.form()}
-			</div>
-		);
+    return (
+    	<div id="login-form">
+    		{this.greeting()}
+    		{this.form()}
+    	</div>
+    );
+		// return (
+		// 	<div id="login-form">
+    //     <h5>LoginForm Render</h5>
+		// 		{this.greeting()}
+		// 		{this.errors()}
+		// 		{this.form()}
+		// 	</div>
+		// );
 	}
 });
 

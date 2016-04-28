@@ -1,12 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Modal = require('react-modal');
-
-var LoginForm = require('./LoginForm.jsx');
-
-// var appElement = document.getElementById('content');
-//
-// Modal.setAppElement(appElement);
+var SignUpForm = require('./SignUpForm.jsx');
 
 var customStyles = {
   content : {
@@ -40,15 +35,15 @@ var LoginModal = React.createClass({
 
   render: function() {
     return(
-      <div className="login-modal">
-        <button onClick={this.openModal}>Log In</button>
+      <div className="signup-modal">
+        <button onClick={this.openModal}>Sign Up</button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
             style={customStyles} >
 
-			    <LoginForm/>
+			    <SignUpForm/>
         </Modal>
       </div>
 		);

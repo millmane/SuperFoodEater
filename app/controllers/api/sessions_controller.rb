@@ -27,12 +27,20 @@ class Api::SessionsController < ApplicationController
   end
 
   def show
+    # token = session[:session_token]
+    # @user = User.find_by({session_token: token})
+    # if @user
+    #   response = {logged_in: true, username: @user.username}
+    #   render json: response
+    # else
+    #   render json: { logged_in: false }
+    # end
     if current_user
       @user = current_user
-      render = "api/users/show"
+      render "api/users/show"
     else
       @errors = ["not a valid user, user can't be shown"]
-      render "api/shared/error", status: 404
+      render "api/shared/error"
     end
   end
 

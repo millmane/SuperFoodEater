@@ -21,6 +21,10 @@ UserStore.__onDispatch = function (payload) {
     UserStore.__emitChange();
   };
 
+  UserStore.loginStatus = function(){
+    return _currentUser ? true : false;
+  };
+
   UserStore.login = function(user){
     _currentUser = user;
     _authErrors = null;

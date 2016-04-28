@@ -21,14 +21,22 @@ var UserApiUtil = {
     });
   },
 
-  fetchCurrentUser: function(success, error){
+  // fetchCurrentUser: function(success, error){
+    fetchCurrentUser: function(success) {
     $.ajax({
       url: '/api/session',
       method: 'get',
-      success: success,
-      error: error
+      success: function(object){
+        if (object.username) {
+          success(object);
+        }},
+
+        // } else {
+        //   error(object);
+        // }}
+      // error: error
     });
-  }
+  },
 
 };
 
