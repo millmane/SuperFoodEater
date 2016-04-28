@@ -67,19 +67,8 @@ var LoginForm = React.createClass({
 			return;
 		}
 
-    var customStyles = {
-      content : {
-        top                   : '50%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)'
-      }
-    };
-
 		return(
-      <div className="nav-bar-item">
+      <div>
 				<form onSubmit={this.handleSubmit}>
 					<section>
 						<label> Username:

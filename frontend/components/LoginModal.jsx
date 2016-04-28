@@ -15,9 +15,11 @@ var customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
   }
 };
+
+
 
 var LoginModal = React.createClass({
 
@@ -40,13 +42,13 @@ var LoginModal = React.createClass({
 
   render: function() {
     return(
-      <div className="login-modal">
-        <button onClick={this.openModal}>Log In</button>
+      <div>
+        <button type="button" className="btn btn-info btn-lg" onClick={this.openModal}>Log In</button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
-            style={customStyles} >
+            style={customStyles}>
 
 			    <LoginForm/>
         </Modal>

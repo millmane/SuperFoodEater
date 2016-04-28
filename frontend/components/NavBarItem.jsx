@@ -35,11 +35,11 @@ var NavBarItem = React.createClass({
 
   render: function() {
     return (
-      <div className="nav-bar-item">
-        {this.state.currentUser ? this.loggedInRender() : <LoginModal/>}
-        {this.state.currentUser ? <div></div> : <SignUpModal/> }
-        {this.state.currentUser ? <div></div> : <GuestLogin/> }
-      </div>
+      <ul className="nav navbar-nav navbar-right">
+        {this.state.currentUser ? this.loggedInRender() : <li><LoginModal/></li>}
+        {this.state.currentUser ? "" : <li><SignUpModal/></li> }
+        {this.state.currentUser ? "" : <li><GuestLogin/></li> }
+      </ul>
     );
   }
 });

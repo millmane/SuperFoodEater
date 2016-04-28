@@ -35,8 +35,8 @@ var LoginModal = React.createClass({
 
   render: function() {
     return(
-      <div className="signup-modal">
-        <button onClick={this.openModal}>Sign Up</button>
+      <div>
+        <button type="button" className="btn btn-info btn-lg" onClick={this.openModal}>Sign Up</button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}

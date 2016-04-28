@@ -35,11 +35,24 @@ if (typeof UserStore.currentUser() === 'undefined') {
 var App = React.createClass({
   render: function () {
     return (
-      <div className="landing-page">
+      <div>
         <NavBar/>
         <LandingBackground/>
         {this.props.children}
-      </div>
+
+    <ul className="nav nav-pills">
+      <li role="presentation" className="active"><a href="#">Home</a></li>
+      <li role="presentation"><a href="#">Profile</a></li>
+      <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
+
+<div className="btn-group" role="group" aria-label="...">
+  <button type="button" className="btn btn-default">Left</button>
+  <button type="button" className="btn btn-default">Middle</button>
+  <button type="button" className="btn btn-default">Right</button>
+</div>
+</div>
+
     );
   }
 });

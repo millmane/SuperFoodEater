@@ -84,10 +84,60 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'landing-page' },
+	      null,
 	      React.createElement(NavBar, null),
 	      React.createElement(LandingBackground, null),
-	      this.props.children
+	      this.props.children,
+	      React.createElement(
+	        'ul',
+	        { className: 'nav nav-pills' },
+	        React.createElement(
+	          'li',
+	          { role: 'presentation', className: 'active' },
+	          React.createElement(
+	            'a',
+	            { href: '#' },
+	            'Home'
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          { role: 'presentation' },
+	          React.createElement(
+	            'a',
+	            { href: '#' },
+	            'Profile'
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          { role: 'presentation' },
+	          React.createElement(
+	            'a',
+	            { href: '#' },
+	            'Messages'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'btn-group', role: 'group', 'aria-label': '...' },
+	        React.createElement(
+	          'button',
+	          { type: 'button', className: 'btn btn-default' },
+	          'Left'
+	        ),
+	        React.createElement(
+	          'button',
+	          { type: 'button', className: 'btn btn-default' },
+	          'Middle'
+	        ),
+	        React.createElement(
+	          'button',
+	          { type: 'button', className: 'btn btn-default' },
+	          'Right'
+	        )
+	      )
 	    );
 	  }
 	});
@@ -25597,20 +25647,9 @@
 				return;
 			}
 	
-			var customStyles = {
-				content: {
-					top: '50%',
-					left: '50%',
-					right: 'auto',
-					bottom: 'auto',
-					marginRight: '-50%',
-					transform: 'translate(-50%, -50%)'
-				}
-			};
-	
 			return React.createElement(
 				"div",
-				{ className: "nav-bar-item" },
+				null,
 				React.createElement(
 					"form",
 					{ onSubmit: this.handleSubmit },
@@ -32715,10 +32754,10 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'login-modal' },
+	      null,
 	      React.createElement(
 	        'button',
-	        { onClick: this.openModal },
+	        { type: 'button', className: 'btn btn-info btn-lg', onClick: this.openModal },
 	        'Log In'
 	      ),
 	      React.createElement(
@@ -34740,32 +34779,24 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      'div',
-	      { className: 'nav-bar' },
-	      React.createElement(Logo, null),
-	      React.createElement(NavBarItem, null)
+	      'nav',
+	      { className: 'navbar-fixed-top' },
+	      React.createElement(
+	        'div',
+	        { className: 'container-fluid' },
+	        React.createElement(
+	          'div',
+	          { className: 'navbar-header' },
+	          React.createElement(Logo, null)
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'collapse navbar-collapse' },
+	          React.createElement(NavBarItem, null)
+	        )
+	      )
 	    );
 	  }
-	
-	  // render: function () {
-	  //   return (
-	  //     <div style={{border:"5px black solid"}}>
-	  //       <Logo/>
-	  //       {this.state.loginStatus ?
-	  //         <button
-	  //           type="submit" value="logout" onClick={this.logout}>
-	  //           Log Out
-	  //         </button> :
-	  //         <LoginForm/>
-	  //       }
-	  //       <SignUpForm/>
-	  //
-	  //       <div>
-	  //         <p>NAVBAR ITEM COMPONENT HERE</p>
-	  //       </div>
-	  //     </div>
-	  //   );
-	  // }
 	
 	});
 	
@@ -34786,23 +34817,11 @@
 	    var Link = ReactRouter.Link;
 	    // style={{border:"5px blue solid"}}
 	    return React.createElement(
-	      'div',
-	      { className: 'logo' },
-	      React.createElement(
-	        'div',
-	        { className: 'logo-container' },
-	        React.createElement(
-	          Link,
-	          { to: '/' },
-	          React.createElement('img', { className: 'logo-design',
-	            src: 'http://res.cloudinary.com/millmane/image/upload/v1461780849/tooth-toy_wtisoh.jpg' })
-	        ),
-	        React.createElement(
-	          'h2',
-	          { className: 'logo-text' },
-	          'FoodEater'
-	        )
-	      )
+	      Link,
+	      { to: '/', className: 'navbar-brand' },
+	      React.createElement('img', { alt: 'Brand',
+	        src: 'http://res.cloudinary.com/millmane/image/upload/v1461780849/tooth-toy_wtisoh.jpg' }),
+	      'FoodEater'
 	    );
 	  }
 	
@@ -34934,7 +34953,7 @@
 	    // </div>
 	    return React.createElement(
 	      "div",
-	      { className: "nav-bar-item" },
+	      null,
 	      React.createElement(
 	        "form",
 	        { onSubmit: this.handleSubmit },
@@ -35044,11 +35063,23 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      'div',
-	      { className: 'nav-bar-item' },
-	      this.state.currentUser ? this.loggedInRender() : React.createElement(LoginModal, null),
-	      this.state.currentUser ? React.createElement('div', null) : React.createElement(SignUpModal, null),
-	      this.state.currentUser ? React.createElement('div', null) : React.createElement(GuestLogin, null)
+	      'ul',
+	      { className: 'nav navbar-nav navbar-right' },
+	      this.state.currentUser ? this.loggedInRender() : React.createElement(
+	        'li',
+	        null,
+	        React.createElement(LoginModal, null)
+	      ),
+	      this.state.currentUser ? "" : React.createElement(
+	        'li',
+	        null,
+	        React.createElement(SignUpModal, null)
+	      ),
+	      this.state.currentUser ? "" : React.createElement(
+	        'li',
+	        null,
+	        React.createElement(GuestLogin, null)
+	      )
 	    );
 	  }
 	});
@@ -35079,7 +35110,7 @@
 	  render: function () {
 	    return React.createElement(
 	      "button",
-	      { type: "submit", value: "guestLogin", onClick: this.guestLogin },
+	      { type: "button", className: "btn btn-info btn-lg", value: "guestLogin", onClick: this.guestLogin },
 	      "Guest Login"
 	    );
 	  }
@@ -35220,10 +35251,10 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'signup-modal' },
+	      null,
 	      React.createElement(
 	        'button',
-	        { onClick: this.openModal },
+	        { type: 'button', className: 'btn btn-info btn-lg', onClick: this.openModal },
 	        'Sign Up'
 	      ),
 	      React.createElement(

@@ -42,32 +42,18 @@ mixins: [CurrentUserState],
 
   render: function () {
     return (
-      <div className="nav-bar">
-        <Logo/>
-        <NavBarItem/>
-      </div>
+      <nav className="navbar-fixed-top">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <Logo/>
+          </div>
+          <div className="collapse navbar-collapse">
+              <NavBarItem/>
+          </div>
+        </div>
+      </nav>
     );
   }
-
-  // render: function () {
-  //   return (
-  //     <div style={{border:"5px black solid"}}>
-  //       <Logo/>
-  //       {this.state.loginStatus ?
-  //         <button
-  //           type="submit" value="logout" onClick={this.logout}>
-  //           Log Out
-  //         </button> :
-  //         <LoginForm/>
-  //       }
-  //       <SignUpForm/>
-  //
-  //       <div>
-  //         <p>NAVBAR ITEM COMPONENT HERE</p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
 });
 

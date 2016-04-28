@@ -113,7 +113,7 @@ var SignUpForm = React.createClass({
     //   {this.errors()}
     // </div>
 		return(
-      <div className="nav-bar-item">
+      <div>
     		<form onSubmit={this.handleSubmit}>
           <section>
     				<label> Username:
