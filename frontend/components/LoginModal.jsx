@@ -42,17 +42,17 @@ var LoginModal = React.createClass({
 
   render: function() {
     return(
-      <div>
-        <button type="button" className="btn btn-info btn-lg" onClick={this.openModal}>Log In</button>
+      <a className="page-scroll">
+        <button type="button" className="btn btn-primary btn-outline" onClick={this.openModal}>Log In</button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
-            style={customStyles}>
+            style={customStyles} >
 
-			    <LoginForm/>
+          <LoginForm/>
         </Modal>
-      </div>
+      </a>
 		);
   }
 });

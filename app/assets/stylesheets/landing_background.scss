@@ -1,8 +1,28 @@
 .landing-background {
-  z-index: -1;
   position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
   width: 100%;
+  min-height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: center;
+  background-image: url('http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg');
+  text-align: center;
+  color: white;
 }
+
+// body {
+//   background-repeat: no-repeat;
+//   position: absolute;
+//   width: 100%;
+//   min-height: 100%;
+//   -webkit-background-size: cover;
+//   -moz-background-size: cover;
+//   background-size: cover;
+//   -o-background-size: cover;
+//   background-position: center;
+//   background-image: url('http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg');
+//   text-align: center;
+//   color: white;
+// }

@@ -35,8 +35,8 @@ var LoginModal = React.createClass({
 
   render: function() {
     return(
-      <div>
-        <button type="button" className="btn btn-info btn-lg" onClick={this.openModal}>Sign Up</button>
+      <a className="page-scroll">
+        <button type="button" className="btn btn-primary btn-outline" onClick={this.openModal}>Sign Up</button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
@@ -45,7 +45,7 @@ var LoginModal = React.createClass({
 
 			    <SignUpForm/>
         </Modal>
-      </div>
+      </a>
 		);
   }
 });

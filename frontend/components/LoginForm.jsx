@@ -70,16 +70,11 @@ var LoginForm = React.createClass({
 		return(
       <div>
 				<form onSubmit={this.handleSubmit}>
-					<section>
-						<label> Username:
-							<input type="text" value={this.state.username} onChange={this.handleUsername}/>
-						</label>
-						<br></br>
+					<div className="input-group">
+						<input type="text" className="form-control"
+							 placeholder="Username"/>
+					 </div>
 
-						<label> Password:
-							<input type="text" value={this.state.password} onChange={this.handlePassword}/>
-						</label>
-					</section>
 
 					<button type="submit" value="login" onClick={this.setForm}>Log In</button>
 					<br></br>

@@ -13,8 +13,10 @@ var Search = React.createClass({
 
   render: function(){
     return(
-      <div>
-        <h5>Search Render</h5>
+      <div class="input-group">
+        <input type="text" className="form-control"
+           placeholder="Recipient's username" aria-describedby="basic-addon2"/>
+        <span className="input-group-addon" id="basic-addon2">@example.com</span>
       </div>
     );
   }

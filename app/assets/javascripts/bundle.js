@@ -86,58 +86,8 @@
 	      'div',
 	      null,
 	      React.createElement(NavBar, null),
-	      React.createElement(LandingBackground, null),
-	      this.props.children,
-	      React.createElement(
-	        'ul',
-	        { className: 'nav nav-pills' },
-	        React.createElement(
-	          'li',
-	          { role: 'presentation', className: 'active' },
-	          React.createElement(
-	            'a',
-	            { href: '#' },
-	            'Home'
-	          )
-	        ),
-	        React.createElement(
-	          'li',
-	          { role: 'presentation' },
-	          React.createElement(
-	            'a',
-	            { href: '#' },
-	            'Profile'
-	          )
-	        ),
-	        React.createElement(
-	          'li',
-	          { role: 'presentation' },
-	          React.createElement(
-	            'a',
-	            { href: '#' },
-	            'Messages'
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'btn-group', role: 'group', 'aria-label': '...' },
-	        React.createElement(
-	          'button',
-	          { type: 'button', className: 'btn btn-default' },
-	          'Left'
-	        ),
-	        React.createElement(
-	          'button',
-	          { type: 'button', className: 'btn btn-default' },
-	          'Middle'
-	        ),
-	        React.createElement(
-	          'button',
-	          { type: 'button', className: 'btn btn-default' },
-	          'Right'
-	        )
-	      )
+	      React.createElement('div', { className: 'landing-background' }),
+	      this.props.children
 	    );
 	  }
 	});
@@ -145,11 +95,7 @@
 	var Router = React.createElement(
 	  Router,
 	  { history: hashHistory },
-	  React.createElement(
-	    Route,
-	    { path: '/', component: App },
-	    React.createElement(IndexRoute, { component: Search })
-	  )
+	  React.createElement(Route, { path: '/', component: App })
 	);
 	
 	document.addEventListener('DOMContentLoaded', function () {
@@ -25532,7 +25478,7 @@
 	var React = __webpack_require__(1);
 	
 	var Search = React.createClass({
-	  displayName: 'Search',
+	  displayName: "Search",
 	
 	
 	  getInitialState: function () {
@@ -25545,12 +25491,14 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      'div',
-	      null,
+	      "div",
+	      { "class": "input-group" },
+	      React.createElement("input", { type: "text", className: "form-control",
+	        placeholder: "Recipient's username", "aria-describedby": "basic-addon2" }),
 	      React.createElement(
-	        'h5',
-	        null,
-	        'Search Render'
+	        "span",
+	        { className: "input-group-addon", id: "basic-addon2" },
+	        "@example.com"
 	      )
 	    );
 	  }
@@ -25654,21 +25602,10 @@
 					"form",
 					{ onSubmit: this.handleSubmit },
 					React.createElement(
-						"section",
-						null,
-						React.createElement(
-							"label",
-							null,
-							" Username:",
-							React.createElement("input", { type: "text", value: this.state.username, onChange: this.handleUsername })
-						),
-						React.createElement("br", null),
-						React.createElement(
-							"label",
-							null,
-							" Password:",
-							React.createElement("input", { type: "text", value: this.state.password, onChange: this.handlePassword })
-						)
+						"div",
+						{ className: "input-group" },
+						React.createElement("input", { type: "text", className: "form-control",
+							placeholder: "Username" })
 					),
 					React.createElement(
 						"button",
@@ -32753,11 +32690,11 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      'div',
-	      null,
+	      'a',
+	      { className: 'page-scroll' },
 	      React.createElement(
 	        'button',
-	        { type: 'button', className: 'btn btn-info btn-lg', onClick: this.openModal },
+	        { type: 'button', className: 'btn btn-primary btn-outline', onClick: this.openModal },
 	        'Log In'
 	      ),
 	      React.createElement(
@@ -34780,20 +34717,32 @@
 	  render: function () {
 	    return React.createElement(
 	      'nav',
-	      { className: 'navbar-fixed-top' },
+	      { id: 'mainNav', className: 'navbar navbar-default navbar-fixed-top' },
 	      React.createElement(
 	        'div',
 	        { className: 'container-fluid' },
 	        React.createElement(
 	          'div',
 	          { className: 'navbar-header' },
-	          React.createElement(Logo, null)
+	          React.createElement(
+	            'button',
+	            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1' },
+	            React.createElement(
+	              'span',
+	              { className: 'sr-only' },
+	              'Toggle navigation'
+	            ),
+	            React.createElement('span', { className: 'icon-bar' }),
+	            React.createElement('span', { className: 'icon-bar' }),
+	            React.createElement('span', { className: 'icon-bar' })
+	          ),
+	          React.createElement(
+	            'a',
+	            { className: 'navbar-brand page-scroll' },
+	            'FoodEater'
+	          )
 	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'collapse navbar-collapse' },
-	          React.createElement(NavBarItem, null)
-	        )
+	        React.createElement(NavBarItem, null)
 	      )
 	    );
 	  }
@@ -34818,10 +34767,9 @@
 	    // style={{border:"5px blue solid"}}
 	    return React.createElement(
 	      Link,
-	      { to: '/', className: 'navbar-brand' },
-	      React.createElement('img', { alt: 'Brand',
-	        src: 'http://res.cloudinary.com/millmane/image/upload/v1461780849/tooth-toy_wtisoh.jpg' }),
-	      'FoodEater'
+	      { to: '/', className: 'page-scroll' },
+	      React.createElement('img', { alt: '', className: 'navbar-brand',
+	        src: 'http://res.cloudinary.com/millmane/image/upload/v1461780849/tooth-toy_wtisoh.jpg' })
 	    );
 	  }
 	
@@ -35063,28 +35011,38 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      'ul',
-	      { className: 'nav navbar-nav navbar-right' },
-	      this.state.currentUser ? this.loggedInRender() : React.createElement(
-	        'li',
-	        null,
-	        React.createElement(LoginModal, null)
-	      ),
-	      this.state.currentUser ? "" : React.createElement(
-	        'li',
-	        null,
-	        React.createElement(SignUpModal, null)
-	      ),
-	      this.state.currentUser ? "" : React.createElement(
-	        'li',
-	        null,
-	        React.createElement(GuestLogin, null)
+	      'div',
+	      { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+	      React.createElement(
+	        'ul',
+	        { className: 'nav navbar-nav navbar-right' },
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(LoginModal, null)
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(SignUpModal, null)
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(GuestLogin, null)
+	        )
 	      )
 	    );
 	  }
 	});
 	
 	module.exports = NavBarItem;
+	
+	// <ul className="nav navbar-nav navbar-right">
+	//   {this.state.currentUser ? this.loggedInRender() : <li><LoginModal/></li>}
+	//   {this.state.currentUser ? "" : <li><SignUpModal/></li> }
+	//   {this.state.currentUser ? "" : <li><GuestLogin/></li> }
+	// </ul>
 
 /***/ },
 /* 282 */
@@ -35109,9 +35067,13 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      "button",
-	      { type: "button", className: "btn btn-info btn-lg", value: "guestLogin", onClick: this.guestLogin },
-	      "Guest Login"
+	      "a",
+	      { className: "page-scroll" },
+	      React.createElement(
+	        "button",
+	        { type: "button", className: "btn btn-primary btn-outline", value: "guestLogin", onClick: this.guestLogin },
+	        "Guest Login"
+	      )
 	    );
 	  }
 	
@@ -35250,11 +35212,11 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      'div',
-	      null,
+	      'a',
+	      { className: 'page-scroll' },
 	      React.createElement(
 	        'button',
-	        { type: 'button', className: 'btn btn-info btn-lg', onClick: this.openModal },
+	        { type: 'button', className: 'btn btn-primary btn-outline', onClick: this.openModal },
 	        'Sign Up'
 	      ),
 	      React.createElement(
@@ -35283,8 +35245,12 @@
 	
 	
 	  render: function () {
-	    return React.createElement("img", { className: "landing-background",
-	      src: "http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg" });
+	    return React.createElement(
+	      "div",
+	      { className: "jumbotron jumbotron-fluid" },
+	      React.createElement("img", { className: "landing-background",
+	        src: "http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg" })
+	    );
 	  }
 	});
 	

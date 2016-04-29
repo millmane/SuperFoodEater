@@ -37,22 +37,9 @@ var App = React.createClass({
     return (
       <div>
         <NavBar/>
-        <LandingBackground/>
+        <div className="landing-background"></div>
         {this.props.children}
-
-    <ul className="nav nav-pills">
-      <li role="presentation" className="active"><a href="#">Home</a></li>
-      <li role="presentation"><a href="#">Profile</a></li>
-      <li role="presentation"><a href="#">Messages</a></li>
-    </ul>
-
-<div className="btn-group" role="group" aria-label="...">
-  <button type="button" className="btn btn-default">Left</button>
-  <button type="button" className="btn btn-default">Middle</button>
-  <button type="button" className="btn btn-default">Right</button>
-</div>
-</div>
-
+      </div>
     );
   }
 });
@@ -60,7 +47,6 @@ var App = React.createClass({
 var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Search}/>
     </Route>
   </Router>
 );

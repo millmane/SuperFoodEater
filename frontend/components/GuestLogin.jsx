@@ -16,9 +16,11 @@ var GuestLogin = React.createClass({
 
   render: function(){
     return(
-      <button type="button" className="btn btn-info btn-lg" value="guestLogin" onClick={this.guestLogin}>
-        Guest Login
-      </button>
+      <a className="page-scroll">
+        <button type="button" className="btn btn-primary btn-outline" value="guestLogin" onClick={this.guestLogin}>
+          Guest Login
+        </button>
+      </a>
     );
   }
 

@@ -35,13 +35,28 @@ var NavBarItem = React.createClass({
 
   render: function() {
     return (
-      <ul className="nav navbar-nav navbar-right">
-        {this.state.currentUser ? this.loggedInRender() : <li><LoginModal/></li>}
-        {this.state.currentUser ? "" : <li><SignUpModal/></li> }
-        {this.state.currentUser ? "" : <li><GuestLogin/></li> }
-      </ul>
+      <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul className="nav navbar-nav navbar-right">
+           <li>
+             <LoginModal/>
+           </li>
+           <li>
+             <SignUpModal/>
+           </li>
+           <li>
+             <GuestLogin/>
+           </li>
+         </ul>
+     </div>
+
     );
   }
 });
 
 module.exports = NavBarItem;
+
+// <ul className="nav navbar-nav navbar-right">
+//   {this.state.currentUser ? this.loggedInRender() : <li><LoginModal/></li>}
+//   {this.state.currentUser ? "" : <li><SignUpModal/></li> }
+//   {this.state.currentUser ? "" : <li><GuestLogin/></li> }
+// </ul>

@@ -42,14 +42,18 @@ mixins: [CurrentUserState],
 
   render: function () {
     return (
-      <nav className="navbar-fixed-top">
+      <nav id="mainNav" className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
           <div className="navbar-header">
-            <Logo/>
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand page-scroll">FoodEater</a>
           </div>
-          <div className="collapse navbar-collapse">
-              <NavBarItem/>
-          </div>
+          <NavBarItem/>
         </div>
       </nav>
     );
