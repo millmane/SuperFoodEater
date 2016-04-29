@@ -97,7 +97,7 @@ var LoginForm = React.createClass({
 					</button>
 					<hr className="smaller-hr"></hr>
 					<label>Don't have an account?</label>
-					<SignUpModalLogin/>
+					<SignUpModal loginform="true"/>
 					<GuestLoginLogin/>
 				</form>
         {this.errors()}

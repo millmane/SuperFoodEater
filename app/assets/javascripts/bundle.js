@@ -25600,7 +25600,7 @@
 						null,
 						"Don't have an account?"
 					),
-					React.createElement(SignUpModalLogin, null),
+					React.createElement(SignUpModal, { loginform: "true" }),
 					React.createElement(GuestLoginLogin, null)
 				),
 				this.errors()
@@ -35234,12 +35234,18 @@
 	  },
 	
 	  render: function () {
+	    var styling;
+	    if (this.props.loginform === "true") {
+	      styling = "btn btn-login-form btn-outline";
+	    } else {
+	      styling = "btn btn-primary btn-outline";
+	    }
 	    return React.createElement(
 	      'a',
 	      { className: 'page-scroll' },
 	      React.createElement(
 	        'button',
-	        { type: 'button', className: 'btn btn-primary btn-outline', onClick: this.openModal },
+	        { type: 'button', className: styling, onClick: this.openModal },
 	        'Sign Up'
 	      ),
 	      React.createElement(

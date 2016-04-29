@@ -2,3 +2,6 @@ current_user_state line 16 - solved (had render = "url", should be render "url")
 LoginForm line 62 - solved (didnt set password: "" in initial state)
 when logged in, refresh logs out(or resets session_token) - solved (had render = "url", should be render "url")
 after logging in, logout button renders modal, should just logout and rerender page
+
+database setup? space/amenities/etc... as separate tables, or as columns in listings?
+listings.amenities = [thing1, thing2, thing8], model forces values from list [thing1, thing2]

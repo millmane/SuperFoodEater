@@ -34,9 +34,15 @@ var SignUpModal = React.createClass({
   },
 
   render: function() {
+ var styling;
+    if (this.props.loginform === "true") {
+      styling =  "btn btn-login-form btn-outline";
+    } else {
+      styling =  "btn btn-primary btn-outline";
+    }
     return(
       <a className="page-scroll">
-        <button type="button" className="btn btn-primary btn-outline" onClick={this.openModal}>Sign Up</button>
+        <button type="button" className={styling} onClick={this.openModal}>Sign Up</button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
