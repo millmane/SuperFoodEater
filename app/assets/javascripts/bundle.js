@@ -58,7 +58,7 @@
 	//Components
 	var NavBar = __webpack_require__(278);
 	var Logo = __webpack_require__(279);
-	var Search = __webpack_require__(225);
+	var SearchBar = __webpack_require__(288);
 	var LoginForm = __webpack_require__(226);
 	// var UsernamePasswordForm = require('./components/UsernamePasswordForm');
 	var LandingBackground = __webpack_require__(285);
@@ -25472,41 +25472,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 225 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var Search = React.createClass({
-	  displayName: "Search",
-	
-	
-	  getInitialState: function () {
-	    return {
-	      listings: {},
-	      filterParams: {},
-	      clickedLoc: null
-	    };
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { "class": "input-group" },
-	      React.createElement("input", { type: "text", className: "form-control",
-	        placeholder: "Recipient's username", "aria-describedby": "basic-addon2" }),
-	      React.createElement(
-	        "span",
-	        { className: "input-group-addon", id: "basic-addon2" },
-	        "@example.com"
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = Search;
-
-/***/ },
+/* 225 */,
 /* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -34686,6 +34652,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(166);
+	
 	var UserStore = __webpack_require__(238);
 	var Logo = __webpack_require__(279);
 	var LoginForm = __webpack_require__(226);
@@ -34715,27 +34683,43 @@
 	    UserActions.logout();
 	  },
 	
-	  loggedInRender: function () {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h2',
-	        null,
-	        'Hi, ',
-	        this.state.currentUser.username,
-	        '!'
-	      ),
-	      React.createElement(
-	        'button',
-	        {
-	          type: 'submit', value: 'logout', onClick: this.logout },
-	        'Log Out'
-	      )
-	    );
-	  },
+	  // loggedInRender: function(){
+	  //   return (
+	  //     <div className="container-fluid">
+	  //       <div className="navbar-header">
+	  //         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	  //           <span className="sr-only">Toggle navigation</span>
+	  //           <span className="icon-bar"></span>
+	  //           <span className="icon-bar"></span>
+	  //           <span className="icon-bar"></span>
+	  //         </button>
+	  //         <a className="navbar-brand page-scroll">FoodEater</a>
+	  //       </div>
+	  //       <NavBarItem/>
+	  //     </div>
+	  //   );
+	  // },
+	  //
+	  // loggedOutRender: function(){
+	  //   return (
+	  //     <div className="container-fluid">
+	  //       <div className="navbar-header">
+	  //         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	  //           <span className="sr-only">Toggle navigation</span>
+	  //           <span className="icon-bar"></span>
+	  //           <span className="icon-bar"></span>
+	  //           <span className="icon-bar"></span>
+	  //         </button>
+	  //         <a className="navbar-brand page-scroll">FoodEater</a>
+	  //       </div>
+	  //       <NavBarItem/>
+	  //     </div>
+	  //   );
+	  // },
 	
 	  render: function () {
+	    var Link = ReactRouter.Link;
+	
 	    return React.createElement(
 	      'nav',
 	      { id: 'mainNav', className: 'navbar navbar-default navbar-fixed-top' },
@@ -34760,7 +34744,12 @@
 	          React.createElement(
 	            'a',
 	            { className: 'navbar-brand page-scroll' },
-	            'FoodEater'
+	            'FoodEater',
+	            React.createElement(
+	              Link,
+	              { to: '/', className: 'page-scroll' },
+	              'FoodEater'
+	            )
 	          )
 	        ),
 	        React.createElement(NavBarItem, null)
@@ -34809,174 +34798,165 @@
 	var Modal = __webpack_require__(258);
 	var GuestLogin = __webpack_require__(282);
 	var UsernamePasswordForm = __webpack_require__(283);
+	var SignUpModalLogin = __webpack_require__(286);
+	var GuestLoginLogin = __webpack_require__(287);
 	
 	var SignUpForm = React.createClass({
-	  displayName: "SignUpForm",
+		displayName: "SignUpForm",
 	
-	  mixins: [CurrentUserState],
+		mixins: [CurrentUserState],
 	
-	  getInitialState: function () {
-	    return { form: "", password: "", username: "", modalIsOpen: false };
-	  },
+		getInitialState: function () {
+			return { form: "", password: "", username: "" };
+		},
 	
-	  openModal: function () {
-	    this.setState({ modalIsOpen: true });
-	  },
+		setForm: function (e) {
+			this.setState({ form: e.currentTarget.value });
+		},
 	
-	  afterOpenModal: function () {
-	    // references are now sync'd and can be accessed.
-	    this.refs.subtitle.style.color = '#f00';
-	  },
+		handleSubmit: function (e) {
+			e.preventDefault();
+			UserActions[this.state.form]({
+				username: this.state.username,
+				password: this.state.password
+			});
 	
-	  closeModal: function () {
-	    this.setState({ modalIsOpen: false });
-	  },
+			this.setState({ username: "", password: "" });
+		},
 	
-	  setForm: function (e) {
-	    this.setState({ form: e.currentTarget.value });
-	  },
+		logout: function (e) {
+			e.preventDefault();
+			UserActions.logout();
+		},
 	
-	  handleSubmit: function (e) {
-	    e.preventDefault();
-	    UserActions[this.state.form]({
-	      username: this.state.username,
-	      password: this.state.password
-	    });
+		errors: function () {
+			if (!this.state.userErrors) {
+				return;
+			}
+			var self = this;
+			return React.createElement(
+				"ul",
+				null,
+				this.state.userErrors.map(function (el) {
+					return React.createElement(
+						"li",
+						{ key: el + 1 },
+						el
+					);
+				})
+				// Object.keys(this.state.userErrors).map(function(key, i){
+				// 	return (<li key={i}>{self.state.userErrors[key]}</li>);
+				// })
 	
-	    this.setState({ username: "", password: "" });
-	  },
+			);
+		},
 	
-	  logout: function (e) {
-	    e.preventDefault();
-	    UserActions.logout();
-	  },
-	  //
-	  // greeting: function(){
-	  // 	if (!this.state.currentUser) {
-	  // 		return;
-	  // 	}
-	  // 	return (
-	  // 		<div>
-	  // 			<h2>Hi, {this.state.currentUser.username}!</h2>
-	  //       <button type="submit" value="logout" onClick={this.logout}>Log Out</button>
-	  // 		</div>
-	  // 	);
-	  // },
+		// errors: function(){
+		// 	if (!this.state.userErrors){
+		// 		return;
+		// 	}
+		// 	var self = this;
+		// 	return (<ul>
+		// 	{
+		// 		Object.keys(this.state.userErrors).map(function(key, i){
+		// 			return (<li key={i}>{self.state.userErrors[key]}</li>);
+		// 		})
+		// 	}
+		// 	</ul>);
+		// },
 	
-	  errors: function () {
-	    if (!this.state.userErrors) {
-	      return;
-	    }
-	    var self = this;
-	    return React.createElement(
-	      "ul",
-	      null,
-	      this.state.userErrors.map(function (el) {
-	        return React.createElement(
-	          "li",
-	          { key: el + 1 },
-	          el
-	        );
-	      })
-	      // Object.keys(this.state.userErrors).map(function(key, i){
-	      // 	return (<li key={i}>{self.state.userErrors[key]}</li>);
-	      // })
+		form: function () {
+			if (this.state.currentUser) {
+				return;
+			}
 	
-	    );
-	  },
+			return React.createElement(
+				"div",
+				{ className: "login-text" },
+				React.createElement(
+					"h2",
+					null,
+					"Create an Account!"
+				),
+				React.createElement("hr", { className: "smaller-hr" }),
+				React.createElement(
+					"form",
+					{ onSubmit: this.handleSubmit },
+					React.createElement(
+						"div",
+						{ className: "form-group" },
+						React.createElement("input", { type: "text", className: "form-control", id: "Username",
+							placeholder: "Username", onChange: this.handleUsername,
+							value: this.state.username })
+					),
+					React.createElement(
+						"div",
+						{ "class": "form-groups" },
+						React.createElement("input", { type: "password", className: "form-control", id: "Password",
+							placeholder: "Password", onChange: this.handlePassword,
+							value: this.state.password })
+					),
+					React.createElement("hr", { className: "smaller-hr" }),
+					React.createElement(
+						"button",
+						{ type: "submit", className: "btn btn-success btn-block btn-login-form-login",
+							value: "signup", onClick: this.setForm },
+						"Sign Up"
+					),
+					React.createElement("hr", { className: "smaller-hr" }),
+					React.createElement(
+						"label",
+						null,
+						"Don't want to sign in?"
+					),
+					React.createElement(GuestLoginLogin, null)
+				),
+				this.errors()
+			);
+		},
 	
-	  // errors: function(){
-	  // 	if (!this.state.userErrors){
-	  // 		return;
-	  // 	}
-	  // 	var self = this;
-	  // 	return (<ul>
-	  // 	{
-	  // 		Object.keys(this.state.userErrors).map(function(key, i){
-	  // 			return (<li key={i}>{self.state.userErrors[key]}</li>);
-	  // 		})
-	  // 	}
-	  // 	</ul>);
-	  // },
+		// <div>
+		// 	<form onSubmit={this.handleSubmit}>
+		// 		<section>
+		// 			<label> Username:
+		// 				<input type="text" value={this.state.username} onChange={this.handleUsername}/>
+		// 			</label>
+		// 			<br></br>
+		//
+		// 			<label> Password:
+		// 				<input type="text" value={this.state.password} onChange={this.handlePassword}/>
+		// 			</label>
+		// 		</section>
+		//
+		// 		<button type="submit" value="signup" onClick={this.setForm}>Sign Up</button>
+		// 		<GuestLogin/>
+		// 	</form>
+		// 	{this.errors()}
+		// </div>
 	
-	  form: function () {
-	    if (this.state.currentUser) {
-	      return;
-	    }
+		guestLogin: function (e) {
+			e.preventDefault();
+			UserActions.guestLogin();
+			this.setState({ username: "", password: "" });
+		},
 	
-	    var customStyles = {
-	      content: {
-	        top: '50%',
-	        left: '50%',
-	        right: 'auto',
-	        bottom: 'auto',
-	        marginRight: '-50%',
-	        transform: 'translate(-50%, -50%)'
-	      }
-	    };
+		handleUsername: function (e) {
+			e.preventDefault();
+			this.setState({ username: e.currentTarget.value });
+		},
 	
-	    // <div>
-	    //   <UsernamePasswordForm/>
-	    //   <GuestLogin/>
-	    //   {this.errors()}
-	    // </div>
-	    return React.createElement(
-	      "div",
-	      null,
-	      React.createElement(
-	        "form",
-	        { onSubmit: this.handleSubmit },
-	        React.createElement(
-	          "section",
-	          null,
-	          React.createElement(
-	            "label",
-	            null,
-	            " Username:",
-	            React.createElement("input", { type: "text", value: this.state.username, onChange: this.handleUsername })
-	          ),
-	          React.createElement("br", null),
-	          React.createElement(
-	            "label",
-	            null,
-	            " Password:",
-	            React.createElement("input", { type: "text", value: this.state.password, onChange: this.handlePassword })
-	          )
-	        ),
-	        React.createElement(
-	          "button",
-	          { type: "submit", value: "signup", onClick: this.setForm },
-	          "Sign Up"
-	        ),
-	        React.createElement(GuestLogin, null)
-	      ),
-	      this.errors()
-	    );
-	  },
+		handlePassword: function (e) {
+			e.preventDefault();
+			this.setState({ password: e.currentTarget.value });
+		},
 	
-	  guestLogin: function (e) {
-	    e.preventDefault();
-	    UserActions.guestLogin();
-	    this.setState({ username: "", password: "" });
-	  },
-	
-	  handleUsername: function (e) {
-	    e.preventDefault();
-	    this.setState({ username: e.currentTarget.value });
-	  },
-	
-	  handlePassword: function (e) {
-	    e.preventDefault();
-	    this.setState({ password: e.currentTarget.value });
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { id: "login-form" },
-	      this.form()
-	    );
-	  }
+		render: function () {
+			return React.createElement(
+				"div",
+				{ id: "login-form" },
+				this.form()
+			);
+		}
 	});
 	
 	module.exports = SignUpForm;
@@ -34993,6 +34973,7 @@
 	var GuestLogin = __webpack_require__(282);
 	var LoginModal = __webpack_require__(257);
 	var SignUpModal = __webpack_require__(284);
+	var SearchBar = __webpack_require__(288);
 	
 	var NavBarItem = React.createClass({
 	  displayName: 'NavBarItem',
@@ -35007,19 +34988,65 @@
 	  loggedInRender: function () {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'container-fluid' },
 	      React.createElement(
-	        'h2',
-	        null,
-	        'Hi, ',
-	        this.state.currentUser.username,
-	        '!'
+	        'div',
+	        { className: 'navbar-header' },
+	        React.createElement(
+	          'button',
+	          { type: 'button', className: 'navbar-toggle collapsed',
+	            'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1' },
+	          React.createElement(
+	            'span',
+	            { className: 'sr-only' },
+	            'Toggle navigation'
+	          ),
+	          React.createElement('span', { className: 'icon-bar' })
+	        )
 	      ),
 	      React.createElement(
-	        'button',
-	        {
-	          type: 'submit', value: 'logout', onClick: this.logout },
-	        'Log Out'
+	        'div',
+	        { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+	        React.createElement(
+	          'ul',
+	          { className: 'nav navbar-nav navbar-right' },
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              'a',
+	              { className: 'page-scroll' },
+	              React.createElement(
+	                'button',
+	                { type: 'button', value: 'logout', onClick: this.logout,
+	                  className: 'btn btn-primary btn-outline' },
+	                'Log Out'
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  },
+	
+	  loggedOutRender: function () {
+	    return React.createElement(
+	      'ul',
+	      { className: 'nav navbar-nav navbar-right' },
+	      React.createElement(
+	        'li',
+	        null,
+	        React.createElement(LoginModal, null)
+	      ),
+	      React.createElement(
+	        'li',
+	        null,
+	        React.createElement(SignUpModal, null)
+	      ),
+	      React.createElement(
+	        'li',
+	        null,
+	        React.createElement(GuestLogin, null)
 	      )
 	    );
 	  },
@@ -35034,36 +35061,12 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-	      React.createElement(
-	        'ul',
-	        { className: 'nav navbar-nav navbar-right' },
-	        React.createElement(
-	          'li',
-	          null,
-	          React.createElement(LoginModal, null)
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
-	          React.createElement(SignUpModal, null)
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
-	          React.createElement(GuestLogin, null)
-	        )
-	      )
+	      this.state.currentUser ? this.loggedInRender() : this.loggedOutRender()
 	    );
 	  }
 	});
 	
 	module.exports = NavBarItem;
-	
-	// <ul className="nav navbar-nav navbar-right">
-	//   {this.state.currentUser ? this.loggedInRender() : <li><LoginModal/></li>}
-	//   {this.state.currentUser ? "" : <li><SignUpModal/></li> }
-	//   {this.state.currentUser ? "" : <li><GuestLogin/></li> }
-	// </ul>
 
 /***/ },
 /* 282 */
@@ -35377,6 +35380,41 @@
 	});
 	
 	module.exports = GuestLoginLogin;
+
+/***/ },
+/* 288 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var SearchBar = React.createClass({
+	  displayName: "SearchBar",
+	
+	
+	  getInitialState: function () {
+	    return {
+	      listings: {},
+	      filterParams: {},
+	      clickedLoc: null
+	    };
+	  },
+	
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { "class": "input-group" },
+	      React.createElement("input", { type: "text", className: "form-control",
+	        placeholder: "Search", "aria-describedby": "basic-addon2" }),
+	      React.createElement(
+	        "span",
+	        { className: "input-group-addon", id: "basic-addon2" },
+	        "@example.com"
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = SearchBar;
 
 /***/ }
 /******/ ]);

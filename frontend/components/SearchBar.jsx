@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Search = React.createClass({
+var SearchBar = React.createClass({
 
 
   getInitialState: function(){
@@ -15,11 +15,11 @@ var Search = React.createClass({
     return(
       <div class="input-group">
         <input type="text" className="form-control"
-           placeholder="Recipient's username" aria-describedby="basic-addon2"/>
+           placeholder="Search" aria-describedby="basic-addon2"/>
         <span className="input-group-addon" id="basic-addon2">@example.com</span>
       </div>
     );
   }
 });
 
-module.exports = Search;
+module.exports = SearchBar;

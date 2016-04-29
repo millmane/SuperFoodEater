@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render "api/users/show"
     else
-      @errors = ["not a valid user, session can't be created"]
+      @errors = ["Invalid Username or Password"]
       render "api/shared/error", status: 404
     end
   end

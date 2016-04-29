@@ -1,4 +1,6 @@
 var React = require('react');
+var ReactRouter = require('react-router');
+
 var UserStore = require('../stores/user_store.js');
 var Logo = require('./Logo.jsx');
 var LoginForm = require ('./LoginForm.jsx');
@@ -27,20 +29,43 @@ mixins: [CurrentUserState],
     UserActions.logout();
   },
 
-  loggedInRender: function(){
-    return (
-      <div>
-        <h2>Hi, {this.state.currentUser.username}!</h2>
-
-        <button
-          type="submit" value="logout" onClick={this.logout}>
-          Log Out
-        </button>
-      </div>
-    );
-  },
+  // loggedInRender: function(){
+  //   return (
+  //     <div className="container-fluid">
+  //       <div className="navbar-header">
+  //         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+  //           <span className="sr-only">Toggle navigation</span>
+  //           <span className="icon-bar"></span>
+  //           <span className="icon-bar"></span>
+  //           <span className="icon-bar"></span>
+  //         </button>
+  //         <a className="navbar-brand page-scroll">FoodEater</a>
+  //       </div>
+  //       <NavBarItem/>
+  //     </div>
+  //   );
+  // },
+  //
+  // loggedOutRender: function(){
+  //   return (
+  //     <div className="container-fluid">
+  //       <div className="navbar-header">
+  //         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+  //           <span className="sr-only">Toggle navigation</span>
+  //           <span className="icon-bar"></span>
+  //           <span className="icon-bar"></span>
+  //           <span className="icon-bar"></span>
+  //         </button>
+  //         <a className="navbar-brand page-scroll">FoodEater</a>
+  //       </div>
+  //       <NavBarItem/>
+  //     </div>
+  //   );
+  // },
 
   render: function () {
+    var Link = ReactRouter.Link;
+
     return (
       <nav id="mainNav" className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
@@ -51,7 +76,12 @@ mixins: [CurrentUserState],
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand page-scroll">FoodEater</a>
+            <a className="navbar-brand page-scroll">
+              FoodEater
+              <Link to="/" className="page-scroll">
+                FoodEater
+              </Link>
+            </a>
           </div>
           <NavBarItem/>
         </div>

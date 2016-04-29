@@ -24,7 +24,7 @@ FoodEater will allow users to do the following:
 progress. Put an x between the brackets for a checkmark: [x] -->
 
 - [x] Create an account (MVP)
-- [ ] Log in / Log out, including as a Guest/Demo User (MVP)
+- [x] Log in / Log out, including as a Guest/Demo User (MVP)
 - [ ] Create, read, edit, and delete Reservations (MVP)
 - [ ] Create, read, edit, and delete Listings (MVP)
 - [ ] Search/Filter for Listings by Date/Room Type/Price Range (MVP)

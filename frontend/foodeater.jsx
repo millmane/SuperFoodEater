@@ -12,7 +12,7 @@ var Modal = require('react-modal');
 //Components
 var NavBar = require('./components/NavBar.jsx');
 var Logo = require('./components/Logo.jsx');
-var Search = require('./components/Search');
+var SearchBar = require('./components/SearchBar');
 var LoginForm = require('./components/LoginForm');
 // var UsernamePasswordForm = require('./components/UsernamePasswordForm');
 var LandingBackground = require('./components/LandingBackground');
