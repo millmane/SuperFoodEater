@@ -25518,6 +25518,8 @@
 	var GuestLogin = __webpack_require__(282);
 	var UsernamePasswordForm = __webpack_require__(283);
 	var SignUpModal = __webpack_require__(284);
+	var SignUpModalLogin = __webpack_require__(286);
+	var GuestLoginLogin = __webpack_require__(287);
 	
 	var LoginForm = React.createClass({
 		displayName: "LoginForm",
@@ -25597,24 +25599,43 @@
 	
 			return React.createElement(
 				"div",
-				null,
+				{ className: "login-text" },
+				React.createElement(
+					"h2",
+					null,
+					"Welcome!"
+				),
+				React.createElement("hr", { className: "smaller-hr" }),
 				React.createElement(
 					"form",
 					{ onSubmit: this.handleSubmit },
 					React.createElement(
 						"div",
-						{ className: "input-group" },
-						React.createElement("input", { type: "text", className: "form-control",
-							placeholder: "Username" })
+						{ className: "form-group" },
+						React.createElement("input", { type: "text", className: "form-control", id: "Username",
+							placeholder: "Username", onChange: this.handleUsername })
 					),
 					React.createElement(
+						"div",
+						{ "class": "form-group" },
+						React.createElement("input", { type: "password", className: "form-control", id: "Password",
+							placeholder: "Password", onChange: this.handlePassword })
+					),
+					React.createElement("hr", { className: "smaller-hr" }),
+					React.createElement(
 						"button",
-						{ type: "submit", value: "login", onClick: this.setForm },
+						{ type: "submit", className: "btn btn-success btn-block btn-login-form-login",
+							value: "login", onClick: this.setForm },
 						"Log In"
 					),
-					React.createElement("br", null),
-					React.createElement(SignUpModal, null),
-					React.createElement(GuestLogin, null)
+					React.createElement("hr", { className: "smaller-hr" }),
+					React.createElement(
+						"label",
+						null,
+						"Don't have an account?"
+					),
+					React.createElement(SignUpModalLogin, null),
+					React.createElement(GuestLoginLogin, null)
 				),
 				this.errors()
 			);
@@ -35050,7 +35071,6 @@
 
 	var React = __webpack_require__(1);
 	var UserActions = __webpack_require__(231);
-	
 	var GuestLogin = React.createClass({
 	  displayName: "GuestLogin",
 	
@@ -35189,8 +35209,8 @@
 	  }
 	};
 	
-	var LoginModal = React.createClass({
-	  displayName: 'LoginModal',
+	var SignUpModal = React.createClass({
+	  displayName: 'SignUpModal',
 	
 	
 	  getInitialState: function () {
@@ -35232,7 +35252,7 @@
 	  }
 	});
 	
-	module.exports = LoginModal;
+	module.exports = SignUpModal;
 
 /***/ },
 /* 285 */
@@ -35255,6 +35275,108 @@
 	});
 	
 	module.exports = LandingBackground;
+
+/***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var Modal = __webpack_require__(258);
+	var SignUpForm = __webpack_require__(280);
+	
+	var customStyles = {
+	  content: {
+	    top: '50%',
+	    left: '50%',
+	    right: 'auto',
+	    bottom: 'auto',
+	    marginRight: '-50%',
+	    transform: 'translate(-50%, -50%)'
+	  }
+	};
+	
+	var SignUpModalLogin = React.createClass({
+	  displayName: 'SignUpModalLogin',
+	
+	
+	  getInitialState: function () {
+	    return { modalIsOpen: false };
+	  },
+	
+	  openModal: function () {
+	    this.setState({ modalIsOpen: true });
+	  },
+	
+	  afterOpenModal: function () {
+	    // references are now sync'd and can be accessed.
+	    // this.refs.subtitle.style.color = '#f00';
+	  },
+	
+	  closeModal: function () {
+	    this.setState({ modalIsOpen: false });
+	  },
+	
+	  render: function () {
+	    return React.createElement(
+	      'a',
+	      { className: 'page-scroll' },
+	      React.createElement(
+	        'button',
+	        { type: 'button', className: 'btn btn-login-form btn-outline', onClick: this.openModal },
+	        'Sign Up'
+	      ),
+	      React.createElement(
+	        Modal,
+	        {
+	          isOpen: this.state.modalIsOpen,
+	          onAfterOpen: this.afterOpenModal,
+	          onRequestClose: this.closeModal,
+	          style: customStyles },
+	        React.createElement(SignUpForm, null)
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = SignUpModalLogin;
+
+/***/ },
+/* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var UserActions = __webpack_require__(231);
+	
+	var GuestLoginLogin = React.createClass({
+	  displayName: "GuestLoginLogin",
+	
+	
+	  getInitialState: function () {
+	    return { password: "", username: "" };
+	  },
+	
+	  guestLogin: function (e) {
+	    e.preventDefault();
+	    UserActions.guestLogin();
+	    // this.setState({username: "", password: ""});
+	  },
+	
+	  render: function () {
+	    return React.createElement(
+	      "a",
+	      { className: "page-scroll" },
+	      React.createElement(
+	        "button",
+	        { type: "button", className: "btn btn-login-form btn-outline", value: "guestLogin", onClick: this.guestLogin },
+	        "Guest Login"
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = GuestLoginLogin;
 
 /***/ }
 /******/ ]);

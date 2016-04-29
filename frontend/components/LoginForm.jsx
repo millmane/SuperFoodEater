@@ -6,6 +6,8 @@ var Modal = require('react-modal');
 var GuestLogin = require ('./GuestLogin.jsx');
 var UsernamePasswordForm = require('./UsernamePasswordForm');
 var SignUpModal = require('./SignUpModal.jsx');
+var SignUpModalLogin = require('./SignUpModalLogin.jsx');
+var GuestLoginLogin = require('./GuestLoginLogin.jsx');
 
 
 var LoginForm = React.createClass({
@@ -68,18 +70,35 @@ var LoginForm = React.createClass({
 		}
 
 		return(
-      <div>
+      <div className="login-text">
+				<h2>Welcome!</h2>
+
+				<hr className="smaller-hr"></hr>
+
 				<form onSubmit={this.handleSubmit}>
-					<div className="input-group">
-						<input type="text" className="form-control"
-							 placeholder="Username"/>
-					 </div>
+					<div className="form-group">
+						<input type="text" className="form-control" id="Username"
+							 placeholder="Username" onChange={this.handleUsername}>
+						</input>
+					</div>
 
 
-					<button type="submit" value="login" onClick={this.setForm}>Log In</button>
-					<br></br>
-					<SignUpModal/>
-					<GuestLogin/>
+					<div class="form-group">
+ 						<input type="password" className="form-control" id="Password"
+							placeholder="Password" onChange={this.handlePassword}>
+						</input>
+					</div>
+
+					<hr className="smaller-hr"></hr>
+
+					<button type="submit" className="btn btn-success btn-block btn-login-form-login"
+						value="login" onClick={this.setForm}>
+						Log In
+					</button>
+					<hr className="smaller-hr"></hr>
+					<label>Don't have an account?</label>
+					<SignUpModalLogin/>
+					<GuestLoginLogin/>
 				</form>
         {this.errors()}
 

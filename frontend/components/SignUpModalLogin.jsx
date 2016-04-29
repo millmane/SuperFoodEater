@@ -14,7 +14,7 @@ var customStyles = {
   }
 };
 
-var SignUpModal = React.createClass({
+var SignUpModalLogin = React.createClass({
 
   getInitialState: function(){
 		return {modalIsOpen: false};
@@ -36,7 +36,7 @@ var SignUpModal = React.createClass({
   render: function() {
     return(
       <a className="page-scroll">
-        <button type="button" className="btn btn-primary btn-outline" onClick={this.openModal}>Sign Up</button>
+        <button type="button" className="btn btn-login-form btn-outline" onClick={this.openModal}>Sign Up</button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
@@ -50,4 +50,4 @@ var SignUpModal = React.createClass({
   }
 });
 
-module.exports = SignUpModal;
+module.exports = SignUpModalLogin;

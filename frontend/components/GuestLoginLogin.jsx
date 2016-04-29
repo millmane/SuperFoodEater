@@ -1,6 +1,8 @@
 var React = require('react');
 var UserActions = require("../actions/user_actions");
-var GuestLogin = React.createClass({
+
+
+var GuestLoginLogin = React.createClass({
 
   getInitialState: function(){
     return {password: "", username: ""};
@@ -15,7 +17,7 @@ var GuestLogin = React.createClass({
   render: function(){
     return(
       <a className="page-scroll">
-        <button type="button" className="btn btn-primary btn-outline" value="guestLogin" onClick={this.guestLogin}>
+        <button type="button" className="btn btn-login-form btn-outline" value="guestLogin" onClick={this.guestLogin}>
           Guest Login
         </button>
       </a>
@@ -24,4 +26,4 @@ var GuestLogin = React.createClass({
 
 });
 
-module.exports = GuestLogin;
+module.exports = GuestLoginLogin;
