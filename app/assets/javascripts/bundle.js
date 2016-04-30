@@ -60,6 +60,7 @@
 	var Logo = __webpack_require__(279);
 	var SearchBar = __webpack_require__(288);
 	var LoginForm = __webpack_require__(226);
+	var ListingSearch = __webpack_require__(289);
 	// var UsernamePasswordForm = require('./components/UsernamePasswordForm');
 	var LandingBackground = __webpack_require__(285);
 	// var ListingForm = require('./components/ListingForm');
@@ -95,7 +96,8 @@
 	var Router = React.createElement(
 	  Router,
 	  { history: hashHistory },
-	  React.createElement(Route, { path: '/', component: App })
+	  React.createElement(Route, { path: '/', component: App }),
+	  React.createElement(Route, { path: 'api/listings', component: ListingSearch })
 	);
 	
 	document.addEventListener('DOMContentLoaded', function () {
@@ -35421,6 +35423,240 @@
 	});
 	
 	module.exports = SearchBar;
+
+/***/ },
+/* 289 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ListingStore = __webpack_require__(290);
+	var ListingActions = __webpack_require__(294);
+	var Index = __webpack_require__(292);
+	
+	var ListingSearch = React.createClass({
+	  displayName: 'ListingSearch',
+	
+	
+	  getInitialState: function () {
+	    return {
+	      listings: ListingStore.allListings()
+	    };
+	  },
+	
+	  componentDidMount: function () {
+	    this.listingListener = ListingStore.addListener(this._listingsChanged);
+	    ListingActions.fetchListings();
+	  },
+	
+	  componentWillUnmount: function () {
+	    this.listingListener.remove();
+	  },
+	
+	  _listingsChanged: function () {
+	    this.setState({ listings: ListingStore.allListings() });
+	  },
+	
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(Index, { listings: this.state.listings })
+	    );
+	  }
+	
+	});
+	
+	module.exports = ListingSearch;
+
+/***/ },
+/* 290 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(234);
+	var Store = __webpack_require__(239).Store;
+	var ListingConstants = __webpack_require__(291);
+	
+	var ListingStore = new Store(AppDispatcher);
+	
+	var _listings = {};
+	
+	ListingStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case ListingConstants.FETCHLISTINGS:
+	      ListingStore.resetListings(payload.listings);
+	      break;
+	    case ListingConstants.FETCHLISTING:
+	      listings.push(payload.listing);
+	      break;
+	  }
+	  ListingStore.__emitChange();
+	};
+	
+	ListingStore.resetListings = function (listings) {
+	  _listings = {};
+	  Object.keys(listings).map(function (id) {
+	    _listings[id] = listings[id];
+	  });
+	};
+	
+	ListingStore.allListings = function () {
+	  var listings_copy = {};
+	  Object.keys(_listings).map(function (id) {
+	    listings_copy[id] = _listings[id];
+	  });
+	  return listings_copy;
+	};
+	
+	module.exports = ListingStore;
+
+/***/ },
+/* 291 */
+/***/ function(module, exports) {
+
+	var ListingConstants = {
+	  FETCHLISTINGS: "FETCHLISTINGS",
+	  FETCHLISTING: "FETCHLISTING"
+	};
+	
+	module.exports = ListingConstants;
+
+/***/ },
+/* 292 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var IndexItem = __webpack_require__(293);
+	
+	var Index = React.createClass({
+	  displayName: 'Index',
+	
+	  render: function () {
+	    var listings = this.props.listings;
+	    var listingKeys = Object.keys(listings);
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Index'
+	      ),
+	      listingKeys.map(function (key) {
+	        return React.createElement(IndexItem, {
+	          listing: listings[key],
+	          key: key });
+	      })
+	    );
+	  }
+	});
+	
+	module.exports = Index;
+
+/***/ },
+/* 293 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(166);
+	var hashHistory = __webpack_require__(166).hashHistory;
+	
+	var IndexItem = React.createClass({
+	  displayName: 'IndexItem',
+	
+	  handleClick: function () {
+	    var listingID = this.props.listing.id;
+	    hashHistory.push("listings/" + listingID);
+	  },
+	
+	  render: function () {
+	    var listing = this.props.listing;
+	    return React.createElement(
+	      'div',
+	      {
+	        onClick: this.handleClick,
+	        key: this.props.key },
+	      listing.description,
+	      listing.lat.toString()
+	    );
+	  }
+	});
+	
+	module.exports = IndexItem;
+
+/***/ },
+/* 294 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var ListingConstants = __webpack_require__(291);
+	var ListingApiUtil = __webpack_require__(295);
+	var ListingStore = __webpack_require__(290);
+	var AppDispatcher = __webpack_require__(234);
+	
+	var ListingActions = {
+	
+	  fetchListings: function () {
+	    ListingApiUtil.fetchListings();
+	  },
+	
+	  fetchListing: function (id) {
+	    ListingApiUtil.fetchListing(id);
+	  }
+	
+	};
+	
+	module.exports = ListingActions;
+
+/***/ },
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(234);
+	var ListingConstants = __webpack_require__(291);
+	
+	var ListingApiUtil = {
+	
+	  fetchListings: function () {
+	    $.ajax({
+	      url: "/api/listings",
+	      type: "get",
+	      success: function (listings) {
+	        AppDispatcher.dispatch({
+	          actionType: ListingConstants.FETCHLISTINGS,
+	          listings: listings
+	        });
+	      },
+	      error: function () {
+	        AppDispatcher.dispatch({
+	          actionType: ListingConstants.ERROR,
+	          errors: error.responseJSON.errors
+	        });
+	      }
+	    });
+	  },
+	
+	  fetchListing: function (id) {
+	    $.ajax({
+	      url: "/api/listings/" + id.toString(),
+	      type: "get",
+	      success: function (listing) {
+	        AppDispatcher.dispatch({
+	          actionType: ListingConstants.FETCHLISTING,
+	          listing: listing
+	        });
+	      },
+	      error: function () {
+	        AppDispatcher.dispatch({
+	          actionType: ListingConstants.ERROR,
+	          errors: error.responseJSON.errors
+	        });
+	      }
+	    });
+	  }
+	
+	};
+	
+	module.exports = ListingApiUtil;
 
 /***/ }
 /******/ ]);

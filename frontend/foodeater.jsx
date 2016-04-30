@@ -14,6 +14,7 @@ var NavBar = require('./components/NavBar.jsx');
 var Logo = require('./components/Logo.jsx');
 var SearchBar = require('./components/SearchBar');
 var LoginForm = require('./components/LoginForm');
+var ListingSearch = require('./components/listings/ListingSearch.jsx');
 // var UsernamePasswordForm = require('./components/UsernamePasswordForm');
 var LandingBackground = require('./components/LandingBackground');
 // var ListingForm = require('./components/ListingForm');
@@ -44,10 +45,14 @@ var App = React.createClass({
   }
 });
 
+
 var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
     </Route>
+    <Route path="api/listings" component={ListingSearch}>
+    </Route>
+    
   </Router>
 );
 

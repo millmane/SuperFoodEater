@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: :true
 
+  belongs_to :host,
+    class_name: "User",
+    foreign_key: :host_id
+
+  has_many :listings, dependent: :destroy
+
   after_initialize :ensure_session_token
   before_validation :ensure_session_token_uniqueness
 
