@@ -61,6 +61,9 @@
 	var SearchBar = __webpack_require__(288);
 	var LoginForm = __webpack_require__(226);
 	var ListingSearch = __webpack_require__(289);
+	var ListingIndexItem = __webpack_require__(297);
+	var ListingDetail = __webpack_require__(298);
+	
 	// var UsernamePasswordForm = require('./components/UsernamePasswordForm');
 	var LandingBackground = __webpack_require__(285);
 	// var ListingForm = require('./components/ListingForm');
@@ -82,12 +85,14 @@
 	var App = React.createClass({
 	  displayName: 'App',
 	
+	
 	  render: function () {
+	    var Link = ReactRouter.Link;
+	
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'landing-background' },
 	      React.createElement(NavBar, null),
-	      React.createElement('div', { className: 'landing-background' }),
 	      this.props.children
 	    );
 	  }
@@ -96,8 +101,12 @@
 	var Router = React.createElement(
 	  Router,
 	  { history: hashHistory },
-	  React.createElement(Route, { path: '/', component: App }),
-	  React.createElement(Route, { path: 'api/listings', component: ListingSearch })
+	  React.createElement(
+	    Route,
+	    { path: '/', component: App },
+	    React.createElement(Route, { path: '/listings', component: ListingSearch }),
+	    React.createElement(Route, { path: '/listings/:listing_id', component: ListingDetail })
+	  )
 	);
 	
 	document.addEventListener('DOMContentLoaded', function () {
@@ -34751,6 +34760,11 @@
 	              Link,
 	              { to: '/', className: 'page-scroll' },
 	              'FoodEater'
+	            ),
+	            React.createElement(
+	              Link,
+	              { to: '/listings', className: 'page-scroll' },
+	              'Listings'
 	            )
 	          )
 	        ),
@@ -35431,7 +35445,7 @@
 	var React = __webpack_require__(1);
 	var ListingStore = __webpack_require__(290);
 	var ListingActions = __webpack_require__(294);
-	var Index = __webpack_require__(292);
+	var ListingIndex = __webpack_require__(296);
 	
 	var ListingSearch = React.createClass({
 	  displayName: 'ListingSearch',
@@ -35457,10 +35471,11 @@
 	  },
 	
 	  render: function () {
+	
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Index, { listings: this.state.listings })
+	      React.createElement(ListingIndex, { listings: this.state.listings })
 	    );
 	  }
 	
@@ -35486,7 +35501,7 @@
 	      ListingStore.resetListings(payload.listings);
 	      break;
 	    case ListingConstants.FETCHLISTING:
-	      listings.push(payload.listing);
+	      ListingStore.setListing(payload.listing);
 	      break;
 	  }
 	  ListingStore.__emitChange();
@@ -35499,12 +35514,20 @@
 	  });
 	};
 	
+	ListingStore.setListing = function (listing) {
+	  _listings[listing.id] = listing;
+	};
+	
 	ListingStore.allListings = function () {
 	  var listings_copy = {};
 	  Object.keys(_listings).map(function (id) {
 	    listings_copy[id] = _listings[id];
 	  });
 	  return listings_copy;
+	};
+	
+	ListingStore.findListing = function (id) {
+	  return _listings[id];
 	};
 	
 	module.exports = ListingStore;
@@ -35521,70 +35544,8 @@
 	module.exports = ListingConstants;
 
 /***/ },
-/* 292 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var IndexItem = __webpack_require__(293);
-	
-	var Index = React.createClass({
-	  displayName: 'Index',
-	
-	  render: function () {
-	    var listings = this.props.listings;
-	    var listingKeys = Object.keys(listings);
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Index'
-	      ),
-	      listingKeys.map(function (key) {
-	        return React.createElement(IndexItem, {
-	          listing: listings[key],
-	          key: key });
-	      })
-	    );
-	  }
-	});
-	
-	module.exports = Index;
-
-/***/ },
-/* 293 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(166);
-	var hashHistory = __webpack_require__(166).hashHistory;
-	
-	var IndexItem = React.createClass({
-	  displayName: 'IndexItem',
-	
-	  handleClick: function () {
-	    var listingID = this.props.listing.id;
-	    hashHistory.push("listings/" + listingID);
-	  },
-	
-	  render: function () {
-	    var listing = this.props.listing;
-	    return React.createElement(
-	      'div',
-	      {
-	        onClick: this.handleClick,
-	        key: this.props.key },
-	      listing.description,
-	      listing.lat.toString()
-	    );
-	  }
-	});
-	
-	module.exports = IndexItem;
-
-/***/ },
+/* 292 */,
+/* 293 */,
 /* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -35640,6 +35601,7 @@
 	      url: "/api/listings/" + id.toString(),
 	      type: "get",
 	      success: function (listing) {
+	
 	        AppDispatcher.dispatch({
 	          actionType: ListingConstants.FETCHLISTING,
 	          listing: listing
@@ -35657,6 +35619,127 @@
 	};
 	
 	module.exports = ListingApiUtil;
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ListingIndexItem = __webpack_require__(297);
+	
+	var ListingIndex = React.createClass({
+	  displayName: 'ListingIndex',
+	
+	  render: function () {
+	    var listings = this.props.listings;
+	    var listingKeys = Object.keys(listings);
+	
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Listing Index'
+	      ),
+	      listingKeys.map(function (key) {
+	        return React.createElement(ListingIndexItem, {
+	          listing: listings[key],
+	          key: key });
+	      })
+	    );
+	  }
+	});
+	
+	module.exports = ListingIndex;
+
+/***/ },
+/* 297 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(166);
+	var hashHistory = __webpack_require__(166).hashHistory;
+	
+	var ListingIndexItem = React.createClass({
+	  displayName: 'ListingIndexItem',
+	
+	  handleClick: function () {
+	    var listing_id = this.props.listing.id;
+	    hashHistory.push("/listings/" + listing_id);
+	  },
+	
+	  render: function () {
+	    var listing = this.props.listing;
+	    return React.createElement(
+	      'div',
+	      {
+	        onClick: this.handleClick,
+	        key: this.props.key },
+	      listing.title
+	    );
+	  }
+	});
+	
+	module.exports = ListingIndexItem;
+
+/***/ },
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(166);
+	var hashHistory = __webpack_require__(166).hashHistory;
+	var ListingStore = __webpack_require__(290);
+	var ListingActions = __webpack_require__(294);
+	
+	var ListingDetail = React.createClass({
+	  displayName: 'ListingDetail',
+	
+	
+	  getStateFromStore: function () {
+	    return {
+	      listing: ListingStore.findListing(parseInt(this.props.params.listing_id))
+	    };
+	  },
+	
+	  getInitialState: function () {
+	    return this.getStateFromStore();
+	  },
+	
+	  _onChange: function () {
+	    this.setState(this.getStateFromStore());
+	  },
+	
+	  componentDidMount: function () {
+	    this.listingListener = ListingStore.addListener(this._onChange);
+	    ListingActions.fetchListing(parseInt(this.props.params.listing_id));
+	  },
+	
+	  handleClick: function () {
+	    var listing_id = this.props.listing.id;
+	    hashHistory.push("/listings/" + listing_id);
+	  },
+	
+	  render: function () {
+	    var listing = this.state.listing;
+	    return React.createElement(
+	      'div',
+	      null,
+	      Object.keys(listing).map(function (el) {
+	        return React.createElement(
+	          'h1',
+	          null,
+	          listing[el]
+	        );
+	      }),
+	      'hellloooo'
+	    );
+	  }
+	});
+	
+	module.exports = ListingDetail;
 
 /***/ }
 /******/ ]);

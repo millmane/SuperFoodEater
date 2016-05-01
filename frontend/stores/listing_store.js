@@ -12,7 +12,7 @@ ListingStore.__onDispatch = function (payload) {
       ListingStore.resetListings(payload.listings);
       break;
     case ListingConstants.FETCHLISTING:
-      listings.push(payload.listing);
+      ListingStore.setListing(payload.listing);
       break;
     }
     ListingStore.__emitChange();
@@ -25,12 +25,20 @@ ListingStore.resetListings = function(listings){
   });
 };
 
+ListingStore.setListing = function(listing){
+  _listings[listing.id] = listing;
+};
+
 ListingStore.allListings = function(){
   var listings_copy = {};
   Object.keys(_listings).map (function (id) {
     listings_copy[id] = _listings[id];
   });
   return listings_copy;
+};
+
+ListingStore.findListing = function(id){
+  return _listings[id];
 };
 
 module.exports = ListingStore;

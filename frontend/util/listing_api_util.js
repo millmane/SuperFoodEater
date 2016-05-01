@@ -27,6 +27,7 @@ var ListingApiUtil = {
       url: "/api/listings/" + id.toString(),
       type: "get",
       success: function(listing){
+
         AppDispatcher.dispatch({
           actionType: ListingConstants.FETCHLISTING,
           listing: listing

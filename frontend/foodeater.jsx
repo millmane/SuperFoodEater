@@ -15,6 +15,9 @@ var Logo = require('./components/Logo.jsx');
 var SearchBar = require('./components/SearchBar');
 var LoginForm = require('./components/LoginForm');
 var ListingSearch = require('./components/listings/ListingSearch.jsx');
+var ListingIndexItem = require('./components/listings/ListingIndexItem');
+var ListingDetail = require('./components/listings/ListingDetail.jsx');
+
 // var UsernamePasswordForm = require('./components/UsernamePasswordForm');
 var LandingBackground = require('./components/LandingBackground');
 // var ListingForm = require('./components/ListingForm');
@@ -34,12 +37,17 @@ if (typeof UserStore.currentUser() === 'undefined') {
 }
 
 var App = React.createClass({
+
+
   render: function () {
+    var Link = ReactRouter.Link;
+
     return (
-      <div>
+      <div className="landing-background">
         <NavBar/>
-        <div className="landing-background"></div>
+
         {this.props.children}
+
       </div>
     );
   }
@@ -49,10 +57,11 @@ var App = React.createClass({
 var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
+      <Route path="/listings" component={ListingSearch}>
+      </Route>
+      <Route path="/listings/:listing_id" component={ListingDetail}>
+      </Route>
     </Route>
-    <Route path="api/listings" component={ListingSearch}>
-    </Route>
-    
   </Router>
 );
 

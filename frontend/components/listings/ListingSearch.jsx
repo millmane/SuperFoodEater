@@ -1,7 +1,7 @@
 var React = require('react');
 var ListingStore = require('../../stores/listing_store.js');
 var ListingActions = require('../../actions/listing_actions');
-var Index = require('./Index.jsx');
+var ListingIndex = require('./ListingIndex.jsx');
 
 var ListingSearch = React.createClass({
 
@@ -25,9 +25,10 @@ var ListingSearch = React.createClass({
   },
 
   render: function (){
+    
     return (
       <div>
-        <Index listings={this.state.listings}/>
+        <ListingIndex listings={this.state.listings}/>
       </div>
     );
   }

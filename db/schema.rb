@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20160429175727) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "listings", ["guests"], name: "index_listings_on_guests", unique: true, using: :btree
-  add_index "listings", ["host_id"], name: "index_listings_on_host_id", unique: true, using: :btree
-  add_index "listings", ["lat"], name: "index_listings_on_lat", unique: true, using: :btree
-  add_index "listings", ["lng"], name: "index_listings_on_lng", unique: true, using: :btree
+  add_index "listings", ["guests"], name: "index_listings_on_guests", using: :btree
+  add_index "listings", ["host_id"], name: "index_listings_on_host_id", using: :btree
+  add_index "listings", ["lat"], name: "index_listings_on_lat", using: :btree
+  add_index "listings", ["lng"], name: "index_listings_on_lng", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false

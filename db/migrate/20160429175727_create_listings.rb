@@ -10,9 +10,9 @@ class CreateListings < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :listings, :host_id, unique: true
-    add_index :listings, :guests, unique: true
-    add_index :listings, :lat, unique: true
-    add_index :listings, :lng, unique: true
+    add_index :listings, :host_id
+    add_index :listings, :guests
+    add_index :listings, :lat
+    add_index :listings, :lng
   end
 end

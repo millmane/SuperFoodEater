@@ -1,16 +1,17 @@
 var React = require('react');
-var IndexItem = require('./IndexItem');
+var ListingIndexItem = require('./ListingIndexItem');
 
-var Index = React.createClass({
+var ListingIndex = React.createClass({
   render: function(){
     var listings = this.props.listings;
     var listingKeys = Object.keys(listings);
+
     return (
       <div>
-        <h1>Index</h1>
+        <h1>Listing Index</h1>
         {
           listingKeys.map(function(key){
-            return (<IndexItem
+            return (<ListingIndexItem
               listing={listings[key]}
               key={key} />);
           })
@@ -20,4 +21,4 @@ var Index = React.createClass({
   }
 });
 
-module.exports = Index;
+module.exports = ListingIndex;

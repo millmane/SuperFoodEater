@@ -81,6 +81,9 @@ mixins: [CurrentUserState],
               <Link to="/" className="page-scroll">
                 FoodEater
               </Link>
+              <Link to="/listings" className="page-scroll">
+                Listings
+              </Link>
             </a>
           </div>
           <NavBarItem/>
