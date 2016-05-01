@@ -76,14 +76,15 @@ mixins: [CurrentUserState],
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
+            <Link to="/" className="page-scroll">
+              FoodEater
+            </Link>
+            <Link to="/listings" className="page-scroll">
+              Listings
+            </Link>
             <a className="navbar-brand page-scroll">
               FoodEater
-              <Link to="/" className="page-scroll">
-                FoodEater
-              </Link>
-              <Link to="/listings" className="page-scroll">
-                Listings
-              </Link>
+
             </a>
           </div>
           <NavBarItem/>

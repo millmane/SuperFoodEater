@@ -3,20 +3,22 @@ var ListingIndexItem = require('./ListingIndexItem');
 
 var ListingIndex = React.createClass({
   render: function(){
+
     var listings = this.props.listings;
     var listingKeys = Object.keys(listings);
 
     return (
-      <div>
+      <ul>
         <h1>Listing Index</h1>
         {
           listingKeys.map(function(key){
             return (<ListingIndexItem
               listing={listings[key]}
-              key={key} />);
+              key={listings[key].id + key}
+              />);
           })
         }
-      </div>
+      </ul>
     );
   }
 });

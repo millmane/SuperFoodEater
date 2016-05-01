@@ -12,11 +12,11 @@ var ListingIndexItem = React.createClass({
   render: function(){
     var listing = this.props.listing;
     return (
-        <div
+        <li
           onClick={this.handleClick}
-          key={this.props.key}>
+          key={listing.id + listing.title}>
           {listing.title}
-        </div>
+        </li>
     );
   }
 });

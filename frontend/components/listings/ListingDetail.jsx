@@ -23,9 +23,14 @@ var ListingDetail = React.createClass({
     this.setState(this.getStateFromStore());
   },
 
+
   componentDidMount: function () {
     this.listingListener = ListingStore.addListener(this._onChange);
     ListingActions.fetchListing(parseInt(this.props.params.listing_id));
+  },
+
+  componentWillUnmount: function () {
+    this.listingListener.remove();
   },
 
   handleClick: function() {
@@ -35,15 +40,17 @@ var ListingDetail = React.createClass({
 
   render: function(){
     var listing = this.state.listing;
-    return (
-        <div>
-          {Object.keys(listing).map(function (el){
-            return <h1>{listing[el]}</h1>;
-          })}
-          hellloooo
-
-        </div>
-    );
+    if (typeof listing !== 'undefined'){
+      return (
+          <div>
+            {Object.keys(listing).map(function (el){
+              return <h1 key={listing[el] + el}>{listing[el]}</h1>;
+            })}
+          </div>
+      );
+    } else {
+      return <div>FUCK OFF</div>;
+    }
   }
 });
 

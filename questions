@@ -5,3 +5,7 @@ after logging in, logout button renders modal, should just logout and rerender p
 
 database setup? space/amenities/etc... as separate tables, or as columns in listings?
 listings.amenities = [thing1, thing2, thing8], model forces values from list [thing1, thing2]
+
+
+need conditional on listingdetail due to ajax request not returning quick enough.
+tries to render before ajax success.

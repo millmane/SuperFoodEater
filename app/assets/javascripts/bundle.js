@@ -34753,19 +34753,19 @@
 	            React.createElement('span', { className: 'icon-bar' })
 	          ),
 	          React.createElement(
+	            Link,
+	            { to: '/', className: 'page-scroll' },
+	            'FoodEater'
+	          ),
+	          React.createElement(
+	            Link,
+	            { to: '/listings', className: 'page-scroll' },
+	            'Listings'
+	          ),
+	          React.createElement(
 	            'a',
 	            { className: 'navbar-brand page-scroll' },
-	            'FoodEater',
-	            React.createElement(
-	              Link,
-	              { to: '/', className: 'page-scroll' },
-	              'FoodEater'
-	            ),
-	            React.createElement(
-	              Link,
-	              { to: '/listings', className: 'page-scroll' },
-	              'Listings'
-	            )
+	            'FoodEater'
 	          )
 	        ),
 	        React.createElement(NavBarItem, null)
@@ -35631,11 +35631,12 @@
 	  displayName: 'ListingIndex',
 	
 	  render: function () {
+	
 	    var listings = this.props.listings;
 	    var listingKeys = Object.keys(listings);
 	
 	    return React.createElement(
-	      'div',
+	      'ul',
 	      null,
 	      React.createElement(
 	        'h1',
@@ -35645,7 +35646,8 @@
 	      listingKeys.map(function (key) {
 	        return React.createElement(ListingIndexItem, {
 	          listing: listings[key],
-	          key: key });
+	          key: listings[key].id + key
+	        });
 	      })
 	    );
 	  }
@@ -35673,10 +35675,10 @@
 	  render: function () {
 	    var listing = this.props.listing;
 	    return React.createElement(
-	      'div',
+	      'li',
 	      {
 	        onClick: this.handleClick,
-	        key: this.props.key },
+	        key: listing.id + listing.title },
 	      listing.title
 	    );
 	  }
@@ -35717,6 +35719,10 @@
 	    ListingActions.fetchListing(parseInt(this.props.params.listing_id));
 	  },
 	
+	  componentWillUnmount: function () {
+	    this.listingListener.remove();
+	  },
+	
 	  handleClick: function () {
 	    var listing_id = this.props.listing.id;
 	    hashHistory.push("/listings/" + listing_id);
@@ -35724,18 +35730,25 @@
 	
 	  render: function () {
 	    var listing = this.state.listing;
-	    return React.createElement(
-	      'div',
-	      null,
-	      Object.keys(listing).map(function (el) {
-	        return React.createElement(
-	          'h1',
-	          null,
-	          listing[el]
-	        );
-	      }),
-	      'hellloooo'
-	    );
+	    if (typeof listing !== 'undefined') {
+	      return React.createElement(
+	        'div',
+	        null,
+	        Object.keys(listing).map(function (el) {
+	          return React.createElement(
+	            'h1',
+	            { key: listing[el] + el },
+	            listing[el]
+	          );
+	        })
+	      );
+	    } else {
+	      return React.createElement(
+	        'div',
+	        null,
+	        'FUCK OFF'
+	      );
+	    }
 	  }
 	});
 	
