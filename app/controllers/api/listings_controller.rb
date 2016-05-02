@@ -1,3 +1,4 @@
+require 'date'
 class Api::ListingsController < ApplicationController
 
   #
@@ -16,13 +17,38 @@ class Api::ListingsController < ApplicationController
   # end
   #
   def index
-    listings = Listing.all
+    # listings = Listing.filter_by_params(filters)
+    # listings = Listing.all()
+
+    # WILL BE listings = Listing.filter_by(params[:filters])
+    listings = Listing.filter_by({
+      price_range: (0..10),
+      guests: 3,
+      bounds: {
+        'southWest' => {'lat' => 0.0, 'lng' => 0.0},
+        'northEast' => {'lat' => 5.0, 'lng' => 5.0}
+      },
+      title: "%L%",
+      date_range: {
+        'from' => Date.new(1,1,1),
+        'to' => Date.new(2,2,2)
+      },
+      room_type: "room type",
+      price: "price",
+
+    })
+    puts listings
   # if(bounds)
   #   listings = Listing.in_bounds(bounds)
   # end
+  if listings
     @listings = listings
     render 'api/listings/index'
+  else
+    @errors = listings.errors.full_messages
+    render "api/shared/error"
   end
+end
 
   # def create
   #   params = listing_params

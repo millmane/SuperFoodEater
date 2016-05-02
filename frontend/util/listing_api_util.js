@@ -13,7 +13,7 @@ var ListingApiUtil = {
           listings: listings
         });
       },
-      error: function(){
+      error: function(error){
         AppDispatcher.dispatch({
           actionType: ListingConstants.ERROR,
           errors: error.responseJSON.errors
@@ -33,7 +33,27 @@ var ListingApiUtil = {
           listing: listing
         });
       },
-      error: function(){
+      error: function(error){
+        AppDispatcher.dispatch({
+          actionType: ListingConstants.ERROR,
+          errors: error.responseJSON.errors
+        });
+      }
+    });
+  },
+
+  filteredListings: function (filters){
+    $.ajax({
+      url: "/api/listings/",
+      type: "get",
+      data: {filters: filters},
+      success: function(listings){
+        AppDispatcher.dispatch({
+          actionType: ListingConstants.FILTEREDLISTINGS,
+          listings: listings
+        });
+      },
+      error: function(error){
         AppDispatcher.dispatch({
           actionType: ListingConstants.ERROR,
           errors: error.responseJSON.errors
