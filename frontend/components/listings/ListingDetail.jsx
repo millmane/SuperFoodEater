@@ -26,7 +26,7 @@ var ListingDetail = React.createClass({
 
   componentDidMount: function () {
     this.listingListener = ListingStore.addListener(this._onChange);
-    ListingActions.fetchListing(parseInt(this.props.params.listing_id));
+    // ListingActions.fetchListing(parseInt(this.props.params.listing_id));
   },
 
   componentWillUnmount: function () {
@@ -43,9 +43,9 @@ var ListingDetail = React.createClass({
     if (typeof listing !== 'undefined'){
       return (
           <div>
-            {Object.keys(listing).map(function (el){
-              return <h1 key={listing[el] + el}>{listing[el]}</h1>;
-            })}
+            <h1>{listing.title}</h1>
+            <h1>{listing.description}</h1>
+
           </div>
       );
     } else {
@@ -55,3 +55,7 @@ var ListingDetail = React.createClass({
 });
 
 module.exports = ListingDetail;
+
+// {Object.keys(listing).map(function (el){
+//   return <h1 key={listing[el] + el}>{listing[el]}</h1>;
+// })}

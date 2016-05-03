@@ -23,7 +23,7 @@ var ListingIndexItem = React.createClass({
     return (
         <div className="listing-index-div col-sm-12 row-space 2 col-md-6"
           onClick={this.handleClick}
-          key={listing.id + listing.title}>
+          >
           <div className="panel-image listing-img">
             {listing.title}
             <div className="image-div">

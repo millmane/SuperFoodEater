@@ -13,9 +13,10 @@ var ListingIndex = React.createClass({
           <div className="row">
             {
               listingKeys.map(function(key){
+                
                 return (<ListingIndexItem
                   listing={listings[key]}
-                  key={listings[key].id + key}
+                  key={listings[key].id}
                   />);
               })
             }

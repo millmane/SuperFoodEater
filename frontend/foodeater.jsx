@@ -17,6 +17,7 @@ var LoginForm = require('./components/LoginForm');
 var ListingSearch = require('./components/listings/ListingSearch.jsx');
 var ListingIndexItem = require('./components/listings/ListingIndexItem');
 var ListingDetail = require('./components/listings/ListingDetail.jsx');
+var LandingPage = require('./components/landing_page/LandingPage.jsx');
 
 // var UsernamePasswordForm = require('./components/UsernamePasswordForm');
 var LandingBackground = require('./components/LandingBackground');
@@ -38,29 +39,31 @@ if (typeof UserStore.currentUser() === 'undefined') {
 
 var App = React.createClass({
 
-
+ // className="landing-background"
+ // <NavBar/>
+ // <LandingPage/>
+//
   render: function () {
     var Link = ReactRouter.Link;
 
     return (
       <div className="landing-background">
-        <NavBar/>
-
+       <NavBar/>
         {this.props.children}
-
       </div>
     );
   }
 });
 
-
+//LandingPage - background image, searchbar component
+//ListingSearch - Have Navbar from IndexRoute, Filter, Index, Map
+//ListingDetail - Have Navbar from IndexRoute, ImageGalleryThing, Details
 var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <Route path="/listings" component={ListingSearch}>
-      </Route>
-      <Route path="/listings/:listing_id" component={ListingDetail}>
-      </Route>
+      <IndexRoute component={LandingPage}/>
+      <Route path="listings" component={ListingSearch}/>
+      <Route path="listings/:listing_id" component={ListingDetail}/>
     </Route>
   </Router>
 );

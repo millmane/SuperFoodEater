@@ -11,4 +11,4 @@ tries to render before ajax success. - solved, have to use if statement
 
 heroku database messed up - solved, heroku run rake db:reset
 
-some seed urls not working
+home page - listings - click picture to go to detail page - cant go back to listing page

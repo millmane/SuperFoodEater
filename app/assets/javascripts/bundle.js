@@ -63,6 +63,7 @@
 	var ListingSearch = __webpack_require__(289);
 	var ListingIndexItem = __webpack_require__(297);
 	var ListingDetail = __webpack_require__(298);
+	var LandingPage = __webpack_require__(300);
 	
 	// var UsernamePasswordForm = require('./components/UsernamePasswordForm');
 	var LandingBackground = __webpack_require__(285);
@@ -86,6 +87,10 @@
 	  displayName: 'App',
 	
 	
+	  // className="landing-background"
+	  // <NavBar/>
+	  // <LandingPage/>
+	  //
 	  render: function () {
 	    var Link = ReactRouter.Link;
 	
@@ -98,14 +103,18 @@
 	  }
 	});
 	
+	//LandingPage - background image, searchbar component
+	//ListingSearch - Have Navbar from IndexRoute, Filter, Index, Map
+	//ListingDetail - Have Navbar from IndexRoute, ImageGalleryThing, Details
 	var Router = React.createElement(
 	  Router,
 	  { history: hashHistory },
 	  React.createElement(
 	    Route,
 	    { path: '/', component: App },
-	    React.createElement(Route, { path: '/listings', component: ListingSearch }),
-	    React.createElement(Route, { path: '/listings/:listing_id', component: ListingDetail })
+	    React.createElement(IndexRoute, { component: LandingPage }),
+	    React.createElement(Route, { path: 'listings', component: ListingSearch }),
+	    React.createElement(Route, { path: 'listings/:listing_id', component: ListingDetail })
 	  )
 	);
 	
@@ -35511,8 +35520,8 @@
 	
 	ListingStore.resetListings = function (listings) {
 	  _listings = {};
-	  Object.keys(listings).map(function (id) {
-	    _listings[id] = listings[id];
+	  Object.keys(listings).map(function (idx) {
+	    _listings[listings[idx].id] = listings[idx];
 	  });
 	};
 	
@@ -35672,9 +35681,10 @@
 	          'div',
 	          { className: 'row' },
 	          listingKeys.map(function (key) {
+	
 	            return React.createElement(ListingIndexItem, {
 	              listing: listings[key],
-	              key: listings[key].id + key
+	              key: listings[key].id
 	            });
 	          })
 	        )
@@ -35716,8 +35726,8 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'listing-index-div col-sm-12 row-space 2 col-md-6',
-	        onClick: this.handleClick,
-	        key: listing.id + listing.title },
+	        onClick: this.handleClick
+	      },
 	      React.createElement(
 	        'div',
 	        { className: 'panel-image listing-img' },
@@ -35764,7 +35774,7 @@
 	
 	  componentDidMount: function () {
 	    this.listingListener = ListingStore.addListener(this._onChange);
-	    ListingActions.fetchListing(parseInt(this.props.params.listing_id));
+	    // ListingActions.fetchListing(parseInt(this.props.params.listing_id));
 	  },
 	
 	  componentWillUnmount: function () {
@@ -35782,13 +35792,16 @@
 	      return React.createElement(
 	        'div',
 	        null,
-	        Object.keys(listing).map(function (el) {
-	          return React.createElement(
-	            'h1',
-	            { key: listing[el] + el },
-	            listing[el]
-	          );
-	        })
+	        React.createElement(
+	          'h1',
+	          null,
+	          listing.title
+	        ),
+	        React.createElement(
+	          'h1',
+	          null,
+	          listing.description
+	        )
 	      );
 	    } else {
 	      return React.createElement(
@@ -35801,6 +35814,10 @@
 	});
 	
 	module.exports = ListingDetail;
+	
+	// {Object.keys(listing).map(function (el){
+	//   return <h1 key={listing[el] + el}>{listing[el]}</h1>;
+	// })}
 
 /***/ },
 /* 299 */
@@ -35826,6 +35843,54 @@
 	});
 	
 	module.exports = FilterForm;
+
+/***/ },
+/* 300 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var LandingPage = React.createClass({
+	  displayName: "LandingPage",
+	
+	
+	  // big search bar, background image
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "hero-unit" },
+	      React.createElement(
+	        "div",
+	        { className: "hero-background" },
+	        React.createElement("img", { className: "landing-background",
+	          src: "http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg" })
+	      ),
+	      React.createElement(
+	        "div",
+	        null,
+	        "BigSearchBar Here"
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = LandingPage;
+	
+	// <video preload="auto" loop="loop" id="sushi-video" class="video-playing">
+
+	// <div align="center" class="embed-responsive embed-responsive-16by9">
+	//     <video autoplay loop class="embed-responsive-item">
+	//         <source src=http://techslides.com/demos/sample-videos/small.mp4 type=video/mp4>
+	//     </video>
+	// </div>
+	// <div className="hero shift_with_hiw js-hero">
+	//   <div className="hero-background">
+	//     <video autoplay loop muted id="sushi-video" class="video-playing">
+	//       <source src="https://youtu.be/G2edsT-HCjE" type="video/mp4"/>
+	//     </video>
+	//   </div>
+	// </div>
 
 /***/ }
 /******/ ]);

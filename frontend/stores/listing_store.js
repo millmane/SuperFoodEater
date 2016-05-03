@@ -20,8 +20,8 @@ ListingStore.__onDispatch = function (payload) {
 
 ListingStore.resetListings = function(listings){
   _listings = {};
-  Object.keys(listings).map (function (id) {
-    _listings[id] = listings[id];
+  Object.keys(listings).map (function (idx) {
+    _listings[listings[idx].id] = listings[idx];
   });
 };
 
