@@ -49,7 +49,7 @@ var ListingDetail = React.createClass({
           </div>
       );
     } else {
-      return <div>FUCK OFF</div>;
+      return <div>listing didnt load yet</div>;
     }
   }
 });

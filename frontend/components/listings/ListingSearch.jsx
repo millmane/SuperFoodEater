@@ -2,6 +2,7 @@ var React = require('react');
 var ListingStore = require('../../stores/listing_store.js');
 var ListingActions = require('../../actions/listing_actions');
 var ListingIndex = require('./ListingIndex.jsx');
+var FilterForm = require('./FilterForm.jsx');
 
 var ListingSearch = React.createClass({
 
@@ -25,9 +26,10 @@ var ListingSearch = React.createClass({
   },
 
   render: function (){
-    
+
     return (
       <div>
+        <FilterForm/>
         <ListingIndex listings={this.state.listings}/>
       </div>
     );

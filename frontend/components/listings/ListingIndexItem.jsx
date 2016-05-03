@@ -9,14 +9,28 @@ var ListingIndexItem = React.createClass({
     hashHistory.push("/listings/" + listing_id);
   },
 
+  _onLoad: function(e) {
+    if (e.target.height > e.target.width) {
+      e.target.className="listing-img-tall img-fluid pull-xs-left";
+    } else {
+    e.target.className="listing-img-wide img-fluid pull-xs-left";
+    }
+  },
+
   render: function(){
     var listing = this.props.listing;
+    var images = listing.images;
     return (
-        <li
+        <div className="listing-index-div col-sm-12 row-space 2 col-md-6"
           onClick={this.handleClick}
           key={listing.id + listing.title}>
-          {listing.title}
-        </li>
+          <div className="panel-image listing-img">
+            {listing.title}
+            <div className="image-div">
+              <img src={images[0].url} onLoad={this._onLoad}></img>
+            </div>
+          </div>
+        </div>
     );
   }
 });

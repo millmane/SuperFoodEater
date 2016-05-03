@@ -1,6 +1,29 @@
 class Listing < ActiveRecord::Base
 
-  validates :description, :guests, :title, :lat, :lng, presence: true
+  # validates (
+  # :title,
+  # :description),
+  # # :description,
+  # presence: true
+
+
+  validates(
+    :title,
+    :description,
+    :host_id,
+    :guests,
+    :lat,
+    :lng,
+    :guests,
+    :price,
+    :from_date,
+    :to_date,
+    :home_type,
+    :room_type,
+    presence: true
+    )
+  # validates :title, :description, :host_id, :guests, :lat, :lng, :guests, :price, :from_date, :to_date, :home_type, :room_type, presence: true
+
 
   # def self.in_bounds(bounds)
   #   self.where("lat < ?", bounds[:northEast][:lat])
@@ -13,6 +36,9 @@ class Listing < ActiveRecord::Base
   belongs_to :host,
     class_name: "User",
     foreign_key: :host_id
+
+  has_many :images, dependent: :destroy
+
 
   def self.filter_by(filters)
     test = ""
@@ -88,7 +114,6 @@ class Listing < ActiveRecord::Base
     puts filter_hash[:query] = filter_hash[:query].join(" AND ")
     # test = Listing.where('lat' => ?, 0...3)
     # puts test
-
     # return Listing.where(like + like1, value, value1)
     # return Listing.where("title LIKE ?", "%L%")
     # return Listing.where(title_query, title_value)

@@ -34,7 +34,6 @@ class Api::ListingsController < ApplicationController
         'to' => Date.new(2,2,2)
       },
       room_type: "room type",
-      price: "price",
 
     })
     puts listings
@@ -94,7 +93,7 @@ def listing_params
     :lng,
     :description,
     :title,
-    :guests
+    :guests,
   )
 end
 

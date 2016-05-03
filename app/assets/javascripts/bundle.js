@@ -35446,6 +35446,7 @@
 	var ListingStore = __webpack_require__(290);
 	var ListingActions = __webpack_require__(294);
 	var ListingIndex = __webpack_require__(296);
+	var FilterForm = __webpack_require__(299);
 	
 	var ListingSearch = React.createClass({
 	  displayName: 'ListingSearch',
@@ -35475,6 +35476,7 @@
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement(FilterForm, null),
 	      React.createElement(ListingIndex, { listings: this.state.listings })
 	    );
 	  }
@@ -35655,21 +35657,28 @@
 	
 	    var listings = this.props.listings;
 	    var listingKeys = Object.keys(listings);
-	
 	    return React.createElement(
-	      'ul',
+	      'div',
 	      null,
 	      React.createElement(
 	        'h1',
 	        null,
 	        'Listing Index'
 	      ),
-	      listingKeys.map(function (key) {
-	        return React.createElement(ListingIndexItem, {
-	          listing: listings[key],
-	          key: listings[key].id + key
-	        });
-	      })
+	      React.createElement(
+	        'div',
+	        { className: 'listings-container' },
+	        React.createElement(
+	          'div',
+	          { className: 'row' },
+	          listingKeys.map(function (key) {
+	            return React.createElement(ListingIndexItem, {
+	              listing: listings[key],
+	              key: listings[key].id + key
+	            });
+	          })
+	        )
+	      )
 	    );
 	  }
 	});
@@ -35693,14 +35702,32 @@
 	    hashHistory.push("/listings/" + listing_id);
 	  },
 	
+	  _onLoad: function (e) {
+	    if (e.target.height > e.target.width) {
+	      e.target.className = "listing-img-tall img-fluid pull-xs-left";
+	    } else {
+	      e.target.className = "listing-img-wide img-fluid pull-xs-left";
+	    }
+	  },
+	
 	  render: function () {
 	    var listing = this.props.listing;
+	    var images = listing.images;
 	    return React.createElement(
-	      'li',
-	      {
+	      'div',
+	      { className: 'listing-index-div col-sm-12 row-space 2 col-md-6',
 	        onClick: this.handleClick,
 	        key: listing.id + listing.title },
-	      listing.title
+	      React.createElement(
+	        'div',
+	        { className: 'panel-image listing-img' },
+	        listing.title,
+	        React.createElement(
+	          'div',
+	          { className: 'image-div' },
+	          React.createElement('img', { src: images[0].url, onLoad: this._onLoad })
+	        )
+	      )
 	    );
 	  }
 	});
@@ -35767,13 +35794,38 @@
 	      return React.createElement(
 	        'div',
 	        null,
-	        'FUCK OFF'
+	        'listing didnt load yet'
 	      );
 	    }
 	  }
 	});
 	
 	module.exports = ListingDetail;
+
+/***/ },
+/* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var FilterForm = React.createClass({
+	  displayName: 'FilterForm',
+	
+	  render: function () {
+	
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Filter Form Goes Here'
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = FilterForm;
 
 /***/ }
 /******/ ]);

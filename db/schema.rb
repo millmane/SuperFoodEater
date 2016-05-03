@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429175727) do
+ActiveRecord::Schema.define(version: 20160502172057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: :cascade do |t|
+    t.integer  "listing_id", null: false
+    t.string   "url",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "images", ["listing_id"], name: "index_images_on_listing_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.string   "title",       null: false
@@ -23,6 +32,11 @@ ActiveRecord::Schema.define(version: 20160429175727) do
     t.float    "lat",         null: false
     t.float    "lng",         null: false
     t.integer  "guests",      null: false
+    t.float    "price",       null: false
+    t.datetime "from_date",   null: false
+    t.datetime "to_date",     null: false
+    t.string   "home_type",   null: false
+    t.string   "room_type",   null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

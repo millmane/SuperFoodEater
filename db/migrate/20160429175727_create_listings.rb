@@ -7,6 +7,11 @@ class CreateListings < ActiveRecord::Migration
       t.float :lat, null: false
       t.float :lng, null: false
       t.integer :guests, null: false
+      t.float :price, null: false
+      t.datetime :from_date, null: false
+      t.datetime :to_date, null: false
+      t.string :home_type, null: false
+      t.string :room_type, null: false
 
       t.timestamps null: false
     end

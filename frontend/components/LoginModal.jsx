@@ -49,7 +49,6 @@ var LoginModal = React.createClass({
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
             style={customStyles} >
-
           <LoginForm/>
         </Modal>
       </a>
