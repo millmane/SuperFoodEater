@@ -57,6 +57,8 @@
 	
 	//Components
 	var NavBar = __webpack_require__(278);
+	var NavBar2 = __webpack_require__(301);
+	
 	var Logo = __webpack_require__(279);
 	var SearchBar = __webpack_require__(288);
 	var LoginForm = __webpack_require__(226);
@@ -90,14 +92,15 @@
 	  // className="landing-background"
 	  // <NavBar/>
 	  // <LandingPage/>
-	  //
+	  //       <NavBar/>
+	
 	  render: function () {
 	    var Link = ReactRouter.Link;
 	
 	    return React.createElement(
 	      'div',
-	      { className: 'landing-background' },
-	      React.createElement(NavBar, null),
+	      null,
+	      React.createElement(NavBar2, null),
 	      this.props.children
 	    );
 	  }
@@ -34736,7 +34739,9 @@
 	  //     </div>
 	  //   );
 	  // },
-	
+	  // <a className="navbar-brand page-scroll">
+	  //   FoodEater
+	  // </a>
 	  render: function () {
 	    var Link = ReactRouter.Link;
 	
@@ -34763,18 +34768,13 @@
 	          ),
 	          React.createElement(
 	            Link,
-	            { to: '/', className: 'page-scroll' },
+	            { to: '/', className: 'logo page-scroll' },
 	            'FoodEater'
 	          ),
 	          React.createElement(
 	            Link,
 	            { to: '/listings', className: 'page-scroll' },
 	            'Listings'
-	          ),
-	          React.createElement(
-	            'a',
-	            { className: 'navbar-brand page-scroll' },
-	            'FoodEater'
 	          )
 	        ),
 	        React.createElement(NavBarItem, null)
@@ -35456,6 +35456,7 @@
 	var ListingActions = __webpack_require__(294);
 	var ListingIndex = __webpack_require__(296);
 	var FilterForm = __webpack_require__(299);
+	var Map = __webpack_require__(302);
 	
 	var ListingSearch = React.createClass({
 	  displayName: 'ListingSearch',
@@ -35481,11 +35482,16 @@
 	  },
 	
 	  render: function () {
-	
+	    var bootstrap_enabled = typeof $().modal == 'function';
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(FilterForm, null),
+	      React.createElement(
+	        'h1',
+	        null,
+	        'im the map'
+	      ),
+	      React.createElement(Map, { listings: this.state.listings }),
 	      React.createElement(ListingIndex, { listings: this.state.listings })
 	    );
 	  }
@@ -35826,20 +35832,41 @@
 	var React = __webpack_require__(1);
 	
 	var FilterForm = React.createClass({
-	  displayName: 'FilterForm',
+	    displayName: 'FilterForm',
 	
-	  render: function () {
+	    render: function () {
+	        var bootstrap_enabled = typeof $().modal == 'function';
 	
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Filter Form Goes Here'
-	      )
-	    );
-	  }
+	        return React.createElement(
+	            'div',
+	            { 'class': 'container' },
+	            React.createElement(
+	                'div',
+	                { 'class': 'row' },
+	                React.createElement(
+	                    'div',
+	                    { 'class': 'col-sm-6' },
+	                    React.createElement(
+	                        'div',
+	                        { 'class': 'form-group' },
+	                        React.createElement(
+	                            'div',
+	                            { 'class': 'input-group date', id: 'datetimepicker1' },
+	                            React.createElement('input', { type: 'text', 'class': 'form-control' }),
+	                            React.createElement(
+	                                'span',
+	                                { 'class': 'input-group-addon' },
+	                                React.createElement('span', { 'class': 'glyphicon glyphicon-calendar' })
+	                            )
+	                        )
+	                    )
+	                ),
+	                $(function () {
+	                    $('#datetimepicker1').datetimepicker();
+	                })
+	            )
+	        );
+	    }
 	});
 	
 	module.exports = FilterForm;
@@ -35855,16 +35882,14 @@
 	
 	
 	  // big search bar, background image
+	  // <img
+	  //   src="http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg"/>
+	
 	  render: function () {
 	    return React.createElement(
 	      "div",
 	      { className: "hero-unit" },
-	      React.createElement(
-	        "div",
-	        { className: "hero-background" },
-	        React.createElement("img", { className: "landing-background",
-	          src: "http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg" })
-	      ),
+	      React.createElement("div", { className: "hero-background" }),
 	      React.createElement(
 	        "div",
 	        null,
@@ -35891,6 +35916,509 @@
 	//     </video>
 	//   </div>
 	// </div>
+
+/***/ },
+/* 301 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(166);
+	
+	var UserStore = __webpack_require__(238);
+	var Logo = __webpack_require__(279);
+	var LoginForm = __webpack_require__(226);
+	var SignUpForm = __webpack_require__(280);
+	var CurrentUserState = __webpack_require__(256);
+	var NavBarItem = __webpack_require__(281);
+	var UserActions = __webpack_require__(231);
+	
+	var NavBar2 = React.createClass({
+	  displayName: 'NavBar2',
+	
+	  mixins: [CurrentUserState],
+	  getInitialState: function () {
+	    // return {loginStatus: UserStore.loginStatus()};
+	  },
+	
+	  logout: function (e) {
+	    e.preventDefault();
+	    UserActions.logout();
+	  },
+	
+	  render: function () {
+	    var Link = ReactRouter.Link;
+	
+	    return React.createElement(
+	      'nav',
+	      { className: 'navbar navbar-default' },
+	      React.createElement(
+	        'div',
+	        { ClassName: 'container-fluid' },
+	        React.createElement(
+	          'div',
+	          { ClassName: 'navbar-header' },
+	          React.createElement(
+	            'button',
+	            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false' },
+	            React.createElement(
+	              'span',
+	              { className: 'sr-only' },
+	              'Toggle navigation'
+	            ),
+	            React.createElement('span', { className: 'icon-bar' }),
+	            React.createElement('span', { className: 'icon-bar' }),
+	            React.createElement('span', { className: 'icon-bar' })
+	          ),
+	          React.createElement(
+	            'a',
+	            { className: 'navbar-brand', href: '#' },
+	            'FoodEater'
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+	          React.createElement(
+	            'ul',
+	            { className: 'nav navbar-nav' },
+	            React.createElement(
+	              'li',
+	              { className: 'active' },
+	              React.createElement(
+	                'a',
+	                { href: '#' },
+	                'Link ',
+	                React.createElement(
+	                  'span',
+	                  { className: 'sr-only' },
+	                  '(current)'
+	                )
+	              )
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'a',
+	                { href: '#' },
+	                'Link'
+	              )
+	            ),
+	            React.createElement(
+	              'li',
+	              { className: 'dropdown' },
+	              React.createElement(
+	                'a',
+	                { href: '#', 'class': 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+	                'Dropdown ',
+	                React.createElement('span', { 'class': 'caret' })
+	              ),
+	              React.createElement(
+	                'ul',
+	                { className: 'dropdown-menu' },
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Action'
+	                  )
+	                ),
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Another action'
+	                  )
+	                ),
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Something else here'
+	                  )
+	                ),
+	                React.createElement('li', { role: 'separator', className: 'divider' }),
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Separated link'
+	                  )
+	                ),
+	                React.createElement('li', { role: 'separator', className: 'divider' }),
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'One more separated link'
+	                  )
+	                )
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'form',
+	            { className: 'navbar-form navbar-left', role: 'search' },
+	            React.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              React.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search' })
+	            ),
+	            React.createElement(
+	              'button',
+	              { type: 'submit', className: 'btn btn-default' },
+	              'Submit'
+	            )
+	          ),
+	          React.createElement(
+	            'ul',
+	            { className: 'nav navbar-nav navbar-right' },
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'a',
+	                { href: '#' },
+	                'Link'
+	              )
+	            ),
+	            React.createElement(
+	              'li',
+	              { className: 'dropdown' },
+	              React.createElement(
+	                'a',
+	                { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+	                'Dropdown ',
+	                React.createElement('span', { className: 'caret' })
+	              ),
+	              React.createElement(
+	                'ul',
+	                { className: 'dropdown-menu' },
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Action'
+	                  )
+	                ),
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Another action'
+	                  )
+	                ),
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Something else here'
+	                  )
+	                ),
+	                React.createElement('li', { role: 'separator', className: 'divider' }),
+	                React.createElement(
+	                  'li',
+	                  null,
+	                  React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Separated link'
+	                  )
+	                )
+	              )
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(NavBarItem, null)
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = NavBar2;
+	
+	// <nav className="navbar navbar-default">
+	//   <div ClassName="container-fluid">
+	//     <!-- Brand and toggle get grouped for better mobile display -->
+	//     <div ClassName="navbar-header">
+	//       <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	//         <span className="sr-only">Toggle navigation</span>
+	//         <span className="icon-bar"></span>
+	//         <span className="icon-bar"></span>
+	//         <span className="icon-bar"></span>
+	//       </button>
+	//       <a className="navbar-brand" href="#">Brand</a>
+	//     </div>
+	//
+	//     <!-- Collect the nav links, forms, and other content for toggling -->
+	//     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	//       <ul className="nav navbar-nav">
+	//         <li className="active"><a href="#">Link <span className="sr-only">(current)</span></a></li>
+	//         <li><a href="#">Link</a></li>
+	//         <li className="dropdown">
+	//           <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	//           <ul class="dropdown-menu">
+	//             <li><a href="#">Action</a></li>
+	//             <li><a href="#">Another action</a></li>
+	//             <li><a href="#">Something else here</a></li>
+	//             <li role="separator" class="divider"></li>
+	//             <li><a href="#">Separated link</a></li>
+	//             <li role="separator" class="divider"></li>
+	//             <li><a href="#">One more separated link</a></li>
+	//           </ul>
+	//         </li>
+	//       </ul>
+	//       <form class="navbar-form navbar-left" role="search">
+	//         <div class="form-group">
+	//           <input type="text" class="form-control" placeholder="Search">
+	//         </div>
+	//         <button type="submit" class="btn btn-default">Submit</button>
+	//       </form>
+	//       <ul class="nav navbar-nav navbar-right">
+	//         <li><a href="#">Link</a></li>
+	//         <li class="dropdown">
+	//           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	//           <ul class="dropdown-menu">
+	//             <li><a href="#">Action</a></li>
+	//             <li><a href="#">Another action</a></li>
+	//             <li><a href="#">Something else here</a></li>
+	//             <li role="separator" class="divider"></li>
+	//             <li><a href="#">Separated link</a></li>
+	//           </ul>
+	//         </li>
+	//       </ul>
+	//     </div><!-- /.navbar-collapse -->
+	//   </div><!-- /.container-fluid -->
+	// </nav>
+
+	// <div className="container">
+	//   <!-- Static navbar -->
+	//   <nav className="navbar navbar-default">
+	//     <div className="container-fluid">
+	//       <div className="navbar-header">
+	//         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	//           <span className="sr-only">Toggle navigation</span>
+	//           <span className="icon-bar top-bar"></span>
+	//           <span className="icon-bar middle-bar"></span>
+	//           <span className="icon-bar bottom-bar"></span>
+	//         </button>
+	//         <a className="navbar-brand" href="#">Project name</a>
+	//       </div>
+	//       <div id="navbar" className="navbar-collapse collapse">
+	//         <ul className="nav navbar-nav">
+	//           <li className="active"><a href="#">Home</a></li>
+	//           <li><a href="#">About</a></li>
+	//           <li><a href="#">Contact</a></li>
+	//           <li className="dropdown">
+	//             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span className="caret"></span></a>
+	//             <ul className="dropdown-menu" role="menu">
+	//               <li><a href="#">Action</a></li>
+	//               <li><a href="#">Another action</a></li>
+	//               <li><a href="#">Something else here</a></li>
+	//               <li className="divider"></li>
+	//               <li className="dropdown-header">Nav header</li>
+	//               <li><a href="#">Separated link</a></li>
+	//               <li><a href="#">One more separated link</a></li>
+	//             </ul>
+	//           </li>
+	//         </ul>
+	//         <ul className="nav navbar-nav navbar-right">
+	//           <li className="active"><a href="./">Default <span className="sr-only">(current)</span></a></li>
+	//           <li><a href="../navbar-static-top/">Static top</a></li>
+	//           <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+	//         </ul>
+	//       </div>
+	//     </div>
+	//   </nav>
+
+/***/ },
+/* 302 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var hashHistory = __webpack_require__(166).hashHistory;
+	var FilterActions = __webpack_require__(303);
+	
+	var ListingStore = __webpack_require__(290);
+	// var MarkerStore = require('../../stores/marker_store');
+	
+	function _getCoordsObj(latLng) {
+	  return {
+	    lat: latLng.lat(),
+	    lng: latLng.lng()
+	  };
+	}
+	
+	var mapOptions = {
+	  center: { lat: 37.773972, lng: -122.431297 }, //San Francisco
+	  zoom: 13
+	};
+	
+	var Map = React.createClass({
+	  displayName: 'Map',
+	
+	
+	  componentDidMount: function () {
+	    var map = ReactDOM.findDOMNode(this.refs.map);
+	    this.map = new google.maps.Map(map, mapOptions);
+	    this.registerListeners();
+	    this.markers = [];
+	    this.eachListing(this.createMarkerFromListing);
+	  },
+	  eachListing: function (callback) {
+	    var listings = this.props.listings;
+	    var keys = Object.keys(listings);
+	    keys.forEach(function (key) {
+	      callback(listings[key]);
+	    });
+	  },
+	
+	  componentDidUpdate: function () {
+	    this._onChange();
+	  },
+	  _onChange: function () {
+	    var listingsToAdd = [];
+	    var markersToRemove = [];
+	    //Collect markers to remove
+	    this.markers.forEach(function (marker) {
+	      if (!this.props.listings.hasOwnProperty(marker.listingId)) {
+	        markersToRemove.push(marker);
+	      }
+	    }.bind(this));
+	    //Collect listings to add
+	    var currentListingIds = this.markers.map(function (marker) {
+	      return marker.listingId;
+	    });
+	    this.eachListing(function (listing) {
+	      if (!currentListingIds.includes(listing.id)) {
+	        listingsToAdd.push(listing);
+	      }
+	    });
+	    //Do the adding / removing
+	    listingsToAdd.forEach(this.createMarkerFromListing);
+	    markersToRemove.forEach(this.removeMarker);
+	  },
+	  _handleClick: function (coords) {
+	    hashHistory.push({
+	      pathname: "listings/new",
+	      query: coords
+	    });
+	  },
+	  registerListeners: function () {
+	    var that = this;
+	    google.maps.event.addListener(this.map, 'idle', function () {
+	      var bounds = that.map.getBounds();
+	      var northEast = _getCoordsObj(bounds.getNorthEast());
+	      var southWest = _getCoordsObj(bounds.getSouthWest());
+	      //actually issue the request
+	      bounds = {
+	        northEast: northEast,
+	        southWest: southWest
+	      };
+	      FilterActions.updateBounds(bounds);
+	    });
+	    google.maps.event.addListener(this.map, 'click', function (event) {
+	      var coords = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+	      that._handleClick(coords);
+	    });
+	  },
+	  createMarkerFromListing: function (listing) {
+	    var pos = new google.maps.LatLng(listing.lat, listing.lng);
+	    var marker = new google.maps.Marker({
+	      position: pos,
+	      map: this.map,
+	      listingId: listing.id
+	    });
+	    marker.addListener('click', function () {
+	      hashHistory.push("listings/" + listing.id);
+	    });
+	    this.markers.push(marker);
+	  },
+	  removeMarker: function (marker) {
+	    for (var i = 0; i < this.markers.length; i++) {
+	      if (this.markers[i].listingId === marker.listingId) {
+	        this.markers[i].setMap(null);
+	        this.markers.splice(i, 1);
+	        break;
+	      }
+	    }
+	  },
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'half', ref: 'map' },
+	      'Map'
+	    );
+	  }
+	});
+	
+	module.exports = Map;
+
+/***/ },
+/* 303 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(234);
+	var FilterConstants = __webpack_require__(304);
+	
+	var FilterActions = {
+	  updateBounds: function (bounds) {
+	    AppDispatcher.dispatch({
+	      actionType: FilterConstants.UPDATE_BOUNDS,
+	      bounds: bounds
+	    });
+	  },
+	  updateMinSeating: function (value) {
+	    AppDispatcher.dispatch({
+	      actionType: FilterConstants.UPDATE_MIN_SEATING,
+	      minSeating: value
+	    });
+	  },
+	  updateMaxSeating: function (value) {
+	    AppDispatcher.dispatch({
+	      actionType: FilterConstants.UPDATE_MAX_SEATING,
+	      maxSeating: value
+	    });
+	  }
+	};
+	
+	module.exports = FilterActions;
+
+/***/ },
+/* 304 */
+/***/ function(module, exports) {
+
+	
+	var FilterConstants = {
+	  UPDATE_BOUNDS: "UPDATE_BOUNDS",
+	  UPDATE_MIN_SEATING: "UPDATE_MIN_SEATING",
+	  UPDATE_MAX_SEATING: "UPDATE_MAX_SEATING"
+	};
+	
+	module.exports = FilterConstants;
 
 /***/ }
 /******/ ]);

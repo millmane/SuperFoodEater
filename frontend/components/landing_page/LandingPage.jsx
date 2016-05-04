@@ -3,12 +3,14 @@ var React = require('react');
 var LandingPage = React.createClass({
 
 // big search bar, background image
+// <img
+//   src="http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg"/>
+
+
   render: function(){
     return(
       <div className="hero-unit">
         <div className="hero-background">
-          <img className="landing-background"
-            src="http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg"/>
         </div>
         <div>
           BigSearchBar Here

@@ -6,8 +6,9 @@ gem 'pry-rails'
 gem 'annotate'
 gem 'bcrypt'
 gem 'rename'
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+# gem 'bootstrap', '~> 4.0.0.alpha3'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -3,6 +3,7 @@ var ListingStore = require('../../stores/listing_store.js');
 var ListingActions = require('../../actions/listing_actions');
 var ListingIndex = require('./ListingIndex.jsx');
 var FilterForm = require('./FilterForm.jsx');
+var Map = require('./Map');
 
 var ListingSearch = React.createClass({
 
@@ -26,11 +27,13 @@ var ListingSearch = React.createClass({
   },
 
   render: function (){
-
+    var bootstrap_enabled = (typeof $().modal == 'function');
     return (
       <div>
-        <FilterForm/>
+        <h1>im the map</h1>
+          <Map listings={this.state.listings}/>
         <ListingIndex listings={this.state.listings}/>
+
       </div>
     );
   }

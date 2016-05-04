@@ -62,7 +62,9 @@ mixins: [CurrentUserState],
   //     </div>
   //   );
   // },
-
+  // <a className="navbar-brand page-scroll">
+  //   FoodEater
+  // </a>
   render: function () {
     var Link = ReactRouter.Link;
 
@@ -76,16 +78,14 @@ mixins: [CurrentUserState],
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link to="/" className="page-scroll">
+
+            <Link to="/" className="logo page-scroll">
               FoodEater
             </Link>
             <Link to="/listings" className="page-scroll">
               Listings
             </Link>
-            <a className="navbar-brand page-scroll">
-              FoodEater
 
-            </a>
           </div>
           <NavBarItem/>
         </div>

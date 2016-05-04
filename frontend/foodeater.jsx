@@ -11,6 +11,8 @@ var Modal = require('react-modal');
 
 //Components
 var NavBar = require('./components/NavBar.jsx');
+var NavBar2 = require('./components/nav/NavBar2.jsx');
+
 var Logo = require('./components/Logo.jsx');
 var SearchBar = require('./components/SearchBar');
 var LoginForm = require('./components/LoginForm');
@@ -42,13 +44,14 @@ var App = React.createClass({
  // className="landing-background"
  // <NavBar/>
  // <LandingPage/>
-//
+//       <NavBar/>
+
   render: function () {
     var Link = ReactRouter.Link;
 
     return (
-      <div className="landing-background">
-       <NavBar/>
+      <div>
+        <NavBar2/>
         {this.props.children}
       </div>
     );
