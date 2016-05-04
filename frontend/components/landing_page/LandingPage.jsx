@@ -1,4 +1,6 @@
 var React = require('react');
+var LandingPageBottom = require('./LandingPageBottom');
+var LandingPageCarousel = require('./LandingPageCarousel');
 
 var LandingPage = React.createClass({
 
@@ -7,14 +9,20 @@ var LandingPage = React.createClass({
 //   src="http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg"/>
 
 
+// <div className="hero-unit">
+//   <div className="hero-background">
+//   </div>
+//   <div>
+//     BigSearchBar Here
+//   </div>
+// </div>
+
   render: function(){
     return(
-      <div className="hero-unit">
-        <div className="hero-background">
-        </div>
-        <div>
-          BigSearchBar Here
-        </div>
+      <div>
+
+        <LandingPageCarousel/>
+        <LandingPageBottom/>
       </div>
     );
   }
