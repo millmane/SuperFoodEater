@@ -1,0 +1,23 @@
+.sidebar {
+  position: fixed;
+  top: 47px;
+  left: 0;
+  bottom: 0;
+  width: 60%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  background: #f7f7f7;
+}
+
+.filters {
+  bottom: 923px;
+  top: 62px;
+  overflow: hidden;
+  position: static;
+  padding-bottom: 0;
+  display: block;
+  left: 0;
+  right: 40%;
+  background-color: #fff;
+
+}

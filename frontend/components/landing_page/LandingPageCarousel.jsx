@@ -1,7 +1,6 @@
 var React = require('react');
 
 var LandingPageCarousel = React.createClass({
-
   render: function(){
     return (
       <div id="myCarousel" className="carousel slide" data-ride="carousel">
@@ -9,15 +8,18 @@ var LandingPageCarousel = React.createClass({
               <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
               <li data-target="#myCarousel" data-slide-to="1" className=""></li>
               <li data-target="#myCarousel" data-slide-to="2" className=""></li>
+              <li data-target="#myCarousel" data-slide-to="3" className=""></li>
+              <li data-target="#myCarousel" data-slide-to="4" className=""></li>
+
             </ol>
             <div className="carousel-inner" role="listbox">
               <div className="item active">
                 <img className="first-slide" src="http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg" alt="First slide"/>
                 <div className="container">
                   <div className="carousel-caption">
-                    <h1>Example headline.</h1>
+                    <h1>Find Food Anywhere!</h1>
                     <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                    <p><a className="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
                   </div>
                 </div>
               </div>
@@ -25,19 +27,39 @@ var LandingPageCarousel = React.createClass({
                 <img className="second-slide" src="https://static.pexels.com/photos/3329/food-kitchen-cutting-board-cooking.jpg" alt="Second slide"/>
                 <div className="container">
                   <div className="carousel-caption">
-                    <h1>Another example headline.</h1>
+                    <h1>Find Food Anywhere!</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a className="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
                   </div>
                 </div>
               </div>
               <div className="item">
-                <img className="third-slide" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRvJXGvlQiPVSb4xoQZekVmX2n8ihdjgghaMbTctwLx1ZSSIEf2"/>
+                <img className="third-slide" src="https://images.unsplash.com/photo-1458938354258-3e66eb36eb7b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=da364b5db010d60dd526c386501ce5fc"/>
                 <div className="container">
                   <div className="carousel-caption">
-                    <h1>One more for good measure.</h1>
+                    <h1>Find Food Anywhere!</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a className="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
+                  </div>
+                </div>
+              </div>
+              <div className="item">
+                <img className="fourth-slide" src="https://images.unsplash.com/photo-1457666134378-6b77915bd5f2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=8ee9b87b2f8a42dd7d1d61e928343c28"/>
+                <div className="container">
+                  <div className="carousel-caption">
+                    <h1>Find Food Anywhere!</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
+                  </div>
+                </div>
+              </div>
+              <div className="item">
+                <img className="fifth-slide" src="https://images.unsplash.com/photo-1455128587117-d569fb07d25a?crop=entropy&dpr=2&fit=crop&fm=jpg&h=1000&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1925"/>
+                <div className="container">
+                  <div className="carousel-caption">
+                    <h1>Find Food Anywhere!</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
                   </div>
                 </div>
               </div>

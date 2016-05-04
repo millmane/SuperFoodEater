@@ -1,0 +1,25 @@
+.half {
+  width: 500px;
+  height: 500px;
+  float: left;
+  position: relative;
+}
+
+.map {
+  top: 62px;
+  display: block;
+  width: 40%;
+  position: fixed;
+  right: 0;
+  left: auto;
+  bottom: 0;
+}
+
+.map-canvas {
+  height: 100%;
+  width: 100%;
+//   position: relative;
+//   overflow: hidden;
+//   transform: translateZ(0px);
+//   background-color: rgb(164, 221, 245);
+}

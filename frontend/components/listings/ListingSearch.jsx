@@ -30,10 +30,17 @@ var ListingSearch = React.createClass({
     var bootstrap_enabled = (typeof $().modal == 'function');
     return (
       <div>
-        <h1>im the map</h1>
-          <Map listings={this.state.listings}/>
-        <ListingIndex listings={this.state.listings}/>
-
+        <div className="sidebar">
+          <div className="filters">
+            <h1>Filter Form Goes Here</h1>
+          </div>
+          <ListingIndex listings={this.state.listings}/>
+        </div>
+        <div className="map">
+          <div id="map" className="map-canvas">
+            <Map id="map" className="map-canvas" listings={this.state.listings}/>
+          </div>
+        </div>
       </div>
     );
   }

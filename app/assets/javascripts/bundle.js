@@ -35487,12 +35487,28 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h1',
-	        null,
-	        'im the map'
+	        'div',
+	        { className: 'sidebar' },
+	        React.createElement(
+	          'div',
+	          { className: 'filters' },
+	          React.createElement(
+	            'h1',
+	            null,
+	            'Filter Form Goes Here'
+	          )
+	        ),
+	        React.createElement(ListingIndex, { listings: this.state.listings })
 	      ),
-	      React.createElement(Map, { listings: this.state.listings }),
-	      React.createElement(ListingIndex, { listings: this.state.listings })
+	      React.createElement(
+	        'div',
+	        { className: 'map' },
+	        React.createElement(
+	          'div',
+	          { id: 'map', className: 'map-canvas' },
+	          React.createElement(Map, { id: 'map', className: 'map-canvas', listings: this.state.listings })
+	        )
+	      )
 	    );
 	  }
 	
@@ -36141,11 +36157,13 @@
 	      }
 	    }
 	  },
+	  // <div className="half" ref="map">Map</div>);
+	  // <Map id="map" className="map-canvas" listings={this.state.listings}/>
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'half', ref: 'map' },
-	      'Map'
+	      { className: 'map' },
+	      React.createElement('div', { id: 'map', className: 'map-canvas', ref: 'map' })
 	    );
 	  }
 	});
@@ -36764,7 +36782,7 @@
 	          React.createElement(
 	            "h2",
 	            null,
-	            "Heading"
+	            "Dessert"
 	          ),
 	          React.createElement(
 	            "p",
@@ -36788,7 +36806,7 @@
 	          React.createElement(
 	            "h2",
 	            null,
-	            "Heading"
+	            "Seafood"
 	          ),
 	          React.createElement(
 	            "p",
@@ -36812,7 +36830,7 @@
 	          React.createElement(
 	            "h2",
 	            null,
-	            "Heading"
+	            "Thai"
 	          ),
 	          React.createElement(
 	            "p",
@@ -37038,7 +37056,6 @@
 	var LandingPageCarousel = React.createClass({
 	  displayName: "LandingPageCarousel",
 	
-	
 	  render: function () {
 	    return React.createElement(
 	      "div",
@@ -37048,7 +37065,9 @@
 	        { className: "carousel-indicators" },
 	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "0", className: "active" }),
 	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "1", className: "" }),
-	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "2", className: "" })
+	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "2", className: "" }),
+	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "3", className: "" }),
+	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "4", className: "" })
 	      ),
 	      React.createElement(
 	        "div",
@@ -37066,7 +37085,7 @@
 	              React.createElement(
 	                "h1",
 	                null,
-	                "Example headline."
+	                "Find Food Anywhere!"
 	              ),
 	              React.createElement(
 	                "p",
@@ -37084,8 +37103,8 @@
 	                null,
 	                React.createElement(
 	                  "a",
-	                  { className: "btn btn-lg btn-primary", href: "#", role: "button" },
-	                  "Sign up today"
+	                  { className: "btn btn-lg btn-primary", href: "#/listings", role: "button" },
+	                  "Search For Food"
 	                )
 	              )
 	            )
@@ -37104,7 +37123,7 @@
 	              React.createElement(
 	                "h1",
 	                null,
-	                "Another example headline."
+	                "Find Food Anywhere!"
 	              ),
 	              React.createElement(
 	                "p",
@@ -37116,8 +37135,8 @@
 	                null,
 	                React.createElement(
 	                  "a",
-	                  { className: "btn btn-lg btn-primary", href: "#", role: "button" },
-	                  "Learn more"
+	                  { className: "btn btn-lg btn-primary", href: "#/listings", role: "button" },
+	                  "Search For Food"
 	                )
 	              )
 	            )
@@ -37126,7 +37145,7 @@
 	        React.createElement(
 	          "div",
 	          { className: "item" },
-	          React.createElement("img", { className: "third-slide", src: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRvJXGvlQiPVSb4xoQZekVmX2n8ihdjgghaMbTctwLx1ZSSIEf2" }),
+	          React.createElement("img", { className: "third-slide", src: "https://images.unsplash.com/photo-1458938354258-3e66eb36eb7b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=da364b5db010d60dd526c386501ce5fc" }),
 	          React.createElement(
 	            "div",
 	            { className: "container" },
@@ -37136,7 +37155,7 @@
 	              React.createElement(
 	                "h1",
 	                null,
-	                "One more for good measure."
+	                "Find Food Anywhere!"
 	              ),
 	              React.createElement(
 	                "p",
@@ -37148,8 +37167,72 @@
 	                null,
 	                React.createElement(
 	                  "a",
-	                  { className: "btn btn-lg btn-primary", href: "#", role: "button" },
-	                  "Browse gallery"
+	                  { className: "btn btn-lg btn-primary", href: "#/listings", role: "button" },
+	                  "Search For Food"
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "item" },
+	          React.createElement("img", { className: "fourth-slide", src: "https://images.unsplash.com/photo-1457666134378-6b77915bd5f2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=8ee9b87b2f8a42dd7d1d61e928343c28" }),
+	          React.createElement(
+	            "div",
+	            { className: "container" },
+	            React.createElement(
+	              "div",
+	              { className: "carousel-caption" },
+	              React.createElement(
+	                "h1",
+	                null,
+	                "Find Food Anywhere!"
+	              ),
+	              React.createElement(
+	                "p",
+	                null,
+	                "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+	              ),
+	              React.createElement(
+	                "p",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { className: "btn btn-lg btn-primary", href: "#/listings", role: "button" },
+	                  "Search For Food"
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "item" },
+	          React.createElement("img", { className: "fifth-slide", src: "https://images.unsplash.com/photo-1455128587117-d569fb07d25a?crop=entropy&dpr=2&fit=crop&fm=jpg&h=1000&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1925" }),
+	          React.createElement(
+	            "div",
+	            { className: "container" },
+	            React.createElement(
+	              "div",
+	              { className: "carousel-caption" },
+	              React.createElement(
+	                "h1",
+	                null,
+	                "Find Food Anywhere!"
+	              ),
+	              React.createElement(
+	                "p",
+	                null,
+	                "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+	              ),
+	              React.createElement(
+	                "p",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { className: "btn btn-lg btn-primary", href: "#/listings", role: "button" },
+	                  "Search For Food"
 	                )
 	              )
 	            )

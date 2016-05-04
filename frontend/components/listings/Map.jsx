@@ -106,8 +106,15 @@ var Map = React.createClass({
       }
     }
   },
+  // <div className="half" ref="map">Map</div>);
+  // <Map id="map" className="map-canvas" listings={this.state.listings}/>
   render: function(){
-    return ( <div className="half" ref="map">Map</div>);
+    return (
+      <div className="map">
+        <div id="map" className="map-canvas" ref="map">
+        </div>
+      </div>
+    );
   }
 });
 
