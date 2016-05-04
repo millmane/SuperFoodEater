@@ -16,7 +16,7 @@ var NavBar2 = require('./components/nav/NavBar2.jsx');
 var Logo = require('./components/Logo.jsx');
 var SearchBar = require('./components/SearchBar');
 var LoginForm = require('./components/LoginForm');
-var ListingSearch = require('./components/listings/ListingSearch.jsx');
+var ListingSearch2 = require('./components/listings/ListingSearch2.jsx');
 var ListingIndexItem = require('./components/listings/ListingIndexItem');
 var ListingDetail = require('./components/listings/ListingDetail.jsx');
 var LandingPage = require('./components/landing_page/LandingPage.jsx');
@@ -65,7 +65,7 @@ var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={LandingPage}/>
-      <Route path="listings" component={ListingSearch}/>
+      <Route path="listings" component={ListingSearch2}/>
       <Route path="listings/:listing_id" component={ListingDetail}/>
     </Route>
   </Router>

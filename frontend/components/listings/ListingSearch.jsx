@@ -36,14 +36,16 @@ var ListingSearch = React.createClass({
           </div>
           <ListingIndex listings={this.state.listings}/>
         </div>
-        <div className="map">
-          <div id="map" className="map-canvas">
-            <Map id="map" className="map-canvas" listings={this.state.listings}/>
-          </div>
-        </div>
+
+        <Map listings={this.state.listings}/>
       </div>
     );
   }
+  // <div className="map">
+  //   <div id="map" className="map-canvas">
+  //     <Map id="map" className="map-canvas" listings={this.state.listings}/>
+  //   </div>
+  // </div>
 
 });
 

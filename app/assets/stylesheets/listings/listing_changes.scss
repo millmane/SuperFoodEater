@@ -1,34 +1,111 @@
-.listing-index-div {
-  width: 50%;
-  float: left;
+// .listing-index-div {
+//   width: 50%;
+//   float: left;
+// }
+// .listings-container {
+//   width: 100%;
+// }
+//
+// .image-div {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background-color: #cacccd;
+//   text-align: center;
+// }
+
+.listing-img {
+    overflow: hidden;
+    padding-bottom: 67%;
 }
-.listings-container {
-  width: 67%;
+
+// .listing-img-tall {
+//   height: 100%;
+// }
+//
+// .listing-img-wide {
+//   height: 100%;
+//   width: 100%;
+// }
+
+.outer-listings-container {
+  padding: 0 20px;
+
+}
+
+.search-results {
+
+}
+
+.panel-body {
+    position: relative;
+}
+
+.panel-card-section {
+    padding: 10px;
 }
 
 .panel-image {
-  padding-bottom: 67%;
-  overflow: hidden;
   position: relative;
 }
 
-.image-div {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #cacccd;
-  text-align: center;
-
+.panel-image {
+    position: relative;
 }
 
-.listing-img-tall {
-  height: 100%;
+.listing-img .media-photo.media-cover {
+    z-index: 0;
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    backface-visibility: visible;
 }
 
-.listing-img-wide {
-  height: 100%;
-  width: 100%;
+.media-cover, .media-cover-dark:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
+.media-photo {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    background-color: #cacccd;
+}
+
+.listing-img-container {
+    z-index: 1;
+}
+
+.media-cover, .media-cover-dark:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.text-center {
+    text-align: center;
+}
+
+
+.img-responsive-height {
+    width: auto;
+    height: 100%;
+}
+
+img {
+    vertical-align: middle;
+}
+
+img {
+    border: 0;
 }
