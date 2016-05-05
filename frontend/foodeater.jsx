@@ -18,7 +18,7 @@ var SearchBar = require('./components/SearchBar');
 var LoginForm = require('./components/LoginForm');
 var ListingSearch2 = require('./components/listings/ListingSearch2.jsx');
 var ListingIndexItem = require('./components/listings/ListingIndexItem');
-var ListingDetail = require('./components/listings/ListingDetail.jsx');
+var ListingDetail2 = require('./components/listings/ListingDetail2.jsx');
 var LandingPage = require('./components/landing_page/LandingPage.jsx');
 
 // var UsernamePasswordForm = require('./components/UsernamePasswordForm');
@@ -66,7 +66,7 @@ var Router = (
     <Route path="/" component={App}>
       <IndexRoute component={LandingPage}/>
       <Route path="listings" component={ListingSearch2}/>
-      <Route path="listings/:listing_id" component={ListingDetail}/>
+      <Route path="listings/:listing_id" component={ListingDetail2}/>
     </Route>
   </Router>
 );

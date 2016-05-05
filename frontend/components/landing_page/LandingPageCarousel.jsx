@@ -18,7 +18,7 @@ var LandingPageCarousel = React.createClass({
                 <div className="container">
                   <div className="carousel-caption">
                     <h1>Find Food Anywhere!</h1>
-                    <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                    <p>Rent food from locals anywhere in the world. Experience any cuisine at any time!</p>
                     <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
                   </div>
                 </div>
@@ -28,7 +28,7 @@ var LandingPageCarousel = React.createClass({
                 <div className="container">
                   <div className="carousel-caption">
                     <h1>Find Food Anywhere!</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>Rent food from locals anywhere in the world. Experience any cuisine at any time!</p>
                     <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
                   </div>
                 </div>
@@ -38,7 +38,7 @@ var LandingPageCarousel = React.createClass({
                 <div className="container">
                   <div className="carousel-caption">
                     <h1>Find Food Anywhere!</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>Rent food from locals anywhere in the world. Experience any cuisine at any time!</p>
                     <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
                   </div>
                 </div>
@@ -48,7 +48,7 @@ var LandingPageCarousel = React.createClass({
                 <div className="container">
                   <div className="carousel-caption">
                     <h1>Find Food Anywhere!</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>Rent food from locals anywhere in the world. Experience any cuisine at any time!</p>
                     <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
                   </div>
                 </div>
@@ -58,7 +58,7 @@ var LandingPageCarousel = React.createClass({
                 <div className="container">
                   <div className="carousel-caption">
                     <h1>Find Food Anywhere!</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>Rent food from locals anywhere in the world. Experience any cuisine at any time!</p>
                     <p><a className="btn btn-lg btn-primary" href="#/listings" role="button">Search For Food</a></p>
                   </div>
                 </div>

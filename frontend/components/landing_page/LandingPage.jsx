@@ -17,12 +17,12 @@ var LandingPage = React.createClass({
 //   </div>
 // </div>
 
+// <LandingPageBottom/>
   render: function(){
     return(
       <div>
 
         <LandingPageCarousel/>
-        <LandingPageBottom/>
       </div>
     );
   }

@@ -64,7 +64,7 @@
 	var LoginForm = __webpack_require__(226);
 	var ListingSearch2 = __webpack_require__(313);
 	var ListingIndexItem = __webpack_require__(297);
-	var ListingDetail = __webpack_require__(298);
+	var ListingDetail2 = __webpack_require__(316);
 	var LandingPage = __webpack_require__(300);
 	
 	// var UsernamePasswordForm = require('./components/UsernamePasswordForm');
@@ -117,7 +117,7 @@
 	    { path: '/', component: App },
 	    React.createElement(IndexRoute, { component: LandingPage }),
 	    React.createElement(Route, { path: 'listings', component: ListingSearch2 }),
-	    React.createElement(Route, { path: 'listings/:listing_id', component: ListingDetail })
+	    React.createElement(Route, { path: 'listings/:listing_id', component: ListingDetail2 })
 	  )
 	);
 	
@@ -35657,81 +35657,7 @@
 	module.exports = ListingIndexItem;
 
 /***/ },
-/* 298 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(166);
-	var hashHistory = __webpack_require__(166).hashHistory;
-	var ListingStore = __webpack_require__(290);
-	var ListingActions = __webpack_require__(294);
-	
-	var ListingDetail = React.createClass({
-	  displayName: 'ListingDetail',
-	
-	
-	  getStateFromStore: function () {
-	    return {
-	      listing: ListingStore.findListing(parseInt(this.props.params.listing_id))
-	    };
-	  },
-	
-	  getInitialState: function () {
-	    return this.getStateFromStore();
-	  },
-	
-	  _onChange: function () {
-	    this.setState(this.getStateFromStore());
-	  },
-	
-	  componentDidMount: function () {
-	    this.listingListener = ListingStore.addListener(this._onChange);
-	    // ListingActions.fetchListing(parseInt(this.props.params.listing_id));
-	  },
-	
-	  componentWillUnmount: function () {
-	    this.listingListener.remove();
-	  },
-	
-	  handleClick: function () {
-	    var listing_id = this.props.listing.id;
-	    hashHistory.push("/listings/" + listing_id);
-	  },
-	
-	  render: function () {
-	    var listing = this.state.listing;
-	    if (typeof listing !== 'undefined') {
-	      return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          'h1',
-	          null,
-	          listing.title
-	        ),
-	        React.createElement(
-	          'h1',
-	          null,
-	          listing.description
-	        )
-	      );
-	    } else {
-	      return React.createElement(
-	        'div',
-	        null,
-	        'listing didnt load yet'
-	      );
-	    }
-	  }
-	});
-	
-	module.exports = ListingDetail;
-	
-	// {Object.keys(listing).map(function (el){
-	//   return <h1 key={listing[el] + el}>{listing[el]}</h1>;
-	// })}
-
-/***/ },
+/* 298 */,
 /* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -35801,12 +35727,12 @@
 	  //   </div>
 	  // </div>
 	
+	  // <LandingPageBottom/>
 	  render: function () {
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(LandingPageCarousel, null),
-	      React.createElement(LandingPageBottom, null)
+	      React.createElement(LandingPageCarousel, null)
 	    );
 	  }
 	
@@ -35888,40 +35814,12 @@
 	            { className: 'nav navbar-nav' },
 	            React.createElement(
 	              'li',
-	              { className: 'active' },
-	              React.createElement(
-	                'a',
-	                { href: '#' },
-	                'Link ',
-	                React.createElement(
-	                  'span',
-	                  { className: 'sr-only' },
-	                  '(current)'
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              'li',
 	              null,
 	              React.createElement(
 	                'a',
 	                { href: '/#/listings' },
 	                'Listings'
 	              )
-	            )
-	          ),
-	          React.createElement(
-	            'form',
-	            { className: 'navbar-form navbar-left', role: 'search' },
-	            React.createElement(
-	              'div',
-	              { className: 'form-group' },
-	              React.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search' })
-	            ),
-	            React.createElement(
-	              'button',
-	              { type: 'submit', className: 'btn btn-default' },
-	              'Search Listings'
 	            )
 	          ),
 	          React.createElement(AuthButtons, null)
@@ -36980,13 +36878,7 @@
 	              React.createElement(
 	                "p",
 	                null,
-	                "Note: If you're viewing this page via a ",
-	                React.createElement(
-	                  "code",
-	                  null,
-	                  "file://"
-	                ),
-	                " URL, the \"next\" and \"previous\" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules."
+	                "Rent food from locals anywhere in the world. Experience any cuisine at any time!"
 	              ),
 	              React.createElement(
 	                "p",
@@ -37018,7 +36910,7 @@
 	              React.createElement(
 	                "p",
 	                null,
-	                "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+	                "Rent food from locals anywhere in the world. Experience any cuisine at any time!"
 	              ),
 	              React.createElement(
 	                "p",
@@ -37050,7 +36942,7 @@
 	              React.createElement(
 	                "p",
 	                null,
-	                "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+	                "Rent food from locals anywhere in the world. Experience any cuisine at any time!"
 	              ),
 	              React.createElement(
 	                "p",
@@ -37082,7 +36974,7 @@
 	              React.createElement(
 	                "p",
 	                null,
-	                "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+	                "Rent food from locals anywhere in the world. Experience any cuisine at any time!"
 	              ),
 	              React.createElement(
 	                "p",
@@ -37114,7 +37006,7 @@
 	              React.createElement(
 	                "p",
 	                null,
-	                "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+	                "Rent food from locals anywhere in the world. Experience any cuisine at any time!"
 	              ),
 	              React.createElement(
 	                "p",
@@ -37199,490 +37091,11 @@
 	        { className: 'sidebar' },
 	        React.createElement(
 	          'div',
-	          { className: 'filters collapse' },
-	          React.createElement(
-	            'div',
-	            { className: 'filters-section intro-filter panel-body panel-light' },
-	            React.createElement(
-	              'h1',
-	              null,
-	              'remove me'
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'row' },
-	              React.createElement(
-	                'div',
-	                { className: 'col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label' },
-	                React.createElement(
-	                  'label',
-	                  null,
-	                  'Dates'
-	                )
-	              ),
-	              React.createElement(
-	                'form',
-	                { className: 'col-lg-9 trip-form' },
-	                React.createElement(
-	                  'div',
-	                  { className: 'row row-condensed' },
-	                  React.createElement(
-	                    'div',
-	                    { className: 'col-md-4 col-sm-6 row-space-1-sm' },
-	                    React.createElement(
-	                      'label',
-	                      { 'for': 'map-search-checkin', className: 'screen-reader-only' },
-	                      'Check In'
-	                    ),
-	                    React.createElement('input', { name: 'checkin', id: 'map-search-checkin', type: 'text', autocomplete: 'off', className: 'checkin tour-target ui-datepicker-target', placeholder: 'Check In' })
-	                  ),
-	                  React.createElement(
-	                    'div',
-	                    { className: 'col-md-4 col-sm-6 row-space-1-sm' },
-	                    React.createElement(
-	                      'label',
-	                      { 'for': 'map-search-checkout', className: 'screen-reader-only' },
-	                      'Check Out'
-	                    ),
-	                    React.createElement('input', { name: 'checkout', id: 'map-search-checkout', type: 'text', autocomplete: 'off', className: 'checkout tour-target ui-datepicker-target', placeholder: 'Check Out' })
-	                  ),
-	                  React.createElement(
-	                    'div',
-	                    { className: 'col-md-4 col-sm-12' },
-	                    React.createElement(
-	                      'div',
-	                      { className: 'select select-block' },
-	                      React.createElement(
-	                        'label',
-	                        { 'for': 'guest-select', className: 'screen-reader-only' },
-	                        'Number of guests'
-	                      ),
-	                      React.createElement(
-	                        'select',
-	                        { name: 'guests', className: 'guest-select', id: 'guest-select', 'data-prefill': '0' },
-	                        React.createElement(
-	                          'option',
-	                          { value: '1' },
-	                          '1 Guest'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '2' },
-	                          '2 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '3' },
-	                          '3 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '4' },
-	                          '4 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '5' },
-	                          '5 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '6' },
-	                          '6 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '7' },
-	                          '7 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '8' },
-	                          '8 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '9' },
-	                          '9 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '10' },
-	                          '10 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '11' },
-	                          '11 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '12' },
-	                          '12 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '13' },
-	                          '13 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '14' },
-	                          '14 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '15' },
-	                          '15 Guests'
-	                        ),
-	                        React.createElement(
-	                          'option',
-	                          { value: '16' },
-	                          '16+ Guests'
-	                        )
-	                      )
-	                    )
-	                  )
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              'h1',
-	              null,
-	              'remove me'
-	            ),
-	            React.createElement(
-	              'h1',
-	              null,
-	              'remove also'
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'filters-section room-type-group intro-filter panel-body panel-light', 'data-name': 'room_types' },
-	              React.createElement(
-	                'div',
-	                { className: 'row' },
-	                React.createElement(
-	                  'div',
-	                  { className: 'col-lg-2 col-md-12 text-center-sm text-center-md filter-label' },
-	                  React.createElement(
-	                    'label',
-	                    null,
-	                    'Room Type',
-	                    React.createElement('i', { className: 'icon icon-question hide-sm hide-md', id: 'room-type-tooltip' })
-	                  )
-	                ),
-	                React.createElement(
-	                  'div',
-	                  { className: 'col-lg-9' },
-	                  React.createElement(
-	                    'div',
-	                    { id: 'room-options', className: 'row row-condensed room-type__buttons' },
-	                    React.createElement(
-	                      'div',
-	                      { className: 'col-middle-alt col-md-4 col-sm-12 room-type__section' },
-	                      React.createElement(
-	                        'label',
-	                        { className: 'checkbox facet-checkbox facet-checkbox--room-type room-type__button-label' },
-	                        React.createElement(
-	                          'div',
-	                          { className: 'facet-checkbox__input-col room-type__button' },
-	                          React.createElement('input', { type: 'checkbox', name: 'room-type', value: 'Entire home/apt', className: 'room-type__input hide-md hide-sm' }),
-	                          React.createElement(
-	                            'div',
-	                            { className: 'show-md room-type__button' },
-	                            React.createElement(
-	                              'div',
-	                              { className: 'text-center' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'room-type__icon-button media-round' },
-	                                React.createElement('i', { className: 'icon icon-home icon-size-2 needsclick room-type__icon' })
-	                              ),
-	                              React.createElement(
-	                                'div',
-	                                { className: 'room-type__label' },
-	                                React.createElement(
-	                                  'span',
-	                                  null,
-	                                  React.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Entire place'
-	                                  )
-	                                )
-	                              )
-	                            )
-	                          ),
-	                          React.createElement(
-	                            'div',
-	                            { className: 'show-sm room-type__button row' },
-	                            React.createElement(
-	                              'div',
-	                              { className: 'col-sm-10' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'va-middle room-type__label' },
-	                                React.createElement(
-	                                  'span',
-	                                  null,
-	                                  React.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Entire place'
-	                                  )
-	                                )
-	                              )
-	                            ),
-	                            React.createElement(
-	                              'div',
-	                              { className: 'col-sm-2' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'text-center' },
-	                                React.createElement(
-	                                  'div',
-	                                  { className: 'room-type__icon-button media-round' },
-	                                  React.createElement('i', { className: 'icon icon-home icon-size-2 needsclick room-type__icon' })
-	                                )
-	                              )
-	                            )
-	                          )
-	                        ),
-	                        React.createElement(
-	                          'div',
-	                          { className: 'facet-checkbox__label-col room-type__button hide-md hide-sm' },
-	                          React.createElement(
-	                            'span',
-	                            null,
-	                            'Entire place'
-	                          )
-	                        )
-	                      )
-	                    ),
-	                    React.createElement(
-	                      'div',
-	                      { className: 'col-middle-alt col-md-4 col-sm-12 room-type__section' },
-	                      React.createElement(
-	                        'label',
-	                        { className: 'checkbox facet-checkbox facet-checkbox--room-type room-type__button-label' },
-	                        React.createElement(
-	                          'div',
-	                          { className: 'facet-checkbox__input-col room-type__button' },
-	                          React.createElement('input', { type: 'checkbox', name: 'room-type', value: 'Private room', className: 'room-type__input hide-md hide-sm' }),
-	                          React.createElement(
-	                            'div',
-	                            { className: 'show-md room-type__button' },
-	                            React.createElement(
-	                              'div',
-	                              { className: 'text-center' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'room-type__icon-button media-round' },
-	                                React.createElement('i', { className: 'icon icon-private-room icon-size-2 needsclick room-type__icon' })
-	                              ),
-	                              React.createElement(
-	                                'div',
-	                                { className: 'room-type__label' },
-	                                React.createElement(
-	                                  'span',
-	                                  null,
-	                                  React.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Private room'
-	                                  )
-	                                )
-	                              )
-	                            )
-	                          ),
-	                          React.createElement(
-	                            'div',
-	                            { className: 'show-sm room-type__button row' },
-	                            React.createElement(
-	                              'div',
-	                              { className: 'col-sm-10' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'va-middle room-type__label' },
-	                                React.createElement(
-	                                  'span',
-	                                  null,
-	                                  React.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Private room'
-	                                  )
-	                                )
-	                              )
-	                            ),
-	                            React.createElement(
-	                              'div',
-	                              { className: 'col-sm-2' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'text-center' },
-	                                React.createElement(
-	                                  'div',
-	                                  { className: 'room-type__icon-button media-round' },
-	                                  React.createElement('i', { className: 'icon icon-private-room icon-size-2 needsclick room-type__icon' })
-	                                )
-	                              )
-	                            )
-	                          )
-	                        ),
-	                        React.createElement(
-	                          'div',
-	                          { className: 'facet-checkbox__label-col room-type__button hide-md hide-sm' },
-	                          React.createElement(
-	                            'span',
-	                            null,
-	                            'Private room'
-	                          )
-	                        )
-	                      )
-	                    ),
-	                    React.createElement(
-	                      'div',
-	                      { className: 'col-middle-alt col-md-4 col-sm-12 room-type__section' },
-	                      React.createElement(
-	                        'label',
-	                        { className: 'checkbox facet-checkbox facet-checkbox--room-type room-type__button-label' },
-	                        React.createElement(
-	                          'div',
-	                          { className: 'facet-checkbox__input-col room-type__button' },
-	                          React.createElement('input', { type: 'checkbox', name: 'room-type', value: 'Shared room', className: 'room-type__input hide-md hide-sm' }),
-	                          React.createElement(
-	                            'div',
-	                            { className: 'show-md room-type__button' },
-	                            React.createElement(
-	                              'div',
-	                              { className: 'text-center' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'room-type__icon-button media-round' },
-	                                React.createElement('i', { className: 'icon icon-shared-room icon-size-2 needsclick room-type__icon' })
-	                              ),
-	                              React.createElement(
-	                                'div',
-	                                { className: 'room-type__label' },
-	                                React.createElement(
-	                                  'span',
-	                                  null,
-	                                  React.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Shared room'
-	                                  )
-	                                )
-	                              )
-	                            )
-	                          ),
-	                          React.createElement(
-	                            'div',
-	                            { className: 'show-sm room-type__button row' },
-	                            React.createElement(
-	                              'div',
-	                              { className: 'col-sm-10' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'va-middle room-type__label' },
-	                                React.createElement(
-	                                  'span',
-	                                  null,
-	                                  React.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Shared room'
-	                                  )
-	                                )
-	                              )
-	                            ),
-	                            React.createElement(
-	                              'div',
-	                              { className: 'col-sm-2' },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'text-center' },
-	                                React.createElement(
-	                                  'div',
-	                                  { className: 'room-type__icon-button media-round' },
-	                                  React.createElement('i', { className: 'icon icon-shared-room icon-size-2 needsclick room-type__icon' })
-	                                )
-	                              )
-	                            )
-	                          )
-	                        ),
-	                        React.createElement(
-	                          'div',
-	                          { className: 'facet-checkbox__label-col room-type__button hide-md hide-sm' },
-	                          React.createElement(
-	                            'span',
-	                            null,
-	                            'Shared room'
-	                          )
-	                        )
-	                      )
-	                    )
-	                  )
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              'h1',
-	              null,
-	              'remove also'
-	            ),
-	            React.createElement(
-	              'h1',
-	              null,
-	              'definitely remove this'
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'filters-section intro-filter panel-body panel-light' },
-	              React.createElement(
-	                'div',
-	                { className: 'row' },
-	                React.createElement(
-	                  'div',
-	                  { className: 'col-lg-2 col-md-12 text-center-sm text-center-md filter-label' },
-	                  React.createElement(
-	                    'label',
-	                    null,
-	                    'Price Range'
-	                  )
-	                ),
-	                React.createElement(
-	                  'div',
-	                  { className: 'col-lg-9 col-md-12' },
-	                  React.createElement(
-	                    'div',
-	                    null,
-	                    'Price Slider Here'
-	                  )
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              'h1',
-	              null,
-	              'definitely remove this'
-	            )
-	          ),
-	          React.createElement(
-	            'h1',
-	            null,
-	            'Filter Form Goes Here'
-	          )
-	        ),
-	        React.createElement(
-	          'div',
 	          { className: 'sidebar-header panel-body clearfix panel-bg-medium' },
 	          React.createElement(
 	            'h1',
-	            null,
-	            'header!!!'
+	            { className: 'search-results-header' },
+	            'Explore Local Food Options'
 	          )
 	        ),
 	        React.createElement(ListingIndex2, { listings: this.state.listings })
@@ -37794,7 +37207,7 @@
 	        React.createElement(
 	          'div',
 	          { className: 'panel-body panel-card-section' },
-	          'More Stuff Here!'
+	          listing.title
 	        )
 	      )
 	    );
@@ -37805,6 +37218,180 @@
 	//   <img src={images[0].url} onLoad={this._onLoad}></img>
 	// </div>
 	module.exports = ListingIndexItem2;
+
+/***/ },
+/* 316 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(166);
+	var hashHistory = __webpack_require__(166).hashHistory;
+	var ListingStore = __webpack_require__(290);
+	var ListingActions = __webpack_require__(294);
+	var ListingDetailCarousel = __webpack_require__(317);
+	
+	var ListingDetail = React.createClass({
+	  displayName: 'ListingDetail',
+	
+	
+	  getStateFromStore: function () {
+	    return {
+	      listing: ListingStore.findListing(parseInt(this.props.params.listing_id))
+	    };
+	  },
+	
+	  getInitialState: function () {
+	    return this.getStateFromStore();
+	  },
+	
+	  _onChange: function () {
+	    this.setState(this.getStateFromStore());
+	  },
+	
+	  componentDidMount: function () {
+	    this.listingListener = ListingStore.addListener(this._onChange);
+	  },
+	
+	  componentWillUnmount: function () {
+	    this.listingListener.remove();
+	  },
+	
+	  handleClick: function () {
+	    var listing_id = this.props.listing.id;
+	    hashHistory.push("/listings/" + listing_id);
+	  },
+	  render: function () {
+	
+	    var listing = this.state.listing;
+	    if (typeof listing !== 'undefined') {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(ListingDetailCarousel, { listing: listing })
+	      );
+	    } else {
+	      return React.createElement(
+	        'div',
+	        null,
+	        'listing didnt load yet'
+	      );
+	    }
+	  }
+	});
+	
+	module.exports = ListingDetail;
+	
+	//
+	// <div id="listing">
+	//   <div data-mystique-key="p3hero_and_slideshowbundlejs">
+	//     <div data-reactid=".1jffvpofqio" data-react-checksum="-1828275119">
+	//       <div id="photos" className="with-photos with-modal" data-reactid=".1jffvpofqio.0">
+	//         <span className="cover-photo" data-reactid=".1jffvpofqio.0.0">
+	//           <img className="hide" alt="" width="0" src="https://a1.muscache.com/im/pictures/16020454/ca70e301_original.jpg?aki_policy=large" srcset="https://a1.muscache.com/im/pictures/16020454/ca70e301_original.jpg?aki_policy=large 639w,https://a1.muscache.com/im/pictures/16020454/ca70e301_original.jpg?aki_policy=xx_large 1440w" data-reactid=".1jffvpofqio.0.0.0"/>
+	//           <span className="cover-img-container" data-hook="cover-img-container" data-reactid=".1jffvpofqio.0.0.1">
+	//             <div className="cover-img" style={{backgroundImage:"url(https://a1.muscache.com/im/pictures/16020454/ca70e301_original.jpg?aki_policy=xx_large)"}} data-reactid=".1jffvpofqio.0.0.1.0">
+	//               <div className="link-reset panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label show-sm" data-reactid=".1jffvpofqio.0.0.1.0.0">
+	//                 <div data-reactid=".1jffvpofqio.0.0.1.0.0.0">
+	//                   <span className="h3 text-contrast price-amount" data-reactid=".1jffvpofqio.0.0.1.0.0.0.0">
+	//                     <span data-reactid=".1jffvpofqio.0.0.1.0.0.0.0.0">$112</span>
+	//                   </span>
+	//                   <span data-reactid=".1jffvpofqio.0.0.1.0.0.0.1">&nbsp;</span>
+	//                     <span className="per-night hide-sm" data-reactid=".1jffvpofqio.0.0.1.0.0.0.2">
+	//                     <span data-reactid=".1jffvpofqio.0.0.1.0.0.0.2.0">Per Night</span>
+	//                   </span>
+	//                 </div>
+	//               </div>
+	//             </div>
+	//           </span>
+	//           <div className="slideshow-inline-preload hide" data-reactid=".1jffvpofqio.0.0.2">
+	//             <img className="carousel-image img-responsive-height" src="https://a0.muscache.com/im/pictures/16020349/2b864bbc_original.jpg?aki_policy=x_large" alt="" data-reactid=".1jffvpofqio.0.0.2.$https=2//a0=1muscache=1com/im/pictures/16020349/2b864bbc_original=1jpg?aki_policy=0x_large"/>
+	//             <img className="carousel-image img-responsive-height" src="https://a1.muscache.com/im/pictures/16020376/b53ea354_original.jpg?aki_policy=x_large" alt="" data-reactid=".1jffvpofqio.0.0.2.$https=2//a1=1muscache=1com/im/pictures/16020376/b53ea354_original=1jpg?aki_policy=0x_large"/>
+	//           </div>
+	//         </span>
+	//       </div>
+	//     <noscript data-reactid=".1jffvpofqio.1"></noscript>
+	//     </div>
+	//   </div>
+	// </div>
+
+/***/ },
+/* 317 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var ListingDetailCarousel = React.createClass({
+	  displayName: "ListingDetailCarousel",
+	
+	  render: function () {
+	    var listing = this.props.listing;
+	    debugger;
+	    return React.createElement(
+	      "div",
+	      { id: "myCarousel", className: "carousel slide", "data-ride": "carousel" },
+	      React.createElement(
+	        "ol",
+	        { className: "carousel-indicators" },
+	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "0", className: "active" }),
+	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "1", className: "" }),
+	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "2", className: "" }),
+	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "3", className: "" }),
+	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "4", className: "" })
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "carousel-inner", role: "listbox" },
+	        React.createElement(
+	          "div",
+	          { className: "item active" },
+	          React.createElement("img", { className: "first-slide", src: listing.images[0].url, alt: "First slide" })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "item" },
+	          React.createElement("img", { className: "second-slide", src: "https://static.pexels.com/photos/3329/food-kitchen-cutting-board-cooking.jpg", alt: "Second slide" })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "item" },
+	          React.createElement("img", { className: "third-slide", src: "https://images.unsplash.com/photo-1458938354258-3e66eb36eb7b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=da364b5db010d60dd526c386501ce5fc" })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "item" },
+	          React.createElement("img", { className: "fourth-slide", src: "https://images.unsplash.com/photo-1457666134378-6b77915bd5f2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=8ee9b87b2f8a42dd7d1d61e928343c28" })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "item" },
+	          React.createElement("img", { className: "fifth-slide", src: "https://images.unsplash.com/photo-1455128587117-d569fb07d25a?crop=entropy&dpr=2&fit=crop&fm=jpg&h=1000&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1925" })
+	        )
+	      ),
+	      React.createElement(
+	        "a",
+	        { className: "left carousel-control", href: "#myCarousel", role: "button", "data-slide": "prev" },
+	        React.createElement("span", { className: "glyphicon glyphicon-chevron-left", "aria-hidden": "true" }),
+	        React.createElement(
+	          "span",
+	          { className: "sr-only" },
+	          "Previous"
+	        )
+	      ),
+	      React.createElement(
+	        "a",
+	        { className: "right carousel-control", href: "#myCarousel", role: "button", "data-slide": "next" },
+	        React.createElement("span", { className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true" }),
+	        React.createElement(
+	          "span",
+	          { className: "sr-only" },
+	          "Next"
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = ListingDetailCarousel;
 
 /***/ }
 /******/ ]);

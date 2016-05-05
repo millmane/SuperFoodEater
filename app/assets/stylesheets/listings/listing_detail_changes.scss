@@ -1,0 +1,45 @@
+// @media screen and (max-width: 1099px) and (min-height: 850px)
+// #photos.with-photos {
+//     height: 561.6px;
+// }
+//
+// @media screen and (max-width: 1099px) and (min-height: 700px)
+// #photos.with-photos {
+//     height: 441.6px;
+// }
+// @media screen and (min-height: 850px)
+// #photos.with-photos {
+//     height: 702px;
+// }
+// @media screen and (min-height: 700px)
+// #photos.with-photos {
+//     height: 552px;
+// }
+
+#photos {
+    height: 402px;
+    position: relative;
+    width: 100%;
+    -webkit-transition: height .2s;
+    -moz-transition: height .2s;
+    -o-transition: height .2s;
+    transition: height .2s;
+  }
+
+#photos.with-photos {
+      height: 702px;
+}
+
+#photos.with-modal .cover-img {
+    cursor: pointer;
+}
+  #photos .cover-img-container .cover-img {
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background-position: 50% 50%;
+      background-color: #f5f5f5;
+      height: 100%;
+    }

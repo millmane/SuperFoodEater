@@ -33,7 +33,7 @@ var ListingIndexItem2 = React.createClass({
               </a>
             </div>
             <div className="panel-body panel-card-section">
-              More Stuff Here!
+              {listing.title}
             </div>
           </div>
         </div>
