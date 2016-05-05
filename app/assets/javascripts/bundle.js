@@ -37229,6 +37229,7 @@
 	var ListingStore = __webpack_require__(290);
 	var ListingActions = __webpack_require__(294);
 	var ListingDetailCarousel = __webpack_require__(317);
+	var ListingApi = __webpack_require__(295);
 	
 	var ListingDetail = React.createClass({
 	  displayName: 'ListingDetail',
@@ -37248,8 +37249,17 @@
 	    this.setState(this.getStateFromStore());
 	  },
 	
+	  // componentWillReceiveProps: function(newProp){
+	  //   var listingId = parseInt(newProp.params.listing_id);
+	  //   ListingApi.fetchSingleRoom(listingId);
+	  // },
+	
 	  componentDidMount: function () {
+	    var listingId = parseInt(this.props.params.listing_id);
+	    // ListingApi.fetchListing(listingId);
 	    this.listingListener = ListingStore.addListener(this._onChange);
+	    // this.setState({listing: ListingStore.findListing(listingId)});
+	    ListingActions.fetchListing(listingId);
 	  },
 	
 	  componentWillUnmount: function () {
@@ -37267,7 +37277,25 @@
 	      return React.createElement(
 	        'div',
 	        null,
-	        React.createElement(ListingDetailCarousel, { listing: listing })
+	        React.createElement(ListingDetailCarousel, { listing: listing }),
+	        React.createElement(
+	          'h2',
+	          null,
+	          'the title is ',
+	          listing.title
+	        ),
+	        React.createElement(
+	          'h2',
+	          null,
+	          'the price is',
+	          listing.price
+	        ),
+	        React.createElement(
+	          'h2',
+	          null,
+	          'the description is',
+	          listing.description
+	        )
 	      );
 	    } else {
 	      return React.createElement(
@@ -37323,21 +37351,28 @@
 	var ListingDetailCarousel = React.createClass({
 	  displayName: "ListingDetailCarousel",
 	
+	
+	  // CarouselRender: function(){
+	  //   var listing = this.props.listing;
+	  //   var images = listing.images;
+	  //   var carouselLi = [];
+	  //   listing.images.each (function(el){
+	  //     carouselLi.push(<li src={el.url}/>);
+	  //   });
+	  //
+	  //   Object.keys(listings).map (function (idx) {
+	  //     _listings[listings[idx].id] = listings[idx];
+	  //   });
+	  //
+	  //   Object.keys(listing)
+	  //   this.props.listing.each
+	  // },
 	  render: function () {
 	    var listing = this.props.listing;
-	    debugger;
+	
 	    return React.createElement(
 	      "div",
 	      { id: "myCarousel", className: "carousel slide", "data-ride": "carousel" },
-	      React.createElement(
-	        "ol",
-	        { className: "carousel-indicators" },
-	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "0", className: "active" }),
-	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "1", className: "" }),
-	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "2", className: "" }),
-	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "3", className: "" }),
-	        React.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "4", className: "" })
-	      ),
 	      React.createElement(
 	        "div",
 	        { className: "carousel-inner", role: "listbox" },
@@ -37345,46 +37380,6 @@
 	          "div",
 	          { className: "item active" },
 	          React.createElement("img", { className: "first-slide", src: listing.images[0].url, alt: "First slide" })
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "item" },
-	          React.createElement("img", { className: "second-slide", src: "https://static.pexels.com/photos/3329/food-kitchen-cutting-board-cooking.jpg", alt: "Second slide" })
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "item" },
-	          React.createElement("img", { className: "third-slide", src: "https://images.unsplash.com/photo-1458938354258-3e66eb36eb7b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=da364b5db010d60dd526c386501ce5fc" })
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "item" },
-	          React.createElement("img", { className: "fourth-slide", src: "https://images.unsplash.com/photo-1457666134378-6b77915bd5f2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=8ee9b87b2f8a42dd7d1d61e928343c28" })
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "item" },
-	          React.createElement("img", { className: "fifth-slide", src: "https://images.unsplash.com/photo-1455128587117-d569fb07d25a?crop=entropy&dpr=2&fit=crop&fm=jpg&h=1000&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1925" })
-	        )
-	      ),
-	      React.createElement(
-	        "a",
-	        { className: "left carousel-control", href: "#myCarousel", role: "button", "data-slide": "prev" },
-	        React.createElement("span", { className: "glyphicon glyphicon-chevron-left", "aria-hidden": "true" }),
-	        React.createElement(
-	          "span",
-	          { className: "sr-only" },
-	          "Previous"
-	        )
-	      ),
-	      React.createElement(
-	        "a",
-	        { className: "right carousel-control", href: "#myCarousel", role: "button", "data-slide": "next" },
-	        React.createElement("span", { className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true" }),
-	        React.createElement(
-	          "span",
-	          { className: "sr-only" },
-	          "Next"
 	        )
 	      )
 	    );

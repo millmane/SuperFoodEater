@@ -1,4 +1,4 @@
-  json.extract! @listing,
+  json.extract!(@listing,
    :id,
    :title,
    :description,
@@ -10,7 +10,5 @@
    :from_date,
    :to_date,
    :home_type,
-   :room_type,
-   json.images listing.images, :url, :listing_id, :id
-
-  #  json.images @listing.images, :url, :listing_id
+   :room_type,)
+   json.images @listing.images, :url, :listing_id, :id

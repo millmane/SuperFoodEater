@@ -4,6 +4,7 @@ var hashHistory = require('react-router').hashHistory;
 var ListingStore = require('../../stores/listing_store.js');
 var ListingActions = require('../../actions/listing_actions.js');
 var ListingDetailCarousel = require('./ListingDetailCarousel.jsx');
+var ListingApi = require('../../util/listing_api_util');
 
 
 var ListingDetail = React.createClass({
@@ -24,9 +25,18 @@ var ListingDetail = React.createClass({
     this.setState(this.getStateFromStore());
   },
 
+  // componentWillReceiveProps: function(newProp){
+  //   var listingId = parseInt(newProp.params.listing_id);
+  //   ListingApi.fetchSingleRoom(listingId);
+  // },
+
 
   componentDidMount: function () {
+    var listingId = parseInt(this.props.params.listing_id);
+    // ListingApi.fetchListing(listingId);
     this.listingListener = ListingStore.addListener(this._onChange);
+    // this.setState({listing: ListingStore.findListing(listingId)});
+    ListingActions.fetchListing(listingId);
   },
 
   componentWillUnmount: function () {
@@ -44,6 +54,9 @@ var ListingDetail = React.createClass({
       return (
         <div>
           <ListingDetailCarousel listing={listing}/>
+          <h2>the title is {listing.title}</h2>
+          <h2>the price is{listing.price}</h2>
+          <h2>the description is{listing.description}</h2>
         </div>
       );
     } else {

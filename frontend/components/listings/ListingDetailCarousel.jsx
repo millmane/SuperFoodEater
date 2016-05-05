@@ -1,24 +1,41 @@
 var React = require('react');
 
 var ListingDetailCarousel = React.createClass({
+
+  // CarouselRender: function(){
+  //   var listing = this.props.listing;
+  //   var images = listing.images;
+  //   var carouselLi = [];
+  //   listing.images.each (function(el){
+  //     carouselLi.push(<li src={el.url}/>);
+  //   });
+  //
+  //   Object.keys(listings).map (function (idx) {
+  //     _listings[listings[idx].id] = listings[idx];
+  //   });
+  //
+  //   Object.keys(listing)
+  //   this.props.listing.each
+  // },
+
   render: function(){
     var listing = this.props.listing;
-    debugger
+
     return (
       <div id="myCarousel" className="carousel slide" data-ride="carousel">
-            <ol className="carousel-indicators">
+            {/* <ol className="carousel-indicators">
               <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
               <li data-target="#myCarousel" data-slide-to="1" className=""></li>
               <li data-target="#myCarousel" data-slide-to="2" className=""></li>
               <li data-target="#myCarousel" data-slide-to="3" className=""></li>
               <li data-target="#myCarousel" data-slide-to="4" className=""></li>
 
-            </ol>
+            </ol> */}
             <div className="carousel-inner" role="listbox">
               <div className="item active">
                 <img className="first-slide" src={listing.images[0].url} alt="First slide"/>
               </div>
-              <div className="item">
+              {/*<div className="item">
                 <img className="second-slide" src="https://static.pexels.com/photos/3329/food-kitchen-cutting-board-cooking.jpg" alt="Second slide"/>
               </div>
               <div className="item">
@@ -29,16 +46,16 @@ var ListingDetailCarousel = React.createClass({
               </div>
               <div className="item">
                 <img className="fifth-slide" src="https://images.unsplash.com/photo-1455128587117-d569fb07d25a?crop=entropy&dpr=2&fit=crop&fm=jpg&h=1000&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1925"/>
-              </div>
+              </div>*/}
             </div>
-            <a className="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            {/*<a className="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
               <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
               <span className="sr-only">Previous</span>
             </a>
             <a className="right carousel-control" href="#myCarousel" role="button" data-slide="next">
               <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
               <span className="sr-only">Next</span>
-            </a>
+            </a>*/}
           </div>
     );
   }
