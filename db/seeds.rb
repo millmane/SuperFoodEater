@@ -1,17 +1,18 @@
-
 User.create!(
   username: "guest",
   password: "password"
   )
+words = File.readlines(File.dirname(__FILE__) + "/seed_words.txt")
+words.map!(&:chomp)
 
 Listing.create!(
-  title: "Listing1",
-  description: "Description1",
+  title: "Lime Chicken",
+  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
   host_id: 1,
-  lat: 1,
-  lng: 1,
+  lat: Random.new.rand(37.763972..37.783972),
+  lng: Random.new.rand(122.421297..122.441297) * -1,
   guests: 1,
-  price: 1,
+  price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -19,13 +20,13 @@ Listing.create!(
 )
 
 Listing.create!(
-  title: "Listing2",
-  description: "Description2",
+  title: "Charcuterie Board",
+  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
   host_id: 1,
-  lat: 1,
-  lng: 1,
+  lat: Random.new.rand(37.763972..37.783972),
+  lng: Random.new.rand(122.421297..122.441297) * -1,
   guests: 1,
-  price: 1,
+  price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -33,13 +34,13 @@ Listing.create!(
 )
 
 Listing.create!(
-  title: "Listing3",
-  description: "Description3",
+  title: "Bowl of Ramen",
+  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
   host_id: 1,
-  lat: 1,
-  lng: 1,
+  lat: Random.new.rand(37.763972..37.783972),
+  lng: Random.new.rand(122.421297..122.441297) * -1,
   guests: 1,
-  price: 1,
+  price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -47,13 +48,13 @@ Listing.create!(
 )
 
 Listing.create!(
-  title: "Listing4",
-  description: "Description4",
+  title: "Triple Chocolate Brownies",
+  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
   host_id: 1,
-  lat: 1,
-  lng: 1,
+  lat: Random.new.rand(37.763972..37.783972),
+  lng: Random.new.rand(122.421297..122.441297) * -1,
   guests: 1,
-  price: 1,
+  price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -61,13 +62,13 @@ Listing.create!(
 )
 
 Listing.create!(
-  title: "Listing5",
-  description: "Description5",
+  title: "Stack of Pancakes",
+  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
   host_id: 1,
-  lat: 1,
-  lng: 1,
+  lat: Random.new.rand(37.763972..37.783972),
+  lng: Random.new.rand(122.421297..122.441297) * -1,
   guests: 1,
-  price: 1,
+  price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",

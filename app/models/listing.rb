@@ -22,15 +22,14 @@ class Listing < ActiveRecord::Base
     :room_type,
     presence: true
     )
-  # validates :title, :description, :host_id, :guests, :lat, :lng, :guests, :price, :from_date, :to_date, :home_type, :room_type, presence: true
 
 
-  # def self.in_bounds(bounds)
-  #   self.where("lat < ?", bounds[:northEast][:lat])
-  #       .where("lat > ?", bounds[:southWest][:lat])
-  #       .where("lng > ?", bounds[:southWest][:lng])
-  #       .where("lng < ?", bounds[:northEast][:lng])
-  # end
+  def self.in_bounds(bounds)
+    self.where("lat < ?", bounds[:northEast][:lat])
+        .where("lat > ?", bounds[:southWest][:lat])
+        .where("lng > ?", bounds[:southWest][:lng])
+        .where("lng < ?", bounds[:northEast][:lng])
+  end
 
 
   belongs_to :host,

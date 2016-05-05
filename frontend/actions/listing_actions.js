@@ -13,6 +13,17 @@ var ListingActions = {
     ListingApiUtil.fetchListing(id);
   },
 
+  receiveAll: function(listings){
+    AppDispatcher.dispatch({
+      actionType: ListingConstants.FETCHLISTINGS,
+      listings: listings
+    });
+  },
+
+  fetchListingsFiltered: function(filters){
+    
+    ListingApiUtil.fetchListingsFiltered(filters, this.receiveAll);
+  }
 };
 
 module.exports = ListingActions;

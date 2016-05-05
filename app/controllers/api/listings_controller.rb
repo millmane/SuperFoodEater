@@ -11,43 +11,40 @@ class Api::ListingsController < ApplicationController
   #   @listings = Listing.filter_by_params(params[:filter])
   #   render :index
   # end
-
   # def index
   #   @listings = current_user.listings.includes(:images)
   # end
   #
+  # WILL BE listings = Listing.filter_by(params[:filters])
+  # listings = Listing.filter_by({
+  #   price_range: (0..10),
+  #   guests: 3,
+  #   bounds: {
+  #     'southWest' => {'lat' => 0.0, 'lng' => 0.0},
+  #     'northEast' => {'lat' => 5.0, 'lng' => 5.0}
+  #   },
+  #   title: "%L%",
+  #   date_range: {
+  #     'from' => Date.new(1,1,1),
+  #     'to' => Date.new(2,2,2)
+  #   },
+  #   room_type: "room type",
+  #
+  # })
   def index
-    # listings = Listing.filter_by_params(filters)
-    # listings = Listing.all()
+    listings = Listing.all
+    if(bounds)
+      listings = Listing.in_bounds(bounds)
+    end
 
-    # WILL BE listings = Listing.filter_by(params[:filters])
-    listings = Listing.filter_by({
-      price_range: (0..10),
-      guests: 3,
-      bounds: {
-        'southWest' => {'lat' => 0.0, 'lng' => 0.0},
-        'northEast' => {'lat' => 5.0, 'lng' => 5.0}
-      },
-      title: "%L%",
-      date_range: {
-        'from' => Date.new(1,1,1),
-        'to' => Date.new(2,2,2)
-      },
-      room_type: "room type",
-
-    })
-    puts listings
-  # if(bounds)
-  #   listings = Listing.in_bounds(bounds)
-  # end
-  if listings
-    @listings = listings
-    render 'api/listings/index'
-  else
-    @errors = listings.errors.full_messages
-    render "api/shared/error"
+    if listings
+      @listings = listings
+      render 'api/listings/index', status: 200
+    else
+      @errors = listings.errors.full_messages
+      render "api/shared/error", status: 400
+    end
   end
-end
 
   # def create
   #   params = listing_params
@@ -82,24 +79,20 @@ end
   end
 
 
-private
+  private
 
-# def seating_range
-#   (params[:minSeating]..params[:maxSeating])
-# end
+  def listing_params
+    params.require(:listing).permit(
+      :lat,
+      :lng,
+      :description,
+      :title,
+      :guests,
+    )
+  end
 
-def listing_params
-  params.require(:listing).permit(
-    :lat,
-    :lng,
-    :description,
-    :title,
-    :guests,
-  )
-end
-
-def bounds
-  params[:bounds]
-end
+  def bounds
+    params[:bounds]
+  end
 
 end

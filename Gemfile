@@ -8,6 +8,7 @@ gem 'bcrypt'
 gem 'rename'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'faker'
 # gem 'bootstrap', '~> 4.0.0.alpha3'
 
 

@@ -9,13 +9,22 @@ var ListingSearch = React.createClass({
 
   getInitialState: function (){
     return {
-      listings: ListingStore.allListings()
+      listings: ListingStore.allListings(),
+      filterParams: FilterParamsStore.params()
     };
+  },
+
+  _filtersChanged: function () {
+    var newParams = FilterParamsStore.params();
+    this.setState({ filterParams: newParams });
+    ListingActions.fetchListingsFiltered(newParams);
   },
 
   componentDidMount: function (){
     this.listingListener = ListingStore.addListener(this._listingsChanged);
-    ListingActions.fetchListings();
+    this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
+    var filterParams = FilterParamsStore.params();
+    ListingActions.fetchListingsFiltered(filterParams);
   },
 
   componentWillUnmount: function(){
@@ -41,11 +50,6 @@ var ListingSearch = React.createClass({
       </div>
     );
   }
-  // <div className="map">
-  //   <div id="map" className="map-canvas">
-  //     <Map id="map" className="map-canvas" listings={this.state.listings}/>
-  //   </div>
-  // </div>
 
 });
 

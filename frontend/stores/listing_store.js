@@ -19,10 +19,13 @@ ListingStore.__onDispatch = function (payload) {
   };
 
 ListingStore.resetListings = function(listings){
+
   _listings = {};
   Object.keys(listings).map (function (idx) {
     _listings[listings[idx].id] = listings[idx];
   });
+  console.log("new listings " + Object.keys(_listings).length);
+
 };
 
 ListingStore.setListing = function(listing){
@@ -38,7 +41,7 @@ ListingStore.allListings = function(){
 };
 
 ListingStore.findListing = function(id){
-  return _listings[id];
+  return Object.assign({}, _listings[id]);
 };
 
 module.exports = ListingStore;

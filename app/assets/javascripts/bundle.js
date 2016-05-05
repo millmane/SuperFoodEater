@@ -35473,10 +35473,12 @@
 	};
 	
 	ListingStore.resetListings = function (listings) {
+	
 	  _listings = {};
 	  Object.keys(listings).map(function (idx) {
 	    _listings[listings[idx].id] = listings[idx];
 	  });
+	  console.log("new listings " + Object.keys(_listings).length);
 	};
 	
 	ListingStore.setListing = function (listing) {
@@ -35492,7 +35494,7 @@
 	};
 	
 	ListingStore.findListing = function (id) {
-	  return _listings[id];
+	  return Object.assign({}, _listings[id]);
 	};
 	
 	module.exports = ListingStore;
@@ -35528,8 +35530,19 @@
 	
 	  fetchListing: function (id) {
 	    ListingApiUtil.fetchListing(id);
-	  }
+	  },
 	
+	  receiveAll: function (listings) {
+	    AppDispatcher.dispatch({
+	      actionType: ListingConstants.FETCHLISTINGS,
+	      listings: listings
+	    });
+	  },
+	
+	  fetchListingsFiltered: function (filters) {
+	
+	    ListingApiUtil.fetchListingsFiltered(filters, this.receiveAll);
+	  }
 	};
 	
 	module.exports = ListingActions;
@@ -35559,6 +35572,15 @@
 	          errors: error.responseJSON.errors
 	        });
 	      }
+	    });
+	  },
+	
+	  fetchListingsFiltered: function (filters, success) {
+	    $.ajax({
+	      type: "get",
+	      url: 'api/listings',
+	      data: filters,
+	      success: success
 	    });
 	  },
 	
@@ -35715,45 +35737,97 @@
 	  displayName: 'LandingPage',
 	
 	
-	  // big search bar, background image
-	  // <img
-	  //   src="http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg"/>
-	
-	  // <div className="hero-unit">
-	  //   <div className="hero-background">
-	  //   </div>
-	  //   <div>
-	  //     BigSearchBar Here
-	  //   </div>
-	  // </div>
-	
-	  // <LandingPageBottom/>
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      null,
-	      React.createElement(LandingPageCarousel, null)
+	      { className: 'landing-div' },
+	      React.createElement(LandingPageCarousel, null),
+	      React.createElement(
+	        'div',
+	        { className: 'container marketing' },
+	        React.createElement(
+	          'div',
+	          { className: 'row' },
+	          React.createElement(
+	            'div',
+	            { className: 'col-lg-4' },
+	            React.createElement('img', { className: 'img-circle', src: 'http://i.imgur.com/VH9zxjl.jpg', alt: 'Generic placeholder image', width: '140', height: '140' }),
+	            React.createElement(
+	              'h2',
+	              null,
+	              'Breakfast'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Pancakes, waffles, eggs benedict.  Get the day started right with your go to breakfast item.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              React.createElement(
+	                'a',
+	                { className: 'btn btn-default', href: '#/listings', role: 'button' },
+	                'Find Breakfast'
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'col-lg-4' },
+	            React.createElement('img', { className: 'img-circle', src: 'https://images.unsplash.com/photo-1459432904503-d74cd0aa0a88?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=ade124498d5d9de800f2ff807222af32', alt: 'Generic placeholder image', width: '140', height: '140' }),
+	            React.createElement(
+	              'h2',
+	              null,
+	              'Dinner'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Don\'t feel like cooking tonight? Find a filling dinner and go to sleep feeling full.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              React.createElement(
+	                'a',
+	                { className: 'btn btn-default', href: '#/listings', role: 'button' },
+	                'Find Dinner'
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'col-lg-4' },
+	            React.createElement('img', { className: 'img-circle', src: 'http://i.imgur.com/lajGJuw.jpg', alt: 'Generic placeholder image', width: '140', height: '140' }),
+	            React.createElement(
+	              'h2',
+	              null,
+	              'Dessert'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Destroy that sweet tooth. Look for your favorite dessert or be adventorous and try something new! '
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              React.createElement(
+	                'a',
+	                { className: 'btn btn-default', href: '#/listings', role: 'button' },
+	                'Find Dessert'
+	              )
+	            )
+	          )
+	        )
+	      )
 	    );
 	  }
 	
 	});
 	
 	module.exports = LandingPage;
-	
-	// <video preload="auto" loop="loop" id="sushi-video" class="video-playing">
-
-	// <div align="center" class="embed-responsive embed-responsive-16by9">
-	//     <video autoplay loop class="embed-responsive-item">
-	//         <source src=http://techslides.com/demos/sample-videos/small.mp4 type=video/mp4>
-	//     </video>
-	// </div>
-	// <div className="hero shift_with_hiw js-hero">
-	//   <div className="hero-background">
-	//     <video autoplay loop muted id="sushi-video" class="video-playing">
-	//       <source src="https://youtu.be/G2edsT-HCjE" type="video/mp4"/>
-	//     </video>
-	//   </div>
-	// </div>
 
 /***/ },
 /* 301 */
@@ -35840,6 +35914,7 @@
 	var ReactDOM = __webpack_require__(32);
 	var hashHistory = __webpack_require__(166).hashHistory;
 	var FilterActions = __webpack_require__(303);
+	var ListingActions = __webpack_require__(294);
 	
 	var ListingStore = __webpack_require__(290);
 	// var MarkerStore = require('../../stores/marker_store');
@@ -35901,10 +35976,10 @@
 	    markersToRemove.forEach(this.removeMarker);
 	  },
 	  _handleClick: function (coords) {
-	    hashHistory.push({
-	      pathname: "listings/new",
-	      query: coords
-	    });
+	    // hashHistory.push({
+	    //   pathname: "listings/new",
+	    //   query: coords
+	    // });
 	  },
 	  registerListeners: function () {
 	    var that = this;
@@ -35918,6 +35993,7 @@
 	        southWest: southWest
 	      };
 	      FilterActions.updateBounds(bounds);
+	      // ListingActions.fetchListingsFiltered(bounds);
 	    });
 	    google.maps.event.addListener(this.map, 'click', function (event) {
 	      var coords = { lat: event.latLng.lat(), lng: event.latLng.lng() };
@@ -35945,8 +36021,7 @@
 	      }
 	    }
 	  },
-	  // <div className="half" ref="map">Map</div>);
-	  // <Map id="map" className="map-canvas" listings={this.state.listings}/>
+	
 	  render: function () {
 	    return React.createElement(
 	      'div',
@@ -35971,19 +36046,8 @@
 	      actionType: FilterConstants.UPDATE_BOUNDS,
 	      bounds: bounds
 	    });
-	  },
-	  updateMinSeating: function (value) {
-	    AppDispatcher.dispatch({
-	      actionType: FilterConstants.UPDATE_MIN_SEATING,
-	      minSeating: value
-	    });
-	  },
-	  updateMaxSeating: function (value) {
-	    AppDispatcher.dispatch({
-	      actionType: FilterConstants.UPDATE_MAX_SEATING,
-	      maxSeating: value
-	    });
 	  }
+	
 	};
 	
 	module.exports = FilterActions;
@@ -35994,9 +36058,7 @@
 
 	
 	var FilterConstants = {
-	  UPDATE_BOUNDS: "UPDATE_BOUNDS",
-	  UPDATE_MIN_SEATING: "UPDATE_MIN_SEATING",
-	  UPDATE_MAX_SEATING: "UPDATE_MAX_SEATING"
+	  UPDATE_BOUNDS: "UPDATE_BOUNDS"
 	};
 	
 	module.exports = FilterConstants;
@@ -37057,32 +37119,47 @@
 	var ListingIndex2 = __webpack_require__(314);
 	var FilterForm = __webpack_require__(299);
 	var Map = __webpack_require__(302);
+	var FilterParamsStore = __webpack_require__(318);
+	// var ClientActions = require('../actions/client_actions');
+	// var Filters = require('./Filters');
+	var hashHistory = __webpack_require__(166).hashHistory;
 	
 	var ListingSearch2 = React.createClass({
 	  displayName: 'ListingSearch2',
 	
 	
+	  _listingsChanged: function () {
+	    this.setState({ listings: ListingStore.allListings() });
+	  },
+	
+	  _filtersChanged: function () {
+	    var newParams = FilterParamsStore.params();
+	    this.setState({ filterParams: newParams });
+	    ListingActions.fetchListingsFiltered(newParams);
+	  },
+	
 	  getInitialState: function () {
 	    return {
-	      listings: ListingStore.allListings()
+	      listings: ListingStore.allListings(),
+	      filterParams: FilterParamsStore.params(),
+	      clickedLoc: null
 	    };
 	  },
 	
 	  componentDidMount: function () {
 	    this.listingListener = ListingStore.addListener(this._listingsChanged);
-	    ListingActions.fetchListings();
+	    this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
+	    // var filterParams = FilterParamsStore.params();
+	    //
+	    // ListingActions.fetchListingsFiltered(filterParams);
 	  },
 	
 	  componentWillUnmount: function () {
 	    this.listingListener.remove();
-	  },
-	
-	  _listingsChanged: function () {
-	    this.setState({ listings: ListingStore.allListings() });
+	    this.filterListener.remove();
 	  },
 	
 	  render: function () {
-	    var bootstrap_enabled = typeof $().modal == 'function';
 	    return React.createElement(
 	      'div',
 	      null,
@@ -37096,18 +37173,14 @@
 	            'h1',
 	            { className: 'search-results-header' },
 	            'Explore Local Food Options'
-	          )
+	          ),
+	          React.createElement('hr', { className: 'search-hr' })
 	        ),
 	        React.createElement(ListingIndex2, { listings: this.state.listings })
 	      ),
 	      React.createElement(Map, { listings: this.state.listings, cname: "map", cname2: "map-canvas" })
 	    );
 	  }
-	  // <div className="map">
-	  //   <div id="map" className="map-canvas">
-	  //     <Map id="map" className="map-canvas" listings={this.state.listings}/>
-	  //   </div>
-	  // </div>
 	
 	});
 	
@@ -37207,7 +37280,11 @@
 	        React.createElement(
 	          'div',
 	          { className: 'panel-body panel-card-section' },
-	          listing.title
+	          React.createElement(
+	            'h4',
+	            null,
+	            listing.title
+	          )
 	        )
 	      )
 	    );
@@ -37296,7 +37373,12 @@
 	              'li',
 	              null,
 	              React.createElement(
-	                'h2',
+	                'h3',
+	                null,
+	                'Description: '
+	              ),
+	              React.createElement(
+	                'p',
 	                null,
 	                listing.description
 	              )
@@ -37305,9 +37387,9 @@
 	              'li',
 	              null,
 	              React.createElement(
-	                'h2',
+	                'h3',
 	                null,
-	                'price: ',
+	                'Price: $',
 	                listing.price
 	              )
 	            )
@@ -37405,6 +37487,34 @@
 	});
 	
 	module.exports = ListingDetailCarousel;
+
+/***/ },
+/* 318 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(234);
+	var Store = __webpack_require__(239).Store;
+	var _params = {};
+	var FilterConstants = __webpack_require__(304);
+	
+	var FilterParamsStore = new Store(AppDispatcher);
+	
+	FilterParamsStore.params = function () {
+	  return Object.assign({}, _params);
+	};
+	
+	FilterParamsStore.__onDispatch = function (payload) {
+	
+	  switch (payload.actionType) {
+	
+	    case FilterConstants.UPDATE_BOUNDS:
+	      _params.bounds = payload.bounds;
+	      FilterParamsStore.__emitChange();
+	      break;
+	  }
+	};
+	
+	module.exports = FilterParamsStore;
 
 /***/ }
 /******/ ]);

@@ -62,10 +62,10 @@ var ListingDetail = React.createClass({
             <div className="detail-inner-div">
               <ul className="detail-ul">
                 <li>
-                  <h2>{listing.description}</h2>
+                  <h3>Description: </h3><p>{listing.description}</p>
                 </li>
                 <li>
-                  <h2>price: {listing.price}</h2>
+                  <h3>Price: ${listing.price}</h3>
                 </li>
               </ul>
               <Map listings={listing} cname={"map-detail"} cname2={"map-canvas-detail"}/>

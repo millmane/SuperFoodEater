@@ -2,6 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var hashHistory = require('react-router').hashHistory;
 var FilterActions = require('../../actions/filter_actions');
+var ListingActions = require('../../actions/listing_actions');
+
 
 var ListingStore = require('../../stores/listing_store');
 // var MarkerStore = require('../../stores/marker_store');
@@ -62,10 +64,10 @@ var Map = React.createClass({
     markersToRemove.forEach(this.removeMarker);
   },
   _handleClick: function(coords){
-    hashHistory.push({
-      pathname: "listings/new",
-      query: coords
-    });
+    // hashHistory.push({
+    //   pathname: "listings/new",
+    //   query: coords
+    // });
   },
   registerListeners: function(){
     var that = this;
@@ -79,6 +81,7 @@ var Map = React.createClass({
         southWest: southWest
       };
       FilterActions.updateBounds(bounds);
+      // ListingActions.fetchListingsFiltered(bounds);
     });
     google.maps.event.addListener(this.map, 'click', function(event) {
       var coords = { lat: event.latLng.lat(), lng: event.latLng.lng() };
@@ -106,8 +109,7 @@ var Map = React.createClass({
       }
     }
   },
-  // <div className="half" ref="map">Map</div>);
-  // <Map id="map" className="map-canvas" listings={this.state.listings}/>
+
   render: function(){
     return (
       <div className={this.props.cname}>

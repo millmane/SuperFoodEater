@@ -22,6 +22,15 @@ var ListingApiUtil = {
     });
   },
 
+  fetchListingsFiltered: function(filters, success){
+    $.ajax({
+      type: "get",
+      url:'api/listings',
+      data: filters,
+      success: success,
+    });
+  },
+
   fetchListing: function (id){
     $.ajax({
       url: "/api/listings/" + id.toString(),
