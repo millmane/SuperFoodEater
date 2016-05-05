@@ -43,7 +43,7 @@ var ListingSearch2 = React.createClass({
           <ListingIndex2 listings={this.state.listings}/>
         </div>
 
-        <Map listings={this.state.listings}/>
+        <Map listings={this.state.listings} cname={"map"} cname2={"map-canvas"}/>
       </div>
     );
   }

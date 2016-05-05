@@ -35950,8 +35950,8 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'map' },
-	      React.createElement('div', { id: 'map', className: 'map-canvas', ref: 'map' })
+	      { className: this.props.cname },
+	      React.createElement('div', { id: 'map', className: this.props.cname2, ref: 'map' })
 	    );
 	  }
 	});
@@ -37100,7 +37100,7 @@
 	        ),
 	        React.createElement(ListingIndex2, { listings: this.state.listings })
 	      ),
-	      React.createElement(Map, { listings: this.state.listings })
+	      React.createElement(Map, { listings: this.state.listings, cname: "map", cname2: "map-canvas" })
 	    );
 	  }
 	  // <div className="map">
@@ -37230,6 +37230,7 @@
 	var ListingActions = __webpack_require__(294);
 	var ListingDetailCarousel = __webpack_require__(317);
 	var ListingApi = __webpack_require__(295);
+	var Map = __webpack_require__(302);
 	
 	var ListingDetail = React.createClass({
 	  displayName: 'ListingDetail',
@@ -37266,35 +37267,52 @@
 	    this.listingListener.remove();
 	  },
 	
-	  handleClick: function () {
-	    var listing_id = this.props.listing.id;
-	    hashHistory.push("/listings/" + listing_id);
-	  },
 	  render: function () {
 	
 	    var listing = this.state.listing;
 	    if (typeof listing !== 'undefined') {
 	      return React.createElement(
 	        'div',
-	        null,
-	        React.createElement(ListingDetailCarousel, { listing: listing }),
+	        { className: 'detail-div' },
 	        React.createElement(
-	          'h2',
-	          null,
-	          'the title is ',
+	          'div',
+	          { className: 'detail-img-div' },
+	          React.createElement('img', { className: 'detail-img', src: listing.images[0].url })
+	        ),
+	        React.createElement('hr', { className: 'detail-hr' }),
+	        React.createElement(
+	          'h1',
+	          { className: 'detail-title' },
 	          listing.title
 	        ),
+	        React.createElement('hr', { className: 'detail-hr' }),
 	        React.createElement(
-	          'h2',
-	          null,
-	          'the price is',
-	          listing.price
-	        ),
-	        React.createElement(
-	          'h2',
-	          null,
-	          'the description is',
-	          listing.description
+	          'div',
+	          { className: 'detail-inner-div' },
+	          React.createElement(
+	            'ul',
+	            { className: 'detail-ul' },
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'h2',
+	                null,
+	                listing.description
+	              )
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'h2',
+	                null,
+	                'price: ',
+	                listing.price
+	              )
+	            )
+	          ),
+	          React.createElement(Map, { listings: listing, cname: "map-detail", cname2: "map-canvas-detail" })
 	        )
 	      );
 	    } else {

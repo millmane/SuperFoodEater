@@ -5,6 +5,8 @@ var ListingStore = require('../../stores/listing_store.js');
 var ListingActions = require('../../actions/listing_actions.js');
 var ListingDetailCarousel = require('./ListingDetailCarousel.jsx');
 var ListingApi = require('../../util/listing_api_util');
+var Map = require('./Map');
+
 
 
 var ListingDetail = React.createClass({
@@ -43,21 +45,32 @@ var ListingDetail = React.createClass({
     this.listingListener.remove();
   },
 
-  handleClick: function() {
-    var listing_id = this.props.listing.id;
-    hashHistory.push("/listings/" + listing_id);
-  },
   render: function(){
 
     var listing = this.state.listing;
     if (typeof listing !== 'undefined'){
       return (
-        <div>
-          <ListingDetailCarousel listing={listing}/>
-          <h2>the title is {listing.title}</h2>
-          <h2>the price is{listing.price}</h2>
-          <h2>the description is{listing.description}</h2>
-        </div>
+          <div className="detail-div">
+            <div className="detail-img-div">
+              <img className="detail-img" src={listing.images[0].url}/>
+            </div>
+            <hr className="detail-hr"></hr>
+
+            <h1 className="detail-title">{listing.title}</h1>
+            <hr className="detail-hr"></hr>
+
+            <div className="detail-inner-div">
+              <ul className="detail-ul">
+                <li>
+                  <h2>{listing.description}</h2>
+                </li>
+                <li>
+                  <h2>price: {listing.price}</h2>
+                </li>
+              </ul>
+              <Map listings={listing} cname={"map-detail"} cname2={"map-canvas-detail"}/>
+            </div>
+          </div>
       );
     } else {
       return <div>listing didnt load yet</div>;

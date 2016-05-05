@@ -110,8 +110,8 @@ var Map = React.createClass({
   // <Map id="map" className="map-canvas" listings={this.state.listings}/>
   render: function(){
     return (
-      <div className="map">
-        <div id="map" className="map-canvas" ref="map">
+      <div className={this.props.cname}>
+        <div id="map" className={this.props.cname2} ref="map">
         </div>
       </div>
     );
