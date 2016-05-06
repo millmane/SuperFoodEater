@@ -3,10 +3,7 @@ var ReactDOM = require('react-dom');
 var hashHistory = require('react-router').hashHistory;
 var FilterActions = require('../../actions/filter_actions');
 var ListingActions = require('../../actions/listing_actions');
-
-
 var ListingStore = require('../../stores/listing_store');
-// var MarkerStore = require('../../stores/marker_store');
 
 function _getCoordsObj(latLng) {
   return {
@@ -109,9 +106,7 @@ var Map = React.createClass({
     });
 
     this.markers.push(marker);
-
   },
-
 
   removeMarker: function(marker){
     for(var i = 0; i < this.markers.length; i++){

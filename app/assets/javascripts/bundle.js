@@ -56,26 +56,13 @@
 	var Modal = __webpack_require__(258);
 	
 	//Components
-	var NavBar = __webpack_require__(278);
 	var NavBar2 = __webpack_require__(301);
-	
-	var Logo = __webpack_require__(279);
-	var SearchBar = __webpack_require__(288);
-	var LoginForm = __webpack_require__(226);
 	var ListingSearch2 = __webpack_require__(313);
-	var ListingIndexItem = __webpack_require__(297);
 	var ListingDetail2 = __webpack_require__(316);
 	var LandingPage = __webpack_require__(300);
 	
-	// var UsernamePasswordForm = require('./components/UsernamePasswordForm');
-	var LandingBackground = __webpack_require__(285);
-	// var ListingForm = require('./components/ListingForm');
-	// var ListingShow = require('./components/ListingShow');
 	//Mixins
 	var CurrentUserState = __webpack_require__(256);
-	// <LoginModal/>
-	
-	// Modal.setAppElement( document.getElementById('content'));
 	
 	var UserApiUtil = __webpack_require__(233);
 	var UserStore = __webpack_require__(238);
@@ -101,9 +88,6 @@
 	  }
 	});
 	
-	//LandingPage - background image, searchbar component
-	//ListingSearch - Have Navbar from IndexRoute, Filter, Index, Map
-	//ListingDetail - Have Navbar from IndexRoute, ImageGalleryThing, Details
 	var Router = React.createElement(
 	  Router,
 	  { history: hashHistory },
@@ -25491,177 +25475,7 @@
 
 /***/ },
 /* 225 */,
-/* 226 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	// var LinkedStateMixin = require('react-addons-linked-state-mixin');
-	var UserActions = __webpack_require__(231);
-	var CurrentUserState = __webpack_require__(256);
-	var Modal = __webpack_require__(258);
-	var GuestLogin = __webpack_require__(282);
-	var UsernamePasswordForm = __webpack_require__(283);
-	var SignUpModal = __webpack_require__(284);
-	var SignUpModalLogin = __webpack_require__(286);
-	var GuestLoginLogin = __webpack_require__(287);
-	
-	var LoginForm = React.createClass({
-		displayName: "LoginForm",
-	
-		mixins: [CurrentUserState],
-		getInitialState: function () {
-			return { form: "", password: "", username: "" };
-		},
-	
-		setForm: function (e) {
-			this.setState({ form: e.currentTarget.value });
-		},
-	
-		handleSubmit: function (e) {
-			e.preventDefault();
-			UserActions[this.state.form]({
-				username: this.state.username,
-				password: this.state.password
-			});
-	
-			this.setState({ username: "", password: "" });
-		},
-	
-		logout: function (e) {
-			e.preventDefault();
-			UserActions.logout();
-		},
-	
-		greeting: function () {
-			if (!this.state.currentUser) {
-				return;
-			}
-			return React.createElement(
-				"div",
-				null,
-				React.createElement(
-					"h2",
-					null,
-					"Hi, ",
-					this.state.currentUser.username,
-					"!"
-				),
-				React.createElement(
-					"button",
-					{ type: "submit", value: "logout", onClick: this.logout },
-					"Log Out"
-				)
-			);
-		},
-	
-		errors: function () {
-			if (!this.state.userErrors) {
-				return;
-			}
-			var self = this;
-			return React.createElement(
-				"ul",
-				null,
-				this.state.userErrors.map(function (el) {
-					return React.createElement(
-						"li",
-						{ key: el + 1 },
-						el
-					);
-				})
-				// Object.keys(this.state.userErrors).map(function(key, i){
-				// 	return (<li key={i}>{self.state.userErrors[key]}</li>);
-				// })
-	
-			);
-		},
-	
-		form: function () {
-			if (this.state.currentUser) {
-				return;
-			}
-	
-			return React.createElement(
-				"div",
-				{ className: "login-text" },
-				React.createElement(
-					"h2",
-					null,
-					"Welcome!"
-				),
-				React.createElement("hr", { className: "smaller-hr" }),
-				React.createElement(
-					"form",
-					{ onSubmit: this.handleSubmit },
-					React.createElement(
-						"div",
-						{ className: "form-group" },
-						React.createElement("input", { type: "text", className: "form-control", id: "Username",
-							placeholder: "Username", onChange: this.handleUsername })
-					),
-					React.createElement(
-						"div",
-						{ "class": "form-group" },
-						React.createElement("input", { type: "password", className: "form-control", id: "Password",
-							placeholder: "Password", onChange: this.handlePassword })
-					),
-					React.createElement("hr", { className: "smaller-hr" }),
-					React.createElement(
-						"button",
-						{ type: "submit", className: "btn btn-success btn-block btn-login-form-login",
-							value: "login", onClick: this.setForm },
-						"Log In"
-					),
-					React.createElement("hr", { className: "smaller-hr" }),
-					React.createElement(
-						"label",
-						null,
-						"Don't have an account?"
-					),
-					React.createElement(SignUpModal, { loginform: "true" }),
-					React.createElement(GuestLoginLogin, null)
-				),
-				this.errors()
-			);
-		},
-	
-		guestLogin: function (e) {
-			e.preventDefault();
-			UserActions.guestLogin();
-			this.setState({ username: "", password: "" });
-		},
-	
-		handleUsername: function (e) {
-			e.preventDefault();
-			this.setState({ username: e.currentTarget.value });
-		},
-	
-		handlePassword: function (e) {
-			e.preventDefault();
-			this.setState({ password: e.currentTarget.value });
-		},
-	
-		render: function () {
-			return React.createElement(
-				"div",
-				{ id: "login-form" },
-				this.greeting(),
-				this.form()
-			);
-			// return (
-			// 	<div id="login-form">
-			//     <h5>LoginForm Render</h5>
-			// 		{this.greeting()}
-			// 		{this.errors()}
-			// 		{this.form()}
-			// 	</div>
-			// );
-		}
-	});
-	
-	module.exports = LoginForm;
-
-/***/ },
+/* 226 */,
 /* 227 */,
 /* 228 */,
 /* 229 */,
@@ -25770,7 +25584,6 @@
 	    });
 	  },
 	
-	  // fetchCurrentUser: function(success, error){
 	  fetchCurrentUser: function (success) {
 	    $.ajax({
 	      url: '/api/session',
@@ -25780,16 +25593,11 @@
 	          success(object);
 	        }
 	      }
-	
 	    });
 	  }
 	
 	};
 	
-	// } else {
-	//   error(object);
-	// }}
-	// error: error
 	module.exports = UserApiUtil;
 
 /***/ },
@@ -32628,9 +32436,6 @@
 	
 	  componentDidMount: function () {
 	    this.userListener = UserStore.addListener(this.updateUser);
-	    // if (typeof UserStore.currentUser() === 'undefined') {
-	    //   UserActions.fetchCurrentUser();
-	    // }
 	  },
 	
 	  componentWillUnmount: function () {
@@ -32648,76 +32453,7 @@
 	module.exports = CurrentUserState;
 
 /***/ },
-/* 257 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var Modal = __webpack_require__(258);
-	
-	var LoginForm = __webpack_require__(226);
-	
-	// var appElement = document.getElementById('content');
-	//
-	// Modal.setAppElement(appElement);
-	
-	var customStyles = {
-	  content: {
-	    top: '50%',
-	    left: '50%',
-	    right: 'auto',
-	    bottom: 'auto',
-	    marginRight: '-50%',
-	    transform: 'translate(-50%, -50%)'
-	  }
-	};
-	
-	var LoginModal = React.createClass({
-	  displayName: 'LoginModal',
-	
-	
-	  getInitialState: function () {
-	    return { modalIsOpen: false };
-	  },
-	
-	  openModal: function () {
-	    this.setState({ modalIsOpen: true });
-	  },
-	
-	  afterOpenModal: function () {
-	    // references are now sync'd and can be accessed.
-	    // this.refs.subtitle.style.color = '#f00';
-	  },
-	
-	  closeModal: function () {
-	    this.setState({ modalIsOpen: false });
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      'a',
-	      { className: 'page-scroll' },
-	      React.createElement(
-	        'button',
-	        { type: 'button', className: 'btn btn-primary btn-outline', onClick: this.openModal },
-	        'Log In'
-	      ),
-	      React.createElement(
-	        Modal,
-	        {
-	          isOpen: this.state.modalIsOpen,
-	          onAfterOpen: this.afterOpenModal,
-	          onRequestClose: this.closeModal,
-	          style: customStyles },
-	        React.createElement(LoginForm, null)
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = LoginModal;
-
-/***/ },
+/* 257 */,
 /* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -34666,783 +34402,17 @@
 
 
 /***/ },
-/* 278 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(166);
-	
-	var UserStore = __webpack_require__(238);
-	var Logo = __webpack_require__(279);
-	var LoginForm = __webpack_require__(226);
-	var SignUpForm = __webpack_require__(280);
-	var CurrentUserState = __webpack_require__(256);
-	var NavBarItem = __webpack_require__(281);
-	var UserActions = __webpack_require__(231);
-	
-	var NavBar = React.createClass({
-	  displayName: 'NavBar',
-	
-	  mixins: [CurrentUserState],
-	  getInitialState: function () {
-	    // return {loginStatus: UserStore.loginStatus()};
-	  },
-	
-	  // componentDidMount: function(){
-	  //   userListener = UserStore.addListener(this.changeLoginStatus);
-	  // },
-	  //
-	  // changeLoginStatus: function(){
-	  //   this.setState({loginStatus: UserStore.loginStatus()});
-	  // },
-	  //
-	  logout: function (e) {
-	    e.preventDefault();
-	    UserActions.logout();
-	  },
-	
-	  // loggedInRender: function(){
-	  //   return (
-	  //     <div className="container-fluid">
-	  //       <div className="navbar-header">
-	  //         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	  //           <span className="sr-only">Toggle navigation</span>
-	  //           <span className="icon-bar"></span>
-	  //           <span className="icon-bar"></span>
-	  //           <span className="icon-bar"></span>
-	  //         </button>
-	  //         <a className="navbar-brand page-scroll">FoodEater</a>
-	  //       </div>
-	  //       <NavBarItem/>
-	  //     </div>
-	  //   );
-	  // },
-	  //
-	  // loggedOutRender: function(){
-	  //   return (
-	  //     <div className="container-fluid">
-	  //       <div className="navbar-header">
-	  //         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	  //           <span className="sr-only">Toggle navigation</span>
-	  //           <span className="icon-bar"></span>
-	  //           <span className="icon-bar"></span>
-	  //           <span className="icon-bar"></span>
-	  //         </button>
-	  //         <a className="navbar-brand page-scroll">FoodEater</a>
-	  //       </div>
-	  //       <NavBarItem/>
-	  //     </div>
-	  //   );
-	  // },
-	  // <a className="navbar-brand page-scroll">
-	  //   FoodEater
-	  // </a>
-	  render: function () {
-	    var Link = ReactRouter.Link;
-	
-	    return React.createElement(
-	      'nav',
-	      { id: 'mainNav', className: 'navbar navbar-default navbar-fixed-top' },
-	      React.createElement(
-	        'div',
-	        { className: 'container-fluid' },
-	        React.createElement(
-	          'div',
-	          { className: 'navbar-header' },
-	          React.createElement(
-	            'button',
-	            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1' },
-	            React.createElement(
-	              'span',
-	              { className: 'sr-only' },
-	              'Toggle navigation'
-	            ),
-	            React.createElement('span', { className: 'icon-bar' }),
-	            React.createElement('span', { className: 'icon-bar' }),
-	            React.createElement('span', { className: 'icon-bar' })
-	          ),
-	          React.createElement(
-	            Link,
-	            { to: '/', className: 'logo page-scroll' },
-	            'FoodEater'
-	          ),
-	          React.createElement(
-	            Link,
-	            { to: '/listings', className: 'page-scroll' },
-	            'Listings'
-	          )
-	        ),
-	        React.createElement(NavBarItem, null)
-	      )
-	    );
-	  }
-	
-	});
-	
-	module.exports = NavBar;
-
-/***/ },
-/* 279 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(166);
-	
-	var Logo = React.createClass({
-	  displayName: 'Logo',
-	
-	
-	  render: function () {
-	    var Link = ReactRouter.Link;
-	    // style={{border:"5px blue solid"}}
-	    return React.createElement(
-	      Link,
-	      { to: '/', className: 'page-scroll' },
-	      React.createElement('img', { alt: '', className: 'navbar-brand',
-	        src: 'http://res.cloudinary.com/millmane/image/upload/v1461780849/tooth-toy_wtisoh.jpg' })
-	    );
-	  }
-	
-	});
-	
-	module.exports = Logo;
-
-/***/ },
-/* 280 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	// var LinkedStateMixin = require('react-addons-linked-state-mixin');
-	var UserActions = __webpack_require__(231);
-	var CurrentUserState = __webpack_require__(256);
-	var Modal = __webpack_require__(258);
-	var GuestLogin = __webpack_require__(282);
-	var UsernamePasswordForm = __webpack_require__(283);
-	var SignUpModalLogin = __webpack_require__(286);
-	var GuestLoginLogin = __webpack_require__(287);
-	
-	var SignUpForm = React.createClass({
-		displayName: "SignUpForm",
-	
-		mixins: [CurrentUserState],
-	
-		getInitialState: function () {
-			return { form: "", password: "", username: "" };
-		},
-	
-		setForm: function (e) {
-			this.setState({ form: e.currentTarget.value });
-		},
-	
-		handleSubmit: function (e) {
-			e.preventDefault();
-			UserActions[this.state.form]({
-				username: this.state.username,
-				password: this.state.password
-			});
-	
-			this.setState({ username: "", password: "" });
-		},
-	
-		logout: function (e) {
-			e.preventDefault();
-			UserActions.logout();
-		},
-	
-		errors: function () {
-			if (!this.state.userErrors) {
-				return;
-			}
-			var self = this;
-			return React.createElement(
-				"ul",
-				null,
-				this.state.userErrors.map(function (el) {
-					return React.createElement(
-						"li",
-						{ key: el + 1 },
-						el
-					);
-				})
-				// Object.keys(this.state.userErrors).map(function(key, i){
-				// 	return (<li key={i}>{self.state.userErrors[key]}</li>);
-				// })
-	
-			);
-		},
-	
-		// errors: function(){
-		// 	if (!this.state.userErrors){
-		// 		return;
-		// 	}
-		// 	var self = this;
-		// 	return (<ul>
-		// 	{
-		// 		Object.keys(this.state.userErrors).map(function(key, i){
-		// 			return (<li key={i}>{self.state.userErrors[key]}</li>);
-		// 		})
-		// 	}
-		// 	</ul>);
-		// },
-	
-		form: function () {
-			if (this.state.currentUser) {
-				return;
-			}
-	
-			return React.createElement(
-				"div",
-				{ className: "login-text" },
-				React.createElement(
-					"h2",
-					null,
-					"Create an Account!"
-				),
-				React.createElement("hr", { className: "smaller-hr" }),
-				React.createElement(
-					"form",
-					{ onSubmit: this.handleSubmit },
-					React.createElement(
-						"div",
-						{ className: "form-group" },
-						React.createElement("input", { type: "text", className: "form-control", id: "Username",
-							placeholder: "Username", onChange: this.handleUsername,
-							value: this.state.username })
-					),
-					React.createElement(
-						"div",
-						{ "class": "form-groups" },
-						React.createElement("input", { type: "password", className: "form-control", id: "Password",
-							placeholder: "Password", onChange: this.handlePassword,
-							value: this.state.password })
-					),
-					React.createElement("hr", { className: "smaller-hr" }),
-					React.createElement(
-						"button",
-						{ type: "submit", className: "btn btn-success btn-block btn-login-form-login",
-							value: "signup", onClick: this.setForm },
-						"Sign Up"
-					),
-					React.createElement("hr", { className: "smaller-hr" }),
-					React.createElement(
-						"label",
-						null,
-						"Don't want to sign in?"
-					),
-					React.createElement(GuestLoginLogin, null)
-				),
-				this.errors()
-			);
-		},
-	
-		// <div>
-		// 	<form onSubmit={this.handleSubmit}>
-		// 		<section>
-		// 			<label> Username:
-		// 				<input type="text" value={this.state.username} onChange={this.handleUsername}/>
-		// 			</label>
-		// 			<br></br>
-		//
-		// 			<label> Password:
-		// 				<input type="text" value={this.state.password} onChange={this.handlePassword}/>
-		// 			</label>
-		// 		</section>
-		//
-		// 		<button type="submit" value="signup" onClick={this.setForm}>Sign Up</button>
-		// 		<GuestLogin/>
-		// 	</form>
-		// 	{this.errors()}
-		// </div>
-	
-		guestLogin: function (e) {
-			e.preventDefault();
-			UserActions.guestLogin();
-			this.setState({ username: "", password: "" });
-		},
-	
-		handleUsername: function (e) {
-			e.preventDefault();
-			this.setState({ username: e.currentTarget.value });
-		},
-	
-		handlePassword: function (e) {
-			e.preventDefault();
-			this.setState({ password: e.currentTarget.value });
-		},
-	
-		render: function () {
-			return React.createElement(
-				"div",
-				{ id: "login-form" },
-				this.form()
-			);
-		}
-	});
-	
-	module.exports = SignUpForm;
-
-/***/ },
-/* 281 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var CurrentUserState = __webpack_require__(256);
-	var SignUpForm = __webpack_require__(280);
-	var UserActions = __webpack_require__(231);
-	var LoginForm = __webpack_require__(226);
-	var GuestLogin = __webpack_require__(282);
-	var LoginModal = __webpack_require__(257);
-	var SignUpModal = __webpack_require__(284);
-	var SearchBar = __webpack_require__(288);
-	
-	var NavBarItem = React.createClass({
-	  displayName: 'NavBarItem',
-	
-	  mixins: [CurrentUserState],
-	
-	  logout: function (e) {
-	    e.preventDefault();
-	    UserActions.logout();
-	  },
-	
-	  loggedInRender: function () {
-	    return React.createElement(
-	      'div',
-	      { className: 'container-fluid' },
-	      React.createElement(
-	        'div',
-	        { className: 'navbar-header' },
-	        React.createElement(
-	          'button',
-	          { type: 'button', className: 'navbar-toggle collapsed',
-	            'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1' },
-	          React.createElement(
-	            'span',
-	            { className: 'sr-only' },
-	            'Toggle navigation'
-	          ),
-	          React.createElement('span', { className: 'icon-bar' })
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-	        React.createElement(
-	          'ul',
-	          { className: 'nav navbar-nav navbar-right' },
-	          React.createElement(
-	            'li',
-	            null,
-	            React.createElement(
-	              'a',
-	              { className: 'page-scroll' },
-	              React.createElement(
-	                'button',
-	                { type: 'button', value: 'logout', onClick: this.logout,
-	                  className: 'btn btn-primary btn-outline' },
-	                'Log Out'
-	              )
-	            )
-	          )
-	        )
-	      )
-	    );
-	  },
-	
-	  loggedOutRender: function () {
-	    return React.createElement(
-	      'ul',
-	      { className: 'nav navbar-nav navbar-right' },
-	      React.createElement(
-	        'li',
-	        null,
-	        React.createElement(LoginModal, null)
-	      ),
-	      React.createElement(
-	        'li',
-	        null,
-	        React.createElement(SignUpModal, null)
-	      ),
-	      React.createElement(
-	        'li',
-	        null,
-	        React.createElement(GuestLogin, null)
-	      )
-	    );
-	  },
-	
-	  guestLogin: function (e) {
-	    e.preventDefault();
-	    UserActions.guestLogin();
-	    this.setState({ username: "", password: "" });
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      'div',
-	      { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-	      this.state.currentUser ? this.loggedInRender() : this.loggedOutRender()
-	    );
-	  }
-	});
-	
-	module.exports = NavBarItem;
-
-/***/ },
-/* 282 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var UserActions = __webpack_require__(231);
-	var GuestLogin = React.createClass({
-	  displayName: "GuestLogin",
-	
-	
-	  getInitialState: function () {
-	    return { password: "", username: "" };
-	  },
-	
-	  guestLogin: function (e) {
-	    e.preventDefault();
-	    UserActions.guestLogin();
-	    // this.setState({username: "", password: ""});
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      "a",
-	      { className: "page-scroll" },
-	      React.createElement(
-	        "button",
-	        { type: "button", className: "btn btn-primary btn-outline", value: "guestLogin", onClick: this.guestLogin },
-	        "Guest Login"
-	      )
-	    );
-	  }
-	
-	});
-	
-	module.exports = GuestLogin;
-
-/***/ },
-/* 283 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var UserActions = __webpack_require__(231);
-	var CurrentUserState = __webpack_require__(256);
-	var GuestLogin = __webpack_require__(282);
-	
-	var UsernamePasswordForm = React.createClass({
-	  displayName: "UsernamePasswordForm",
-	
-	  mixins: [CurrentUserState],
-	
-	  getInitialState: function () {
-	    return { form: "", password: "", username: "" };
-	  },
-	
-	  setForm: function (e) {
-	    this.setState({ form: e.currentTarget.value });
-	  },
-	
-	  guestLogin: function (e) {
-	    e.preventDefault();
-	    UserActions.guestLogin();
-	    this.setState({ username: "", password: "" });
-	  },
-	
-	  handleSubmit: function (e) {
-	    e.preventDefault();
-	    UserActions[this.state.form]({
-	      username: this.state.username,
-	      password: this.state.password
-	    });
-	
-	    this.setState({ username: "", password: "" });
-	  },
-	
-	  handleUsername: function (e) {
-	    e.preventDefault();
-	    this.setState({ username: e.currentTarget.value });
-	  },
-	
-	  handlePassword: function (e) {
-	    e.preventDefault();
-	    this.setState({ password: e.currentTarget.value });
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      "form",
-	      { onSubmit: this.handleSubmit },
-	      React.createElement(
-	        "section",
-	        null,
-	        React.createElement(
-	          "label",
-	          null,
-	          " Username:",
-	          React.createElement("input", { type: "text", value: this.state.username, onChange: this.handleUsername })
-	        ),
-	        React.createElement("br", null),
-	        React.createElement(
-	          "label",
-	          null,
-	          " Password:",
-	          React.createElement("input", { type: "text", value: this.state.password, onChange: this.handlePassword })
-	        )
-	      ),
-	      React.createElement(
-	        "button",
-	        { type: "submit", value: "login", onClick: this.setForm },
-	        "Log In"
-	      ),
-	      React.createElement("br", null),
-	      React.createElement(
-	        "button",
-	        { type: "submit", value: "signup", onClick: this.setForm },
-	        "Sign Up"
-	      ),
-	      React.createElement(GuestLogin, null)
-	    );
-	  }
-	
-	});
-	
-	module.exports = UsernamePasswordForm;
-
-/***/ },
-/* 284 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var Modal = __webpack_require__(258);
-	var SignUpForm = __webpack_require__(280);
-	
-	var customStyles = {
-	  content: {
-	    top: '50%',
-	    left: '50%',
-	    right: 'auto',
-	    bottom: 'auto',
-	    marginRight: '-50%',
-	    transform: 'translate(-50%, -50%)'
-	  }
-	};
-	
-	var SignUpModal = React.createClass({
-	  displayName: 'SignUpModal',
-	
-	
-	  getInitialState: function () {
-	    return { modalIsOpen: false };
-	  },
-	
-	  openModal: function () {
-	    this.setState({ modalIsOpen: true });
-	  },
-	
-	  afterOpenModal: function () {
-	    // references are now sync'd and can be accessed.
-	    // this.refs.subtitle.style.color = '#f00';
-	  },
-	
-	  closeModal: function () {
-	    this.setState({ modalIsOpen: false });
-	  },
-	
-	  render: function () {
-	    var styling;
-	    if (this.props.loginform === "true") {
-	      styling = "btn btn-login-form btn-outline";
-	    } else {
-	      styling = "btn btn-primary btn-outline";
-	    }
-	    return React.createElement(
-	      'a',
-	      { className: 'page-scroll' },
-	      React.createElement(
-	        'button',
-	        { type: 'button', className: styling, onClick: this.openModal },
-	        'Sign Up'
-	      ),
-	      React.createElement(
-	        Modal,
-	        {
-	          isOpen: this.state.modalIsOpen,
-	          onAfterOpen: this.afterOpenModal,
-	          onRequestClose: this.closeModal,
-	          style: customStyles },
-	        React.createElement(SignUpForm, null)
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = SignUpModal;
-
-/***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var LandingBackground = React.createClass({
-	  displayName: "LandingBackground",
-	
-	
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "jumbotron jumbotron-fluid" },
-	      React.createElement("img", { className: "landing-background",
-	        src: "http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg" })
-	    );
-	  }
-	});
-	
-	module.exports = LandingBackground;
-
-/***/ },
-/* 286 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var Modal = __webpack_require__(258);
-	var SignUpForm = __webpack_require__(280);
-	
-	var customStyles = {
-	  content: {
-	    top: '50%',
-	    left: '50%',
-	    right: 'auto',
-	    bottom: 'auto',
-	    marginRight: '-50%',
-	    transform: 'translate(-50%, -50%)'
-	  }
-	};
-	
-	var SignUpModalLogin = React.createClass({
-	  displayName: 'SignUpModalLogin',
-	
-	
-	  getInitialState: function () {
-	    return { modalIsOpen: false };
-	  },
-	
-	  openModal: function () {
-	    this.setState({ modalIsOpen: true });
-	  },
-	
-	  afterOpenModal: function () {
-	    // references are now sync'd and can be accessed.
-	    // this.refs.subtitle.style.color = '#f00';
-	  },
-	
-	  closeModal: function () {
-	    this.setState({ modalIsOpen: false });
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      'a',
-	      { className: 'page-scroll' },
-	      React.createElement(
-	        'button',
-	        { type: 'button', className: 'btn btn-login-form btn-outline', onClick: this.openModal },
-	        'Sign Up'
-	      ),
-	      React.createElement(
-	        Modal,
-	        {
-	          isOpen: this.state.modalIsOpen,
-	          onAfterOpen: this.afterOpenModal,
-	          onRequestClose: this.closeModal,
-	          style: customStyles },
-	        React.createElement(SignUpForm, null)
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = SignUpModalLogin;
-
-/***/ },
-/* 287 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var UserActions = __webpack_require__(231);
-	
-	var GuestLoginLogin = React.createClass({
-	  displayName: "GuestLoginLogin",
-	
-	
-	  getInitialState: function () {
-	    return { password: "", username: "" };
-	  },
-	
-	  guestLogin: function (e) {
-	    e.preventDefault();
-	    UserActions.guestLogin();
-	    // this.setState({username: "", password: ""});
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      "a",
-	      { className: "page-scroll" },
-	      React.createElement(
-	        "button",
-	        { type: "button", className: "btn btn-login-form btn-outline", value: "guestLogin", onClick: this.guestLogin },
-	        "Guest Login"
-	      )
-	    );
-	  }
-	
-	});
-	
-	module.exports = GuestLoginLogin;
-
-/***/ },
-/* 288 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var SearchBar = React.createClass({
-	  displayName: "SearchBar",
-	
-	
-	  getInitialState: function () {
-	    return {
-	      listings: {},
-	      filterParams: {},
-	      clickedLoc: null
-	    };
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { "class": "input-group" },
-	      React.createElement("input", { type: "text", className: "form-control",
-	        placeholder: "Search", "aria-describedby": "basic-addon2" }),
-	      React.createElement(
-	        "span",
-	        { className: "input-group-addon", id: "basic-addon2" },
-	        "@example.com"
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = SearchBar;
-
-/***/ },
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
 /* 289 */,
 /* 290 */
 /***/ function(module, exports, __webpack_require__) {
@@ -35624,107 +34594,13 @@
 
 /***/ },
 /* 296 */,
-/* 297 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(166);
-	var hashHistory = __webpack_require__(166).hashHistory;
-	
-	var ListingIndexItem = React.createClass({
-	  displayName: 'ListingIndexItem',
-	
-	  handleClick: function () {
-	    var listing_id = this.props.listing.id;
-	    hashHistory.push("/listings/" + listing_id);
-	  },
-	
-	  _onLoad: function (e) {
-	    if (e.target.height > e.target.width) {
-	      e.target.className = "listing-img-tall img-fluid pull-xs-left";
-	    } else {
-	      e.target.className = "listing-img-wide img-fluid pull-xs-left";
-	    }
-	  },
-	
-	  render: function () {
-	    var listing = this.props.listing;
-	    var images = listing.images;
-	    return React.createElement(
-	      'div',
-	      { className: 'listing-index-div col-sm-12 row-space 2 col-md-6',
-	        onClick: this.handleClick
-	      },
-	      React.createElement(
-	        'div',
-	        { className: 'panel-image listing-img' },
-	        listing.title,
-	        React.createElement(
-	          'div',
-	          { className: 'image-div' },
-	          React.createElement('img', { src: images[0].url, onLoad: this._onLoad })
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = ListingIndexItem;
-
-/***/ },
+/* 297 */,
 /* 298 */,
-/* 299 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var FilterForm = React.createClass({
-	    displayName: 'FilterForm',
-	
-	    render: function () {
-	        var bootstrap_enabled = typeof $().modal == 'function';
-	
-	        return React.createElement(
-	            'div',
-	            { 'class': 'container' },
-	            React.createElement(
-	                'div',
-	                { 'class': 'row' },
-	                React.createElement(
-	                    'div',
-	                    { 'class': 'col-sm-6' },
-	                    React.createElement(
-	                        'div',
-	                        { 'class': 'form-group' },
-	                        React.createElement(
-	                            'div',
-	                            { 'class': 'input-group date', id: 'datetimepicker1' },
-	                            React.createElement('input', { type: 'text', 'class': 'form-control' }),
-	                            React.createElement(
-	                                'span',
-	                                { 'class': 'input-group-addon' },
-	                                React.createElement('span', { 'class': 'glyphicon glyphicon-calendar' })
-	                            )
-	                        )
-	                    )
-	                ),
-	                $(function () {
-	                    $('#datetimepicker1').datetimepicker();
-	                })
-	            )
-	        );
-	    }
-	});
-	
-	module.exports = FilterForm;
-
-/***/ },
+/* 299 */,
 /* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var LandingPageBottom = __webpack_require__(311);
 	var LandingPageCarousel = __webpack_require__(312);
 	
 	var LandingPage = React.createClass({
@@ -35909,9 +34785,7 @@
 	var hashHistory = __webpack_require__(166).hashHistory;
 	var FilterActions = __webpack_require__(303);
 	var ListingActions = __webpack_require__(294);
-	
 	var ListingStore = __webpack_require__(290);
-	// var MarkerStore = require('../../stores/marker_store');
 	
 	function _getCoordsObj(latLng) {
 	  return {
@@ -36076,16 +34950,13 @@
 
 	var React = __webpack_require__(1);
 	var CurrentUserState = __webpack_require__(256);
-	var SignUpForm = __webpack_require__(280);
 	var UserActions = __webpack_require__(231);
-	var LoginForm = __webpack_require__(226);
 	var GuestLogin2 = __webpack_require__(308);
 	var LoginModal2 = __webpack_require__(306);
 	var SignUpModal2 = __webpack_require__(307);
-	var SearchBar = __webpack_require__(288);
 	
 	var AuthButtons = React.createClass({
-	  displayName: 'AuthButtons',
+	  displayName: "AuthButtons",
 	
 	  mixins: [CurrentUserState],
 	
@@ -36096,21 +34967,21 @@
 	
 	  loggedInRender: function () {
 	    return React.createElement(
-	      'ul',
-	      { className: 'nav navbar-nav navbar-right' },
+	      "ul",
+	      { className: "nav navbar-nav navbar-right" },
 	      React.createElement(
-	        'button',
-	        { type: 'button', value: 'logout', onClick: this.logout,
-	          className: 'btn btn-primary btn-outline' },
-	        'Log Out'
+	        "button",
+	        { type: "button", value: "logout", onClick: this.logout,
+	          className: "btn btn-primary btn-outline" },
+	        "Log Out"
 	      )
 	    );
 	  },
 	
 	  loggedOutRender: function () {
 	    return React.createElement(
-	      'ul',
-	      { className: 'nav navbar-nav navbar-right' },
+	      "ul",
+	      { className: "nav navbar-nav navbar-right" },
 	      React.createElement(LoginModal2, null),
 	      React.createElement(SignUpModal2, null),
 	      React.createElement(GuestLogin2, null)
@@ -36125,8 +34996,8 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      'div',
-	      { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+	      "div",
+	      { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
 	      this.state.currentUser ? this.loggedInRender() : this.loggedOutRender()
 	    );
 	  }
@@ -36141,12 +35012,7 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var Modal = __webpack_require__(258);
-	
 	var LoginForm2 = __webpack_require__(309);
-	
-	// var appElement = document.getElementById('content');
-	//
-	// Modal.setAppElement(appElement);
 	
 	var customStyles = {
 	  content: {
@@ -36171,10 +35037,7 @@
 	    this.setState({ modalIsOpen: true });
 	  },
 	
-	  afterOpenModal: function () {
-	    // references are now sync'd and can be accessed.
-	    // this.refs.subtitle.style.color = '#f00';
-	  },
+	  afterOpenModal: function () {},
 	
 	  closeModal: function () {
 	    this.setState({ modalIsOpen: false });
@@ -36236,10 +35099,7 @@
 	    this.setState({ modalIsOpen: true });
 	  },
 	
-	  afterOpenModal: function () {
-	    // references are now sync'd and can be accessed.
-	    // this.refs.subtitle.style.color = '#f00';
-	  },
+	  afterOpenModal: function () {},
 	
 	  closeModal: function () {
 	    this.setState({ modalIsOpen: false });
@@ -36296,7 +35156,6 @@
 	  guestLogin: function (e) {
 	    e.preventDefault();
 	    UserActions.guestLogin();
-	    // this.setState({username: "", password: ""});
 	  },
 	
 	  render: function () {
@@ -36616,295 +35475,7 @@
 	module.exports = SignUpForm2;
 
 /***/ },
-/* 311 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var LandingPageBottom = React.createClass({
-	  displayName: "LandingPageBottom",
-	
-	
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "container marketing" },
-	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement(
-	          "div",
-	          { className: "col-lg-4" },
-	          React.createElement("img", { className: "img-circle", src: "data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==", alt: "Generic placeholder image", width: "140", height: "140" }),
-	          React.createElement(
-	            "h2",
-	            null,
-	            "Dessert"
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            "Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna."
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            React.createElement(
-	              "a",
-	              { className: "btn btn-default", href: "#", role: "button" },
-	              "View details »"
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "col-lg-4" },
-	          React.createElement("img", { className: "img-circle", src: "data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==", alt: "Generic placeholder image", width: "140", height: "140" }),
-	          React.createElement(
-	            "h2",
-	            null,
-	            "Seafood"
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh."
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            React.createElement(
-	              "a",
-	              { className: "btn btn-default", href: "#", role: "button" },
-	              "View details »"
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "col-lg-4" },
-	          React.createElement("img", { className: "img-circle", src: "data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==", alt: "Generic placeholder image", width: "140", height: "140" }),
-	          React.createElement(
-	            "h2",
-	            null,
-	            "Thai"
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            "Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus."
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            React.createElement(
-	              "a",
-	              { className: "btn btn-default", href: "#", role: "button" },
-	              "View details »"
-	            )
-	          )
-	        )
-	      ),
-	      React.createElement("hr", { className: "featurette-divider" }),
-	      React.createElement(
-	        "div",
-	        { className: "row featurette" },
-	        React.createElement(
-	          "div",
-	          { className: "col-md-7" },
-	          React.createElement(
-	            "h2",
-	            { className: "featurette-heading" },
-	            "First featurette heading. ",
-	            React.createElement(
-	              "span",
-	              { className: "text-muted" },
-	              "It'll blow your mind."
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "lead" },
-	            "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo."
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "col-md-5" },
-	          React.createElement("img", { className: "featurette-image img-responsive center-block", "data-src": "holder.js/500x500/auto", alt: "500x500", src: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NDdjYzkxNTc5IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTU0N2NjOTE1NzkiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=", "data-holder-rendered": "true" })
-	        )
-	      ),
-	      React.createElement("hr", { className: "featurette-divider" }),
-	      React.createElement(
-	        "div",
-	        { className: "row featurette" },
-	        React.createElement(
-	          "div",
-	          { className: "col-md-7 col-md-push-5" },
-	          React.createElement(
-	            "h2",
-	            { className: "featurette-heading" },
-	            "Oh yeah, it's that good. ",
-	            React.createElement(
-	              "span",
-	              { className: "text-muted" },
-	              "See for yourself."
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "lead" },
-	            "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo."
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "col-md-5 col-md-pull-7" },
-	          React.createElement("img", { className: "featurette-image img-responsive center-block", "data-src": "holder.js/500x500/auto", alt: "500x500", src: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NDdjYzkyNGZmIHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTU0N2NjOTI0ZmYiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=", "data-holder-rendered": "true" })
-	        )
-	      ),
-	      React.createElement("hr", { className: "featurette-divider" }),
-	      React.createElement(
-	        "div",
-	        { className: "row featurette" },
-	        React.createElement(
-	          "div",
-	          { className: "col-md-7" },
-	          React.createElement(
-	            "h2",
-	            { className: "featurette-heading" },
-	            "And lastly, this one. ",
-	            React.createElement(
-	              "span",
-	              { className: "text-muted" },
-	              "Checkmate."
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "lead" },
-	            "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo."
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "col-md-5" },
-	          React.createElement("img", { className: "featurette-image img-responsive center-block", "data-src": "holder.js/500x500/auto", alt: "500x500", src: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NDdjYzhkMTU0IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTU0N2NjOGQxNTQiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=", "data-holder-rendered": "true" })
-	        )
-	      ),
-	      React.createElement("hr", { className: "featurette-divider" }),
-	      React.createElement(
-	        "footer",
-	        null,
-	        React.createElement(
-	          "p",
-	          { className: "pull-right" },
-	          React.createElement(
-	            "a",
-	            { href: "#" },
-	            "Back to top"
-	          )
-	        ),
-	        React.createElement(
-	          "p",
-	          null,
-	          "© 2015 Company, Inc. · ",
-	          React.createElement(
-	            "a",
-	            { href: "#" },
-	            "Privacy"
-	          ),
-	          " · ",
-	          React.createElement(
-	            "a",
-	            { href: "#" },
-	            "Terms"
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = LandingPageBottom;
-	
-	// <div className="container marketing">
-	//
-	//       <!-- Three columns of text below the carousel -->
-	//       <div className="row">
-	//         <div className="col-lg-4">
-	//           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-	//           <h2>Heading</h2>
-	//           <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-	//           <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-	//         </div><!-- /.col-lg-4 -->
-	//         <div class="col-lg-4">
-	//           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-	//           <h2>Heading</h2>
-	//           <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-	//           <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-	//         </div><!-- /.col-lg-4 -->
-	//         <div class="col-lg-4">
-	//           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-	//           <h2>Heading</h2>
-	//           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-	//           <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-	//         </div><!-- /.col-lg-4 -->
-	//       </div><!-- /.row -->
-	//
-	//
-	//       <!-- START THE FEATURETTES -->
-	//
-	//       <hr class="featurette-divider">
-	//
-	//       <div class="row featurette">
-	//         <div class="col-md-7">
-	//           <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-	//           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-	//         </div>
-	//         <div class="col-md-5">
-	//           <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NDdjYzkxNTc5IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTU0N2NjOTE1NzkiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
-	//         </div>
-	//       </div>
-	//
-	//       <hr class="featurette-divider">
-	//
-	//       <div class="row featurette">
-	//         <div class="col-md-7 col-md-push-5">
-	//           <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-	//           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-	//         </div>
-	//         <div class="col-md-5 col-md-pull-7">
-	//           <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NDdjYzkyNGZmIHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTU0N2NjOTI0ZmYiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
-	//         </div>
-	//       </div>
-	//
-	//       <hr class="featurette-divider">
-	//
-	//       <div class="row featurette">
-	//         <div class="col-md-7">
-	//           <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-	//           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-	//         </div>
-	//         <div class="col-md-5">
-	//           <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NDdjYzhkMTU0IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTU0N2NjOGQxNTQiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg1LjEyNSIgeT0iMjYxLjEiPjUwMHg1MDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true">
-	//         </div>
-	//       </div>
-	//
-	//       <hr class="featurette-divider">
-	//
-	//       <!-- /END THE FEATURETTES -->
-	//
-	//
-	//       <!-- FOOTER -->
-	//       <footer>
-	//         <p class="pull-right"><a href="#">Back to top</a></p>
-	//         <p>© 2015 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-	//       </footer>
-	//
-	//     </div>
-
-/***/ },
+/* 311 */,
 /* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -37124,11 +35695,8 @@
 	var ListingStore = __webpack_require__(290);
 	var ListingActions = __webpack_require__(294);
 	var ListingIndex2 = __webpack_require__(314);
-	var FilterForm = __webpack_require__(299);
 	var Map = __webpack_require__(302);
 	var FilterParamsStore = __webpack_require__(318);
-	// var ClientActions = require('../actions/client_actions');
-	// var Filters = require('./Filters');
 	var hashHistory = __webpack_require__(166).hashHistory;
 	
 	var ListingSearch2 = React.createClass({
@@ -37156,9 +35724,6 @@
 	  componentDidMount: function () {
 	    this.listingListener = ListingStore.addListener(this._listingsChanged);
 	    this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
-	    // var filterParams = FilterParamsStore.params();
-	    //
-	    // ListingActions.fetchListingsFiltered(filterParams);
 	  },
 	
 	  componentWillUnmount: function () {
@@ -37309,7 +35874,6 @@
 	var hashHistory = __webpack_require__(166).hashHistory;
 	var ListingStore = __webpack_require__(290);
 	var ListingActions = __webpack_require__(294);
-	var ListingDetailCarousel = __webpack_require__(317);
 	var ListingApi = __webpack_require__(295);
 	var FilterParamsStore = __webpack_require__(318);
 	var Map = __webpack_require__(302);
@@ -37410,52 +35974,7 @@
 	module.exports = ListingDetail2;
 
 /***/ },
-/* 317 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var ListingDetailCarousel = React.createClass({
-	  displayName: "ListingDetailCarousel",
-	
-	
-	  // CarouselRender: function(){
-	  //   var listing = this.props.listing;
-	  //   var images = listing.images;
-	  //   var carouselLi = [];
-	  //   listing.images.each (function(el){
-	  //     carouselLi.push(<li src={el.url}/>);
-	  //   });
-	  //
-	  //   Object.keys(listings).map (function (idx) {
-	  //     _listings[listings[idx].id] = listings[idx];
-	  //   });
-	  //
-	  //   Object.keys(listing)
-	  //   this.props.listing.each
-	  // },
-	  render: function () {
-	    var listing = this.props.listing;
-	
-	    return React.createElement(
-	      "div",
-	      { id: "myCarousel", className: "carousel slide", "data-ride": "carousel" },
-	      React.createElement(
-	        "div",
-	        { className: "carousel-inner", role: "listbox" },
-	        React.createElement(
-	          "div",
-	          { className: "item active" },
-	          React.createElement("img", { className: "first-slide", src: listing.images[0].url, alt: "First slide" })
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = ListingDetailCarousel;
-
-/***/ },
+/* 317 */,
 /* 318 */
 /***/ function(module, exports, __webpack_require__) {
 

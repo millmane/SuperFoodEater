@@ -1,5 +1,4 @@
 var React = require('react');
-var LandingPageBottom = require('./LandingPageBottom');
 var LandingPageCarousel = require('./LandingPageCarousel');
 
 var LandingPage = React.createClass({

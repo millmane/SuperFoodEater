@@ -21,7 +21,6 @@ var UserApiUtil = {
     });
   },
 
-  // fetchCurrentUser: function(success, error){
     fetchCurrentUser: function(success) {
     $.ajax({
       url: '/api/session',
@@ -30,11 +29,6 @@ var UserApiUtil = {
         if (object.username) {
           success(object);
         }},
-
-        // } else {
-        //   error(object);
-        // }}
-      // error: error
     });
   },
 

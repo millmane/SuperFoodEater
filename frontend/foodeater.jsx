@@ -10,26 +10,13 @@ var hashHistory = ReactRouter.hashHistory;
 var Modal = require('react-modal');
 
 //Components
-var NavBar = require('./components/NavBar.jsx');
 var NavBar2 = require('./components/nav/NavBar2.jsx');
-
-var Logo = require('./components/Logo.jsx');
-var SearchBar = require('./components/SearchBar');
-var LoginForm = require('./components/LoginForm');
 var ListingSearch2 = require('./components/listings/ListingSearch2.jsx');
-var ListingIndexItem = require('./components/listings/ListingIndexItem');
 var ListingDetail2 = require('./components/listings/ListingDetail2.jsx');
 var LandingPage = require('./components/landing_page/LandingPage.jsx');
 
-// var UsernamePasswordForm = require('./components/UsernamePasswordForm');
-var LandingBackground = require('./components/LandingBackground');
-// var ListingForm = require('./components/ListingForm');
-// var ListingShow = require('./components/ListingShow');
 //Mixins
 var CurrentUserState = require('./mixins/current_user_state');
-// <LoginModal/>
-
-// Modal.setAppElement( document.getElementById('content'));
 
 var UserApiUtil = require('./util/user_api_util.js');
 var UserStore = require('./stores/user_store.js');
@@ -53,9 +40,6 @@ var App = React.createClass({
   }
 });
 
-//LandingPage - background image, searchbar component
-//ListingSearch - Have Navbar from IndexRoute, Filter, Index, Map
-//ListingDetail - Have Navbar from IndexRoute, ImageGalleryThing, Details
 var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>

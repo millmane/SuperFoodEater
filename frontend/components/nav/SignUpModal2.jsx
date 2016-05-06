@@ -25,8 +25,7 @@ var SignUpModal2 = React.createClass({
   },
 
   afterOpenModal: function() {
-    // references are now sync'd and can be accessed.
-    // this.refs.subtitle.style.color = '#f00';
+
   },
 
   closeModal: function() {

@@ -1,13 +1,9 @@
 var React = require('react');
 var CurrentUserState = require("../../mixins/current_user_state");
-var SignUpForm = require ('../SignUpForm.jsx');
 var UserActions = require("../../actions/user_actions");
-var LoginForm = require ('../LoginForm.jsx');
 var GuestLogin2 = require ('./GuestLogin2.jsx');
 var LoginModal2 = require('./LoginModal2.jsx');
 var SignUpModal2 = require('./SignUpModal2.jsx');
-var SearchBar = require('../SearchBar.jsx');
-
 
 var AuthButtons = React.createClass({
   mixins: [CurrentUserState],

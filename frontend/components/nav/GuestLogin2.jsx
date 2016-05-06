@@ -9,7 +9,6 @@ var GuestLogin2 = React.createClass({
   guestLogin: function(e){
     e.preventDefault();
     UserActions.guestLogin();
-    // this.setState({username: "", password: ""});
   },
 
   render: function(){

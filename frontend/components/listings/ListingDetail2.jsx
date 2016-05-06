@@ -3,7 +3,6 @@ var ReactRouter = require('react-router');
 var hashHistory = require('react-router').hashHistory;
 var ListingStore = require('../../stores/listing_store.js');
 var ListingActions = require('../../actions/listing_actions.js');
-var ListingDetailCarousel = require('./ListingDetailCarousel.jsx');
 var ListingApi = require('../../util/listing_api_util');
 var FilterParamsStore = require('../../stores/filter_params');
 var Map = require('./Map');

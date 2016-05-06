@@ -12,9 +12,6 @@ var CurrentUserState = {
 
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this.updateUser);
-    // if (typeof UserStore.currentUser() === 'undefined') {
-    //   UserActions.fetchCurrentUser();
-    // }
   },
 
   componentWillUnmount: function (){

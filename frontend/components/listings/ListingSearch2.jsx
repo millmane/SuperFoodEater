@@ -2,11 +2,8 @@ var React = require('react');
 var ListingStore = require('../../stores/listing_store.js');
 var ListingActions = require('../../actions/listing_actions');
 var ListingIndex2 = require('./ListingIndex2.jsx');
-var FilterForm = require('./FilterForm.jsx');
 var Map = require('./Map');
 var FilterParamsStore = require('../../stores/filter_params');
-// var ClientActions = require('../actions/client_actions');
-// var Filters = require('./Filters');
 var hashHistory = require('react-router').hashHistory;
 
 var ListingSearch2 = React.createClass({
@@ -33,9 +30,6 @@ getInitialState: function(){
   componentDidMount: function(){
   this.listingListener = ListingStore.addListener(this._listingsChanged);
   this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
-  // var filterParams = FilterParamsStore.params();
-  //
-  // ListingActions.fetchListingsFiltered(filterParams);
 },
 
   componentWillUnmount: function(){

@@ -1,12 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Modal = require('react-modal');
-
 var LoginForm2 = require('./LoginForm2.jsx');
-
-// var appElement = document.getElementById('content');
-//
-// Modal.setAppElement(appElement);
 
 var customStyles = {
   content : {
@@ -19,8 +14,6 @@ var customStyles = {
   }
 };
 
-
-
 var LoginModal2 = React.createClass({
 
   getInitialState: function(){
@@ -32,8 +25,7 @@ var LoginModal2 = React.createClass({
   },
 
   afterOpenModal: function() {
-    // references are now sync'd and can be accessed.
-    // this.refs.subtitle.style.color = '#f00';
+
   },
 
   closeModal: function() {
