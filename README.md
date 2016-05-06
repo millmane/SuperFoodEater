@@ -1,6 +1,6 @@
-# RotationsExchanger
+# FoodEater
 
-###[Live link](foodeater.co)
+###[Live Link](https://foodeater.herokuapp.com)
 
 FoodEater is a web application inspired by AirBnB that will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
 
@@ -16,9 +16,6 @@ FoodEater is a web application designed for hungry people to easily list and sea
 
 #### Complete single page application with authentication and instant error handling to provide a smooth user experience
 ![auth_feedback]
-<p align="center">
-  <img src="./screenshots/add_form_feedback.png"/>
-</p>
 
 [auth_feedback]: ./screenshots/auth_feedback.png
 [detail_view]: ./screenshots/detail_view.png
@@ -48,7 +45,7 @@ Integrated with React, the flux architecture provides real time reflection of al
 ## Todos
 * Add a search bar feature with multiple parameters, such as location or cuisine type
 * Add additional filter parameters
-* Add a Account Details page
+* Add an Account Details page
 * Add ability to reserve a food item
 
 ## Future Features
