@@ -89,11 +89,6 @@
 	  displayName: 'App',
 	
 	
-	  // className="landing-background"
-	  // <NavBar/>
-	  // <LandingPage/>
-	  //       <NavBar/>
-	
 	  render: function () {
 	    var Link = ReactRouter.Link;
 	
@@ -35473,12 +35468,10 @@
 	};
 	
 	ListingStore.resetListings = function (listings) {
-	
 	  _listings = {};
 	  Object.keys(listings).map(function (idx) {
 	    _listings[listings[idx].id] = listings[idx];
 	  });
-	  console.log("new listings " + Object.keys(_listings).length);
 	};
 	
 	ListingStore.setListing = function (listing) {
@@ -35494,7 +35487,8 @@
 	};
 	
 	ListingStore.findListing = function (id) {
-	  return Object.assign({}, _listings[id]);
+	  return _listings[id];
+	  // return Object.assign({}, _listings[id]);
 	};
 	
 	module.exports = ListingStore;
@@ -35993,7 +35987,6 @@
 	        southWest: southWest
 	      };
 	      FilterActions.updateBounds(bounds);
-	      // ListingActions.fetchListingsFiltered(bounds);
 	    });
 	    google.maps.event.addListener(this.map, 'click', function (event) {
 	      var coords = { lat: event.latLng.lat(), lng: event.latLng.lng() };
@@ -36023,6 +36016,7 @@
 	  },
 	
 	  render: function () {
+	
 	    return React.createElement(
 	      'div',
 	      { className: this.props.cname },
@@ -37290,10 +37284,7 @@
 	    );
 	  }
 	});
-	// {listing.title}
-	// <div className="image-div">
-	//   <img src={images[0].url} onLoad={this._onLoad}></img>
-	// </div>
+	
 	module.exports = ListingIndexItem2;
 
 /***/ },
@@ -37307,46 +37298,42 @@
 	var ListingActions = __webpack_require__(294);
 	var ListingDetailCarousel = __webpack_require__(317);
 	var ListingApi = __webpack_require__(295);
+	var FilterParamsStore = __webpack_require__(318);
 	var Map = __webpack_require__(302);
 	
-	var ListingDetail = React.createClass({
-	  displayName: 'ListingDetail',
+	var ListingDetail2 = React.createClass({
+	  displayName: 'ListingDetail2',
 	
-	
-	  getStateFromStore: function () {
-	    return {
-	      listing: ListingStore.findListing(parseInt(this.props.params.listing_id))
-	    };
-	  },
 	
 	  getInitialState: function () {
-	    return this.getStateFromStore();
+	    var listingId = parseInt(this.props.params.listing_id);
+	    var listing = ListingStore.findListing(listingId);
+	    return { listing: listing };
 	  },
-	
-	  _onChange: function () {
-	    this.setState(this.getStateFromStore());
-	  },
-	
-	  // componentWillReceiveProps: function(newProp){
-	  //   var listingId = parseInt(newProp.params.listing_id);
-	  //   ListingApi.fetchSingleRoom(listingId);
-	  // },
 	
 	  componentDidMount: function () {
 	    var listingId = parseInt(this.props.params.listing_id);
-	    // ListingApi.fetchListing(listingId);
+	
 	    this.listingListener = ListingStore.addListener(this._onChange);
-	    // this.setState({listing: ListingStore.findListing(listingId)});
-	    ListingActions.fetchListing(listingId);
+	
+	    var params = FilterParamsStore.params();
+	    ListingActions.fetchListingsFiltered(params);
 	  },
 	
 	  componentWillUnmount: function () {
 	    this.listingListener.remove();
 	  },
 	
-	  render: function () {
+	  _onChange: function () {
+	    var listingId = parseInt(this.props.params.listing_id);
+	    var listing = ListingStore.findListing(listingId);
+	    this.setState({ listing: listing });
+	  },
 	
+	  render: function () {
+	    var listings = {};
 	    var listing = this.state.listing;
+	    listings[parseInt(this.props.params.listing_id)] = this.state.listing;
 	    if (typeof listing !== 'undefined') {
 	      return React.createElement(
 	        'div',
@@ -37394,7 +37381,7 @@
 	              )
 	            )
 	          ),
-	          React.createElement(Map, { listings: listing, cname: "map-detail", cname2: "map-canvas-detail" })
+	          React.createElement(Map, { listings: listings, cname: "map-detail", cname2: "map-canvas-detail" })
 	        )
 	      );
 	    } else {
@@ -37407,40 +37394,7 @@
 	  }
 	});
 	
-	module.exports = ListingDetail;
-	
-	//
-	// <div id="listing">
-	//   <div data-mystique-key="p3hero_and_slideshowbundlejs">
-	//     <div data-reactid=".1jffvpofqio" data-react-checksum="-1828275119">
-	//       <div id="photos" className="with-photos with-modal" data-reactid=".1jffvpofqio.0">
-	//         <span className="cover-photo" data-reactid=".1jffvpofqio.0.0">
-	//           <img className="hide" alt="" width="0" src="https://a1.muscache.com/im/pictures/16020454/ca70e301_original.jpg?aki_policy=large" srcset="https://a1.muscache.com/im/pictures/16020454/ca70e301_original.jpg?aki_policy=large 639w,https://a1.muscache.com/im/pictures/16020454/ca70e301_original.jpg?aki_policy=xx_large 1440w" data-reactid=".1jffvpofqio.0.0.0"/>
-	//           <span className="cover-img-container" data-hook="cover-img-container" data-reactid=".1jffvpofqio.0.0.1">
-	//             <div className="cover-img" style={{backgroundImage:"url(https://a1.muscache.com/im/pictures/16020454/ca70e301_original.jpg?aki_policy=xx_large)"}} data-reactid=".1jffvpofqio.0.0.1.0">
-	//               <div className="link-reset panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label show-sm" data-reactid=".1jffvpofqio.0.0.1.0.0">
-	//                 <div data-reactid=".1jffvpofqio.0.0.1.0.0.0">
-	//                   <span className="h3 text-contrast price-amount" data-reactid=".1jffvpofqio.0.0.1.0.0.0.0">
-	//                     <span data-reactid=".1jffvpofqio.0.0.1.0.0.0.0.0">$112</span>
-	//                   </span>
-	//                   <span data-reactid=".1jffvpofqio.0.0.1.0.0.0.1">&nbsp;</span>
-	//                     <span className="per-night hide-sm" data-reactid=".1jffvpofqio.0.0.1.0.0.0.2">
-	//                     <span data-reactid=".1jffvpofqio.0.0.1.0.0.0.2.0">Per Night</span>
-	//                   </span>
-	//                 </div>
-	//               </div>
-	//             </div>
-	//           </span>
-	//           <div className="slideshow-inline-preload hide" data-reactid=".1jffvpofqio.0.0.2">
-	//             <img className="carousel-image img-responsive-height" src="https://a0.muscache.com/im/pictures/16020349/2b864bbc_original.jpg?aki_policy=x_large" alt="" data-reactid=".1jffvpofqio.0.0.2.$https=2//a0=1muscache=1com/im/pictures/16020349/2b864bbc_original=1jpg?aki_policy=0x_large"/>
-	//             <img className="carousel-image img-responsive-height" src="https://a1.muscache.com/im/pictures/16020376/b53ea354_original.jpg?aki_policy=x_large" alt="" data-reactid=".1jffvpofqio.0.0.2.$https=2//a1=1muscache=1com/im/pictures/16020376/b53ea354_original=1jpg?aki_policy=0x_large"/>
-	//           </div>
-	//         </span>
-	//       </div>
-	//     <noscript data-reactid=".1jffvpofqio.1"></noscript>
-	//     </div>
-	//   </div>
-	// </div>
+	module.exports = ListingDetail2;
 
 /***/ },
 /* 317 */

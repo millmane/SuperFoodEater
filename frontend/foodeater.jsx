@@ -41,11 +41,6 @@ if (typeof UserStore.currentUser() === 'undefined') {
 
 var App = React.createClass({
 
- // className="landing-background"
- // <NavBar/>
- // <LandingPage/>
-//       <NavBar/>
-
   render: function () {
     var Link = ReactRouter.Link;
 

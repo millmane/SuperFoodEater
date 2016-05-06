@@ -32,6 +32,8 @@ class Api::ListingsController < ApplicationController
   #
   # })
   def index
+
+
     listings = Listing.all
     if(bounds)
       listings = Listing.in_bounds(bounds)
@@ -58,8 +60,8 @@ class Api::ListingsController < ApplicationController
   # end
 
   def show
-    @listing = Listing.find_by(id: params[:id])
 
+    @listing = Listing.find_by(id: params[:id])
     render 'api/listings/show'
   end
 

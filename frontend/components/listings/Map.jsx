@@ -81,7 +81,6 @@ var Map = React.createClass({
         southWest: southWest
       };
       FilterActions.updateBounds(bounds);
-      // ListingActions.fetchListingsFiltered(bounds);
     });
     google.maps.event.addListener(this.map, 'click', function(event) {
       var coords = { lat: event.latLng.lat(), lng: event.latLng.lng() };
@@ -111,6 +110,7 @@ var Map = React.createClass({
   },
 
   render: function(){
+
     return (
       <div className={this.props.cname}>
         <div id="map" className={this.props.cname2} ref="map">

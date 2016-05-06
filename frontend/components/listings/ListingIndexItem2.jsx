@@ -40,8 +40,5 @@ var ListingIndexItem2 = React.createClass({
     );
   }
 });
-// {listing.title}
-// <div className="image-div">
-//   <img src={images[0].url} onLoad={this._onLoad}></img>
-// </div>
+
 module.exports = ListingIndexItem2;
