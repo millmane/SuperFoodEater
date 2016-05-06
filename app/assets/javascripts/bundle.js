@@ -35744,7 +35744,7 @@
 	          { className: 'row' },
 	          React.createElement(
 	            'div',
-	            { className: 'col-lg-4' },
+	            { className: 'landing-marketing col-lg-4' },
 	            React.createElement('img', { className: 'img-circle', src: 'http://i.imgur.com/VH9zxjl.jpg', alt: 'Generic placeholder image', width: '140', height: '140' }),
 	            React.createElement(
 	              'h2',
@@ -35768,7 +35768,7 @@
 	          ),
 	          React.createElement(
 	            'div',
-	            { className: 'col-lg-4' },
+	            { className: 'landing-marketing col-lg-4' },
 	            React.createElement('img', { className: 'img-circle', src: 'https://images.unsplash.com/photo-1459432904503-d74cd0aa0a88?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=ade124498d5d9de800f2ff807222af32', alt: 'Generic placeholder image', width: '140', height: '140' }),
 	            React.createElement(
 	              'h2',
@@ -35792,7 +35792,7 @@
 	          ),
 	          React.createElement(
 	            'div',
-	            { className: 'col-lg-4' },
+	            { className: 'landing-marketing col-lg-4' },
 	            React.createElement('img', { className: 'img-circle', src: 'http://i.imgur.com/lajGJuw.jpg', alt: 'Generic placeholder image', width: '140', height: '140' }),
 	            React.createElement(
 	              'h2',
