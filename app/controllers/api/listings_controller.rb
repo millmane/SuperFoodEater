@@ -6,10 +6,11 @@ class Api::ListingsController < ApplicationController
     if(bounds)
       listings = Listing.in_bounds(bounds)
     end
-
-    if (params[:minPrice] && params[:maxPrice])
+    
+    if (params[:minPrice] || params[:maxPrice])
       listings = listings.where(price: price_range)
     end
+
 
     if listings
       @listings = listings
@@ -44,7 +45,13 @@ class Api::ListingsController < ApplicationController
   private
 
   def price_range
-    (params[:minPrice]..params[:maxPrice])
+    if (params[:minPrice] && params[:maxPrice])
+      return (params[:minPrice].to_i..params[:maxPrice].to_i)
+    elsif (params[:minPrice])
+      return (params[:minPrice].to_i..1000)
+    elsif (params[:maxPrice])
+      return (0..params[:maxPrice].to_i)
+    end
   end
 
 

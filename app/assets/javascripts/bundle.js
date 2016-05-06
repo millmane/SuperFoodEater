@@ -36080,7 +36080,7 @@
 	        React.createElement('input', { type: 'number', className: 'form-control', id: 'minPrice', placeholder: '0',
 	          style: { marginRight: "5px" },
 	          onChange: this.minPriceChanged,
-	          value: this.currentMinPrice() })
+	          defaultValue: this.currentMinPrice() })
 	      ),
 	      React.createElement(
 	        'div',
@@ -36092,27 +36092,8 @@
 	        ),
 	        React.createElement('input', { type: 'number', className: 'form-control', id: 'maxPrice', placeholder: '1000',
 	          onChange: this.maxPriceChanged,
-	          value: this.currentMaxPrice(),
+	          defaultValue: this.currentMaxPrice(),
 	          style: { marginRight: "5px" } })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'alert alert-info alert-dismissible', role: 'alert' },
-	        React.createElement(
-	          'button',
-	          { type: 'button', className: 'close', 'data-dismiss': 'alert', 'aria-label': 'Close' },
-	          React.createElement(
-	            'span',
-	            { 'aria-hidden': 'true' },
-	            '×'
-	          )
-	        ),
-	        React.createElement(
-	          'strong',
-	          null,
-	          'Both'
-	        ),
-	        ' boxes must be filled to search by price'
 	      )
 	    );
 	  }

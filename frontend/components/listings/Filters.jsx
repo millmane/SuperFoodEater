@@ -36,21 +36,15 @@ var Filters = React.createClass({
           <input type="number" className="form-control" id="minPrice" placeholder="0"
             style={{marginRight: "5px"}}
             onChange={this.minPriceChanged}
-            value={this.currentMinPrice()}/>
+            defaultValue={this.currentMinPrice()}/>
         </div>
         <div className="form-group">
           <label for="maxPrice" style={{marginRight: "5px"}}>Maximum Price</label>
           <input type="number" className="form-control" id="maxPrice" placeholder="1000"
             onChange={this.maxPriceChanged}
-            value={this.currentMaxPrice()}
+            defaultValue={this.currentMaxPrice()}
             style={{marginRight: "5px"}}/>
         </div>
-
-        <div className="alert alert-info alert-dismissible" role="alert">
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Both</strong> boxes must be filled to search by price
-        </div>
-
       </form>
 
     );
