@@ -36100,31 +36100,6 @@
 	});
 	
 	module.exports = Filters;
-	
-	// <div className="form-group">
-	//   <label>Minimum Price</label>
-	//
-	//   <label className="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-	//   <div className="input-group">
-	//     <div className="input-group-addon">$</div>
-	//     <input type="number" className="form-control" id="exampleInputAmount" placeholder="0"
-	//       onChange={this.minPriceChanged}
-	//       value={this.currentMinPrice()}/>
-	//   </div>
-	// </div>
-
-	// <div>
-	//
-	// <label>Minimum Price</label>
-	// <input type="number" className="form-control" placeholder="0"
-	//   onChange={this.minPriceChanged}
-	//   value={this.currentMinPrice()}/>
-	//  <br/>
-	// <label>Maximum Price</label>
-	// <input type="number"
-	//   onChange={this.maxPriceChanged}
-	//   value={this.currentMaxPrice()}/>
-	// </div>
 
 /***/ }
 /******/ ]);
