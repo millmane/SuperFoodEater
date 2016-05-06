@@ -35994,17 +35994,30 @@
 	    });
 	  },
 	  createMarkerFromListing: function (listing) {
+	
 	    var pos = new google.maps.LatLng(listing.lat, listing.lng);
 	    var marker = new google.maps.Marker({
 	      position: pos,
 	      map: this.map,
 	      listingId: listing.id
+	
 	    });
+	
+	    function toggleBounce() {
+	      if (marker.getAnimation() !== null) {
+	        marker.setAnimation(null);
+	      } else {
+	        marker.setAnimation(google.maps.Animation.BOUNCE);
+	      }
+	    }
+	
 	    marker.addListener('click', function () {
 	      hashHistory.push("listings/" + listing.id);
 	    });
+	
 	    this.markers.push(marker);
 	  },
+	
 	  removeMarker: function (marker) {
 	    for (var i = 0; i < this.markers.length; i++) {
 	      if (this.markers[i].listingId === marker.listingId) {

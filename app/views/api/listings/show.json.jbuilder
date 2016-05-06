@@ -10,5 +10,5 @@
    :from_date,
    :to_date,
    :home_type,
-   :room_type,)
+   :room_type)
    json.images @listing.images, :url, :listing_id, :id
