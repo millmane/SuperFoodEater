@@ -19,8 +19,7 @@ module.exports = {
         JSON.stringify('production')
       }
     }),
-    new
-    webpack.optimize.UglifyJsPlugin({
+    new webpack.optimize.UglifyJsPlugin({
       compress:{
         warnings: true
       }
