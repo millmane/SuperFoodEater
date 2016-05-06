@@ -38,8 +38,6 @@
 }
 
 .detail-div {
-  // position: fixed;
-  // background-color: lightblue;
   margin-left: auto;
   margin-right: auto;
   margin-top: -20px;
@@ -49,9 +47,7 @@
   width: 67%;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  // background: #f7f7f7;
   background: lightblue;
-  // text-align: center;
 
 }
 
@@ -60,7 +56,7 @@
   text-align: center;
   background-color: lightblue;
 }
-//
+
 .detail-inner-div {
   margin-left: 10px;
   display: flex;

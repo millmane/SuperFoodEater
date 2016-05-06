@@ -9,34 +9,32 @@ var hashHistory = require('react-router').hashHistory;
 var ListingSearch2 = React.createClass({
 
   _listingsChanged: function(){
-  this.setState({listings: ListingStore.allListings()});
-},
+    this.setState({listings: ListingStore.allListings()});
+  },
 
-_filtersChanged: function () {
-  var newParams = FilterParamsStore.params();
-  this.setState({ filterParams: newParams });
-  ListingActions.fetchListingsFiltered(newParams);
-},
+  _filtersChanged: function () {
+    var newParams = FilterParamsStore.params();
+    this.setState({ filterParams: newParams });
+    ListingActions.fetchListingsFiltered(newParams);
+  },
 
-getInitialState: function(){
-  return {
-    listings: ListingStore.allListings(),
-    filterParams: FilterParamsStore.params(),
-    clickedLoc: null,
-  };
-},
+  getInitialState: function(){
+    return {
+      listings: ListingStore.allListings(),
+      filterParams: FilterParamsStore.params(),
+      clickedLoc: null,
+    };
+  },
 
-
-  componentDidMount: function(){
-  this.listingListener = ListingStore.addListener(this._listingsChanged);
-  this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
-},
+    componentDidMount: function(){
+    this.listingListener = ListingStore.addListener(this._listingsChanged);
+    this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
+  },
 
   componentWillUnmount: function(){
     this.listingListener.remove();
     this.filterListener.remove();
   },
-
 
   render: function (){
     return (

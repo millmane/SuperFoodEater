@@ -1,31 +1,18 @@
-// body{
-//   background-color: green;
-// }
 
 .landing-marketing {
   text-align: center;
 }
 
 .landing-div {
-  // height:900px;
-  // background-color: lightblue;
-  // object-fit: cover;
+
 }
 
 .hero-background {
-  // top: 0%;
-  // height: 100%;
-  // position: absolute;
-  // width: 100%;
-  // display: inline-block;
-  // object-fit: contain;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  // background-color: #cacccd;
-  // text-align: center;
   overflow:hidden;
 }
 
@@ -33,12 +20,9 @@
 
 .hero-background {
   background-image: url("https://static.pexels.com/photos/3329/food-kitchen-cutting-board-cooking.jpg");
-    // background:  url(http://upload.wikimedia.org/wikipedia/commons/d/dd/Muybridge_race_horse_animated.gif) no-repeat center center fixed;
     background-size: contain;
     background-repeat: no-repeat;
-    // background-size:cover;
     background-size:cover;
-
     background-position: center;
 }
 
@@ -46,49 +30,13 @@
   position: relative;
   top: 0;
   height: 100%;
-  // width: 100%;
 }
-// background-image:url('http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg');
-// background-image:url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRvJXGvlQiPVSb4xoQZekVmX2n8ihdjgghaMbTctwLx1ZSSIEf2');
-// https://24.media.tumblr.com/ccc2039086a67441b1f6e0a32da70de9/tumblr_mxohq0f5v31s0xjvpo1_500.gif
-.hero-unit {
-  // background-image: url("https://static.pexels.com/photos/3329/food-kitchen-cutting-board-cooking-large.jpg");
-  //   // background:  url(http://upload.wikimedia.org/wikipedia/commons/d/dd/Muybridge_race_horse_animated.gif) no-repeat center center fixed;
-  //   background-size: contain;
-  //   background-repeat: no-repeat;
-  //   // background-size:cover;
-  //   background-size:cover;
-  //
-  //   background-position: center;
 
-    // background-color: #EEEEEE;
+.hero-unit {
     height:600px;
     position:relative;
     margin-top: -20px
-
-    // position: absolute;
-    // width: 100%;
-    // min-height: 100%;
-    // -webkit-background-size: cover;
-    // -moz-background-size: cover;
-    // background-size: cover;
-    // -o-background-size: cover;
-    // background-position: center;
-    // background-image: url('http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg');
-    // text-align: center;
   }
 
   .fill{width:100%;height:350px;background-position:center;background-size:cover;
   }
-      //
-      // /* Large desktop */
-      // @media (min-width: 1200px) { ... }
-      //
-      // /* Portrait tablet to landscape and desktop */
-      // @media (min-width: 768px) and (max-width: 979px) { ... }
-      //
-      // /* Landscape phone to portrait tablet */
-      // @media (max-width: 767px) { ... }
-      //
-      // /* Landscape phones and down */
-      // @media (max-width: 480px) { ... }
