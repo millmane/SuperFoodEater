@@ -10,7 +10,7 @@ var LandingPage = React.createClass({
       <div className="container marketing">
         <div className="row">
           <div className="landing-marketing col-lg-4">
-            <img className="img-circle" src="http://i.imgur.com/VH9zxjl.jpg" alt="Generic placeholder image" width="140" height="140"/>
+            <img className="img-circle" src="https://i.imgur.com/VH9zxjl.jpg" alt="Generic placeholder image" width="140" height="140"/>
             <h2>Breakfast</h2>
             <p>Pancakes, waffles, eggs benedict.  Get the day started right with your go to breakfast item.</p>
             <p><a className="btn btn-default" href="#/listings" role="button">Find Breakfast</a></p>
@@ -22,7 +22,7 @@ var LandingPage = React.createClass({
             <p><a className="btn btn-default" href="#/listings" role="button">Find Dinner</a></p>
           </div>
           <div className="landing-marketing col-lg-4">
-            <img className="img-circle" src="http://i.imgur.com/lajGJuw.jpg" alt="Generic placeholder image" width="140" height="140"/>
+            <img className="img-circle" src="https://i.imgur.com/lajGJuw.jpg" alt="Generic placeholder image" width="140" height="140"/>
             <h2>Dessert</h2>
             <p>Destroy that sweet tooth. Look for your favorite dessert or be adventorous and try something new! </p>
             <p><a className="btn btn-default" href="#/listings" role="button">Find Dessert</a></p>

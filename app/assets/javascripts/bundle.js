@@ -34621,7 +34621,7 @@
 	          React.createElement(
 	            'div',
 	            { className: 'landing-marketing col-lg-4' },
-	            React.createElement('img', { className: 'img-circle', src: 'http://i.imgur.com/VH9zxjl.jpg', alt: 'Generic placeholder image', width: '140', height: '140' }),
+	            React.createElement('img', { className: 'img-circle', src: 'https://i.imgur.com/VH9zxjl.jpg', alt: 'Generic placeholder image', width: '140', height: '140' }),
 	            React.createElement(
 	              'h2',
 	              null,
@@ -34669,7 +34669,7 @@
 	          React.createElement(
 	            'div',
 	            { className: 'landing-marketing col-lg-4' },
-	            React.createElement('img', { className: 'img-circle', src: 'http://i.imgur.com/lajGJuw.jpg', alt: 'Generic placeholder image', width: '140', height: '140' }),
+	            React.createElement('img', { className: 'img-circle', src: 'https://i.imgur.com/lajGJuw.jpg', alt: 'Generic placeholder image', width: '140', height: '140' }),
 	            React.createElement(
 	              'h2',
 	              null,
@@ -35519,7 +35519,7 @@
 	        React.createElement(
 	          "div",
 	          { className: "item active" },
-	          React.createElement("img", { className: "first-slide", src: "http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg", alt: "First slide" }),
+	          React.createElement("img", { className: "first-slide", src: "https://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg", alt: "First slide" }),
 	          React.createElement(
 	            "div",
 	            { className: "container" },

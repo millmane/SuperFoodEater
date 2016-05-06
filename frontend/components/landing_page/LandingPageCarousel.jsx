@@ -14,7 +14,7 @@ var LandingPageCarousel = React.createClass({
             </ol>
             <div className="carousel-inner" role="listbox">
               <div className="item active">
-                <img className="first-slide" src="http://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg" alt="First slide"/>
+                <img className="first-slide" src="https://res.cloudinary.com/millmane/image/upload/v1461805273/sushi1_kj1omy.jpg" alt="First slide"/>
                 <div className="container">
                   <div className="carousel-caption">
                     <h1>Find Food Anywhere!</h1>
