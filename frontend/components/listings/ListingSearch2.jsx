@@ -5,6 +5,7 @@ var ListingIndex2 = require('./ListingIndex2.jsx');
 var Map = require('./Map');
 var FilterParamsStore = require('../../stores/filter_params');
 var hashHistory = require('react-router').hashHistory;
+var Filters = require('./Filters');
 
 var ListingSearch2 = React.createClass({
 
@@ -26,9 +27,11 @@ var ListingSearch2 = React.createClass({
     };
   },
 
-    componentDidMount: function(){
+  componentDidMount: function(){
     this.listingListener = ListingStore.addListener(this._listingsChanged);
     this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
+    var filterParams = FilterParamsStore.params();
+    ListingActions.fetchListingsFiltered(filterParams);
   },
 
   componentWillUnmount: function(){
@@ -43,6 +46,8 @@ var ListingSearch2 = React.createClass({
 
           <div className="sidebar-header panel-body clearfix panel-bg-medium">
             <h1 className="search-results-header">Explore Local Food Options</h1>
+              <Filters filterParams={this.state.filterParams}/>
+
             <hr className="search-hr"></hr>
           </div>
           <ListingIndex2 listings={this.state.listings}/>

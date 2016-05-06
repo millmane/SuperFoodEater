@@ -2,11 +2,13 @@ require 'date'
 class Api::ListingsController < ApplicationController
 
   def index
-
-
     listings = Listing.all
     if(bounds)
       listings = Listing.in_bounds(bounds)
+    end
+
+    if (params[:minPrice] && params[:maxPrice])
+      listings = listings.where(price: price_range)
     end
 
     if listings
@@ -41,6 +43,11 @@ class Api::ListingsController < ApplicationController
 
   private
 
+  def price_range
+    (params[:minPrice]..params[:maxPrice])
+  end
+
+
   def listing_params
     params.require(:listing).permit(
       :lat,
@@ -48,6 +55,7 @@ class Api::ListingsController < ApplicationController
       :description,
       :title,
       :guests,
+      :price,
     )
   end
 

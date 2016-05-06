@@ -9,6 +9,20 @@ var FilterActions = {
     });
   },
 
+  updateMinPrice: function (value){
+    AppDispatcher.dispatch({
+      actionType: FilterConstants.UPDATE_MIN_PRICE,
+      minPrice: value,
+    });
+  },
+
+  updateMaxPrice: function (value){
+    AppDispatcher.dispatch({
+      actionType: FilterConstants.UPDATE_MAX_PRICE,
+      maxPrice: value,
+    });
+  },
+
 };
 
 module.exports = FilterActions;

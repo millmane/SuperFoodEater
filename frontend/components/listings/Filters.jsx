@@ -1,39 +1,85 @@
 var React = require('react');
-var FilterActions = require('../actions/filter_actions');
+var FilterActions = require('../../actions/filter_actions');
 
 var Filters = React.createClass({
-  maxSeatingChanged: function(e){
-    FilterActions.updateMaxSeating(e.target.value);
+
+  getInitialState: function(){
+    return { price: {min: 0, max: 1000} };
   },
-  minSeatingChanged: function (e) {
-    FilterActions.updateMinSeating(e.target.value);
+
+  maxPriceChanged: function(e){
+    FilterActions.updateMaxPrice(e.target.value);
   },
-  currentMax: function(){
-    return this.props.filterParams.maxSeating;
+
+  minPriceChanged: function (e) {
+    FilterActions.updateMinPrice(e.target.value);
   },
-  currentMin: function(){
-    return this.props.filterParams.minSeating;
+  currentMaxPrice: function(){
+    return this.props.filterParams.maxPrice;
   },
-  updateSeating: function (min, max) {
+  currentMinPrice: function(){
+    return this.props.filterParams.minPrice;
+  },
+
+  updatePrice: function (min, max) {
     FilterActions.updateParams({
-      seating: {min: min, max: max}
+      price: {min: min, max: max}
     });
   },
+
   render: function(){
     return (
-      <div>
-        <label>Minimum Seats</label>
-        <input type="number"
-          onChange={this.minSeatingChanged}
-          value={this.currentMin()}/>
-         <br/>
-        <label>Maximum Seats</label>
-        <input type="number"
-          onChange={this.maxSeatingChanged}
-          value={this.currentMax()}/>
-      </div>
+
+      <form className="form-inline">
+        <div className="form-group">
+          <label for="minPrice" style={{marginRight: "5px"}}>Minimum Price</label>
+          <input type="number" className="form-control" id="minPrice" placeholder="0"
+            style={{marginRight: "5px"}}
+            onChange={this.minPriceChanged}
+            value={this.currentMinPrice()}/>
+        </div>
+        <div className="form-group">
+          <label for="maxPrice" style={{marginRight: "5px"}}>Maximum Price</label>
+          <input type="number" className="form-control" id="maxPrice" placeholder="1000"
+            onChange={this.maxPriceChanged}
+            value={this.currentMaxPrice()}
+            style={{marginRight: "5px"}}/>
+        </div>
+
+        <div className="alert alert-info alert-dismissible" role="alert">
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Both</strong> boxes must be filled to search by price
+        </div>
+
+      </form>
+
     );
   }
 });
 
 module.exports = Filters;
+
+// <div className="form-group">
+//   <label>Minimum Price</label>
+//
+//   <label className="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+//   <div className="input-group">
+//     <div className="input-group-addon">$</div>
+//     <input type="number" className="form-control" id="exampleInputAmount" placeholder="0"
+//       onChange={this.minPriceChanged}
+//       value={this.currentMinPrice()}/>
+//   </div>
+// </div>
+
+// <div>
+//
+// <label>Minimum Price</label>
+// <input type="number" className="form-control" placeholder="0"
+//   onChange={this.minPriceChanged}
+//   value={this.currentMinPrice()}/>
+//  <br/>
+// <label>Maximum Price</label>
+// <input type="number"
+//   onChange={this.maxPriceChanged}
+//   value={this.currentMaxPrice()}/>
+// </div>

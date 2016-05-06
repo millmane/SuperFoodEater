@@ -3,6 +3,10 @@
   transition: opacity .2s;
 }
 
+.alert-info {
+  max-width: 350px;
+  margin-top: 10px;
+}
 
 .listing-img {
     overflow: hidden;
@@ -11,10 +15,6 @@
 
 .outer-listings-container {
   padding: 0 20px;
-
-}
-
-.search-results {
 
 }
 

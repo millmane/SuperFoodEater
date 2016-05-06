@@ -34927,6 +34927,20 @@
 	      actionType: FilterConstants.UPDATE_BOUNDS,
 	      bounds: bounds
 	    });
+	  },
+	
+	  updateMinPrice: function (value) {
+	    AppDispatcher.dispatch({
+	      actionType: FilterConstants.UPDATE_MIN_PRICE,
+	      minPrice: value
+	    });
+	  },
+	
+	  updateMaxPrice: function (value) {
+	    AppDispatcher.dispatch({
+	      actionType: FilterConstants.UPDATE_MAX_PRICE,
+	      maxPrice: value
+	    });
 	  }
 	
 	};
@@ -34939,7 +34953,9 @@
 
 	
 	var FilterConstants = {
-	  UPDATE_BOUNDS: "UPDATE_BOUNDS"
+	  UPDATE_BOUNDS: "UPDATE_BOUNDS",
+	  UPDATE_MIN_PRICE: "UPDATE_MIN_PRICE",
+	  UPDATE_MAX_PRICE: "UPDATE_MAX_PRICE"
 	};
 	
 	module.exports = FilterConstants;
@@ -35698,6 +35714,7 @@
 	var Map = __webpack_require__(302);
 	var FilterParamsStore = __webpack_require__(318);
 	var hashHistory = __webpack_require__(166).hashHistory;
+	var Filters = __webpack_require__(319);
 	
 	var ListingSearch2 = React.createClass({
 	  displayName: 'ListingSearch2',
@@ -35724,6 +35741,8 @@
 	  componentDidMount: function () {
 	    this.listingListener = ListingStore.addListener(this._listingsChanged);
 	    this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
+	    var filterParams = FilterParamsStore.params();
+	    ListingActions.fetchListingsFiltered(filterParams);
 	  },
 	
 	  componentWillUnmount: function () {
@@ -35746,6 +35765,7 @@
 	            { className: 'search-results-header' },
 	            'Explore Local Food Options'
 	          ),
+	          React.createElement(Filters, { filterParams: this.state.filterParams }),
 	          React.createElement('hr', { className: 'search-hr' })
 	        ),
 	        React.createElement(ListingIndex2, { listings: this.state.listings })
@@ -35993,6 +36013,14 @@
 	
 	  switch (payload.actionType) {
 	
+	    case FilterConstants.UPDATE_MAX_PRICE:
+	      _params.maxPrice = payload.maxPrice;
+	      FilterParamsStore.__emitChange();
+	      break;
+	    case FilterConstants.UPDATE_MIN_PRICE:
+	      _params.minPrice = payload.minPrice;
+	      FilterParamsStore.__emitChange();
+	      break;
 	    case FilterConstants.UPDATE_BOUNDS:
 	      _params.bounds = payload.bounds;
 	      FilterParamsStore.__emitChange();
@@ -36001,6 +36029,121 @@
 	};
 	
 	module.exports = FilterParamsStore;
+
+/***/ },
+/* 319 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var FilterActions = __webpack_require__(303);
+	
+	var Filters = React.createClass({
+	  displayName: 'Filters',
+	
+	
+	  getInitialState: function () {
+	    return { price: { min: 0, max: 1000 } };
+	  },
+	
+	  maxPriceChanged: function (e) {
+	    FilterActions.updateMaxPrice(e.target.value);
+	  },
+	
+	  minPriceChanged: function (e) {
+	    FilterActions.updateMinPrice(e.target.value);
+	  },
+	  currentMaxPrice: function () {
+	    return this.props.filterParams.maxPrice;
+	  },
+	  currentMinPrice: function () {
+	    return this.props.filterParams.minPrice;
+	  },
+	
+	  updatePrice: function (min, max) {
+	    FilterActions.updateParams({
+	      price: { min: min, max: max }
+	    });
+	  },
+	
+	  render: function () {
+	    return React.createElement(
+	      'form',
+	      { className: 'form-inline' },
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { 'for': 'minPrice', style: { marginRight: "5px" } },
+	          'Minimum Price'
+	        ),
+	        React.createElement('input', { type: 'number', className: 'form-control', id: 'minPrice', placeholder: '0',
+	          style: { marginRight: "5px" },
+	          onChange: this.minPriceChanged,
+	          value: this.currentMinPrice() })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { 'for': 'maxPrice', style: { marginRight: "5px" } },
+	          'Maximum Price'
+	        ),
+	        React.createElement('input', { type: 'number', className: 'form-control', id: 'maxPrice', placeholder: '1000',
+	          onChange: this.maxPriceChanged,
+	          value: this.currentMaxPrice(),
+	          style: { marginRight: "5px" } })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'alert alert-info alert-dismissible', role: 'alert' },
+	        React.createElement(
+	          'button',
+	          { type: 'button', className: 'close', 'data-dismiss': 'alert', 'aria-label': 'Close' },
+	          React.createElement(
+	            'span',
+	            { 'aria-hidden': 'true' },
+	            '×'
+	          )
+	        ),
+	        React.createElement(
+	          'strong',
+	          null,
+	          'Both'
+	        ),
+	        ' boxes must be filled to search by price'
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = Filters;
+	
+	// <div className="form-group">
+	//   <label>Minimum Price</label>
+	//
+	//   <label className="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+	//   <div className="input-group">
+	//     <div className="input-group-addon">$</div>
+	//     <input type="number" className="form-control" id="exampleInputAmount" placeholder="0"
+	//       onChange={this.minPriceChanged}
+	//       value={this.currentMinPrice()}/>
+	//   </div>
+	// </div>
+
+	// <div>
+	//
+	// <label>Minimum Price</label>
+	// <input type="number" className="form-control" placeholder="0"
+	//   onChange={this.minPriceChanged}
+	//   value={this.currentMinPrice()}/>
+	//  <br/>
+	// <label>Maximum Price</label>
+	// <input type="number"
+	//   onChange={this.maxPriceChanged}
+	//   value={this.currentMaxPrice()}/>
+	// </div>
 
 /***/ }
 /******/ ]);
