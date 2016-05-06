@@ -4,13 +4,14 @@ User.create!(
   )
 words = File.readlines(File.dirname(__FILE__) + "/seed_words.txt")
 words.map!(&:chomp)
+# words.sample(50).join(" ").downcase!
 
 Listing.create!(
   title: "Lime Chicken",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "My wife loved this take on a delicious dish. Mince onion, garlic and jalepeno, add the dry ingredients called for in this dish to form a wet paste. Rub generous amounts under the skin. Outer skin is salted, rubbed with some mixture. Broil in oven until skin gets nice and crispy (5-7 min) switch oven to bake 350 until done (approx 40 min). About half way through squeeze lime juice on chicken.",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -21,10 +22,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Creme Brulee",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "I finally had the chance to try this renowned San Francisco-based creme brûlée cart after years of hoping it would conveniently pop up on my side of the East Bay--and thank GOD it did, because it was more satisfying than I ever expected.",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -35,10 +36,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Onion Ring Burger and Fries",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "Two strips of crispy New hickory-smoked bacon makes this thick and juicy burger even better. Topped with American cheese and served on a grilled bun with fresh lettuce, tomato and red onion.",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -49,10 +50,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Loaf of Bread with Butter",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "My families favorite recipe! I have been baking bread (2-4 loaves per week) for over a year and tried a variety of recipes, many a lot more complicated and this is the simplest.",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -63,10 +64,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Bacon Cheeseburger",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "Two strips of crispy New hickory-smoked bacon makes this thick and juicy burger even better. Topped with American cheese and served on a grilled bun with fresh lettuce, tomato and red onion.",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -77,10 +78,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Porkchop with Caramelized Apples",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "These were fabulous. My husband said they have usurped his old favorite for the best pork chops dish EVER! I made 6 chops but made enough sauce for 20. I sprinkled the chops w/ Paula Deen's house seasoning & sauteed them in butter & olive oil.",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -91,10 +92,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Chocolate Cupcakes",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "AMAZING!! I have been baking for a long time. it a passion of mine... let me tell you these cupcakes are deadly. i could not get enough. i was searching for a new chocolate cupcake recipe and i came across this one... i was a little hesitant at first, due to some of the reviews. but wow. almost tastes like a brownie",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -105,10 +106,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Salted Pretzel",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "The pretzel was considered a stereotypically German food, and the first known occurrences of the word pretzel in English date from the first half of the 1800s and are often found in descriptions of the German diet. Pretzel comes from a German word that is now spelled Brezel in modern standard German",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -119,10 +120,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Blueberry Biscuits",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "Does your breakfast usually consist of eggs and bacon or cold cereal and milk? Are you tired of eating the same ole food every single day? Why don’t you try your hand at eating these delicious blueberry biscuits",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -133,10 +134,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Pepperoni and Black Olive Pizza",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "I'm not the biggest fan of pizza but this pizza is something you don't find elsewhere. The pizza sauce has a distinct taste and the ingredients look and taste fresher than other places. The pizza is cooked so evenly and perfect",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -147,10 +148,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Jelly Filled Donuts",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "AMAZING donuts! I arrived at 7:45 on a Thursday morning and the donuts were fresh out. I ordered the french glaze and the chocolate donut filled with creamy goodness. The latter is probably the best donut I've ever eaten. Not only were the donuts mouth watering, the service was impeccable",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -161,10 +162,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Waffle with Whipped Cream and Fruit",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "The syrup and the hot sauce that came with the dish were a harmonious duo that kept me asking for more. The waffle was cooked perfectly as well as the chicken was fried. It was perfect. I had to share, so we got three plates. (Sharing is good though)",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -175,10 +176,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Assorted Fruit",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "This place is great! Just went there for the first time and I am amazed at what I got for my money. Incredible. Very friendly people and, again, what a bargain.",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -189,10 +190,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Blueberry and Blackberry Pie",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "Perfect. We found that this is a tart-sweet pie with the juices gelled just enough not to run out of the pie IF you use a lattice crust and very small fresh blueberries",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -203,10 +204,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Cornflakes with Raisins",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "Corn flakes are so well established and ubiquitous that it is fair to say that everyone is familiar with and has tasted it. So, my taste opinions may not be that valuable. Nevertheless, there is just one word that comes to mind when I eat Corn Flakes: delicious",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -217,10 +218,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Clams in Lemon Sauce",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "This was a fantastic simple fresh recipe. As an earlier reviewer suggested, I added a dash of oregano, a dash of red pepper flakes, and a medium can of diced tomatoes. The tomatoes were a great addition. Served it with pasta for a main dish (linguini). I'm making this for Christmas Eve with shrimp, yum!",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -231,10 +232,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Charcuterie Board",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "Charcuterie is part of the garde manger chef's repertoire. Originally intended as a way to preserve meat before the advent of refrigeration, they are prepared today for their flavors derived from the preservation processes",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -245,10 +246,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Bowl of Ramen",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "You're delivered a heaping bowl of thick, chewy noodles topped with large pieces of char siu pork, a slice of lime and a piece of seaweed. On the side, you receive a smaller bowl with the rich, thick, porky broth and seasoned boiled egg. Squeeze that lime over the noodles and dunk each bite into the broth! That flavorful broth with bits of char siu in it accompanied by the slight tang of the lime and bite of the noodles is heaven.",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -259,10 +260,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Triple Chocolate Brownies",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "Got a serious chocolate craving? These brownies will do the trick and leave you wishing you had room for more. They're intensely chocolately and so fudgy you almost need a spoon. You'll definitely need a glass of milk to wash them down!",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
@@ -273,10 +274,10 @@ Listing.create!(
 
 Listing.create!(
   title: "Stack of Pancakes",
-  description: "This dish can only be described as " + words.sample(50).join(" ").downcase!,
+  description: "For our sweet dish, we opted for pancakes. I 100% appreciated the fact that it wasn't delivered smothered in sweet sauces. It was just lightly dusted with powdered sugar and delivered with maple syrup on the side. This really allowed for us to pick up on the lemon flavor. Without a doubt, these pancakes were also amazingly cloud-like and a perfect choice for a sweet (but not too sweet) option!",
   host_id: 1,
-  lat: Random.new.rand(37.763972..37.783972),
-  lng: Random.new.rand(122.421297..122.441297) * -1,
+  lat: Random.new.rand(37.753972..37.793972),
+  lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
   price: Faker::Commerce.price,
   from_date: DateTime.new(2001,2,3),
