@@ -76,14 +76,11 @@ All forms are custom designed to ensure intuitive use when adding, editing and d
 
 ###Models Schema
 * Users
-* Rooms
+* Listings
 * Images
-* Bookings
 
 ###APIs
 * Google Maps API
-* Cloudinary API
-* Pusher Websocket API
 
 ###Modularized Components
 React components are abstracted and grouped by logical similarity. This enables improved code maintainability and allows easy iterative design and development.
