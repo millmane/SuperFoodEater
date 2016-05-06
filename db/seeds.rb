@@ -13,7 +13,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 22.37,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -27,7 +27,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 6.83,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -41,7 +41,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 12.54,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -55,7 +55,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 4.75,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -69,7 +69,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 9.99,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -83,7 +83,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 17.88,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -97,7 +97,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 3.56,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -111,7 +111,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 2.22,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -125,7 +125,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 1.25,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -139,7 +139,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 13.58,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -153,7 +153,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 2.79,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -167,7 +167,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 7.99,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -181,7 +181,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 5.55,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -195,7 +195,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 11.75,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -209,7 +209,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 5.05,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -223,7 +223,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 18.99,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -237,7 +237,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 25.51,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -251,7 +251,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 10.99,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -265,7 +265,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 9.99,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -279,7 +279,7 @@ Listing.create!(
   lat: Random.new.rand(37.753972..37.793972),
   lng: Random.new.rand(122.411297..122.451297) * -1,
   guests: 1,
-  price: Faker::Commerce.price,
+  price: 11.11,
   from_date: DateTime.new(2001,2,3),
   to_date: DateTime.new(2001,4,5),
   home_type: "apartment",
@@ -290,7 +290,7 @@ Listing.create!(
 # lime chicken
 Image.create!(
   listing_id: 1,
-  url: "http://i.imgur.com/blbgF7k.jpg"
+  url: "https://i.imgur.com/blbgF7k.jpg"
 )
 
 # creme brule
@@ -386,22 +386,22 @@ Image.create!(
 # charcuterie board
 Image.create!(
   listing_id: 17,
-  url: "http://i.imgur.com/VguVWrN.jpg"
+  url: "https://i.imgur.com/VguVWrN.jpg"
 )
 
 # ramen
 Image.create!(
   listing_id: 18,
-  url: "http://i.imgur.com/6LVzyAk.jpg"
+  url: "https://i.imgur.com/6LVzyAk.jpg"
 )
 
 # brownies
 Image.create!(
   listing_id: 19,
-  url: "http://i.imgur.com/lajGJuw.jpg"
+  url: "https://i.imgur.com/lajGJuw.jpg"
 )
 # stack of pancakes
 Image.create!(
   listing_id: 20,
-  url: "http://i.imgur.com/VH9zxjl.jpg"
+  url: "https://i.imgur.com/VH9zxjl.jpg"
 )
