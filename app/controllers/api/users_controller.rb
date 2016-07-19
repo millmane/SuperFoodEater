@@ -2,8 +2,12 @@ class Api::UsersController < ApplicationController
 
   def show
     if current_user
-      current_user
+      @user = current_user
+      render 'api/users/show'
+    else
+      render json: "hi"
     end
+
   end
 
   def create

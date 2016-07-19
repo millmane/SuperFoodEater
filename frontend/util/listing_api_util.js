@@ -69,6 +69,27 @@ var ListingApiUtil = {
         });
       }
     });
+  },
+
+  createListing: function (listing){
+    debugger
+    $.ajax({
+      url: "api/listings/",
+      type: "post",
+      data: {listing: listing},
+      success: function(listing){
+        AppDispatcher.dispatch({
+          actionType: ListingConstants.CREATELISTING,
+          // listing: listing
+        });
+      },
+      error: function(error){
+        AppDispatcher.dispatch({
+          actionType: ListingConstants.ERROR,
+          errors: error.responseJSON.errors
+        });
+      }
+    });
   }
 
 };

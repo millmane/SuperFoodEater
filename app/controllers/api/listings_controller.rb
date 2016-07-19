@@ -6,7 +6,7 @@ class Api::ListingsController < ApplicationController
     if(bounds)
       listings = Listing.in_bounds(bounds)
     end
-    
+
     if (params[:minPrice] || params[:maxPrice])
       listings = listings.where(price: price_range)
     end
@@ -34,6 +34,7 @@ class Api::ListingsController < ApplicationController
     @listing.save
 
     render json: @listing
+    # render 'api/listings/new'
   end
 
   def destroy

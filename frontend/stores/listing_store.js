@@ -14,6 +14,9 @@ ListingStore.__onDispatch = function (payload) {
     case ListingConstants.FETCHLISTING:
       ListingStore.setListing(payload.listing);
       break;
+    // case ListingConstants.CREATELISTING:
+    //   ListingStore.setListing(payload.listing);
+    //   break;
     }
     ListingStore.__emitChange();
   };

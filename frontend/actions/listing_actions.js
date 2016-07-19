@@ -13,6 +13,10 @@ var ListingActions = {
     ListingApiUtil.fetchListing(id);
   },
 
+  createListing: function(listing){
+    ListingApiUtil.createListing(listing);
+  },
+
   receiveAll: function(listings){
     AppDispatcher.dispatch({
       actionType: ListingConstants.FETCHLISTINGS,
@@ -21,7 +25,7 @@ var ListingActions = {
   },
 
   fetchListingsFiltered: function(filters){
-    
+
     ListingApiUtil.fetchListingsFiltered(filters, this.receiveAll);
   }
 };
