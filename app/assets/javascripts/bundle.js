@@ -59,8 +59,10 @@
 	var NavBar2 = __webpack_require__(245);
 	var ListingSearch2 = __webpack_require__(278);
 	var ListingDetail2 = __webpack_require__(290);
-	var LandingPage = __webpack_require__(291);
-	var UserDetail = __webpack_require__(293);
+	var ListingDetail3 = __webpack_require__(291);
+	
+	var LandingPage = __webpack_require__(292);
+	var UserDetail = __webpack_require__(294);
 	
 	//Mixins
 	var CurrentUserState = __webpack_require__(246);
@@ -97,7 +99,7 @@
 	    { path: '/', component: App },
 	    React.createElement(IndexRoute, { component: LandingPage }),
 	    React.createElement(Route, { path: 'listings', component: ListingSearch2 }),
-	    React.createElement(Route, { path: 'listings/:listing_id', component: ListingDetail2 }),
+	    React.createElement(Route, { path: 'listings/:listing_id', component: ListingDetail3 }),
 	    React.createElement(Route, { path: 'user', component: UserDetail })
 	  )
 	);
@@ -35098,6 +35100,9 @@
 	    case ListingConstants.FETCHLISTING:
 	      ListingStore.setListing(payload.listing);
 	      break;
+	    // case ListingConstants.CREATELISTING:
+	    //   ListingStore.setListing(payload.listing);
+	    //   break;
 	  }
 	  ListingStore.__emitChange();
 	};
@@ -35135,7 +35140,8 @@
 	var ListingConstants = {
 	  FETCHLISTINGS: "FETCHLISTINGS",
 	  FETCHLISTING: "FETCHLISTING",
-	  FILTEREDLISTINGS: "FILTEREDLISTINGS"
+	  FILTEREDLISTINGS: "FILTEREDLISTINGS",
+	  CREATELISTING: "CREATELISTING"
 	};
 	
 	module.exports = ListingConstants;
@@ -35157,6 +35163,10 @@
 	
 	  fetchListing: function (id) {
 	    ListingApiUtil.fetchListing(id);
+	  },
+	
+	  createListing: function (listing) {
+	    ListingApiUtil.createListing(listing);
 	  },
 	
 	  receiveAll: function (listings) {
@@ -35242,6 +35252,27 @@
 	          listings: listings
 	        });
 	      },
+	      error: function (error) {
+	        AppDispatcher.dispatch({
+	          actionType: ListingConstants.ERROR,
+	          errors: error.responseJSON.errors
+	        });
+	      }
+	    });
+	  },
+	
+	  createListing: function (listing) {
+	    debugger;
+	    $.ajax({
+	      url: "api/listings/",
+	      type: "post",
+	      data: { listing: listing },
+	      success: function (listing) {
+	        AppDispatcher.dispatch({
+	          actionType: ListingConstants.CREATELISTING
+	        });
+	      },
+	      // listing: listing
 	      error: function (error) {
 	        AppDispatcher.dispatch({
 	          actionType: ListingConstants.ERROR,
@@ -35766,7 +35797,143 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var LandingPageCarousel = __webpack_require__(292);
+	var ReactRouter = __webpack_require__(166);
+	var hashHistory = __webpack_require__(166).hashHistory;
+	var ListingStore = __webpack_require__(279);
+	var ListingActions = __webpack_require__(281);
+	var ListingApi = __webpack_require__(282);
+	var FilterParamsStore = __webpack_require__(288);
+	var Map = __webpack_require__(285);
+	
+	var ListingDetail3 = React.createClass({
+	  displayName: 'ListingDetail3',
+	
+	
+	  getInitialState: function () {
+	    var listingId = parseInt(this.props.params.listing_id);
+	    var listing = ListingStore.findListing(listingId);
+	    return { listing: listing };
+	  },
+	
+	  componentDidMount: function () {
+	    var listingId = parseInt(this.props.params.listing_id);
+	
+	    this.listingListener = ListingStore.addListener(this._onChange);
+	
+	    var params = FilterParamsStore.params();
+	    ListingActions.fetchListingsFiltered(params);
+	  },
+	
+	  componentWillUnmount: function () {
+	    this.listingListener.remove();
+	  },
+	
+	  _onChange: function () {
+	    var listingId = parseInt(this.props.params.listing_id);
+	    var listing = ListingStore.findListing(listingId);
+	    this.setState({ listing: listing });
+	  },
+	
+	  render: function () {
+	    var listings = {};
+	    var listing = this.state.listing;
+	    listings[parseInt(this.props.params.listing_id)] = this.state.listing;
+	    if (typeof listing !== 'undefined') {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement('link', { href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel: 'stylesheet' }),
+	        React.createElement(
+	          'div',
+	          { id: 'main' },
+	          React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'div',
+	              { className: 'col-lg-12' },
+	              React.createElement(
+	                'h1',
+	                { className: 'search-results-header', style: { textAlign: "center" } },
+	                'Food Details'
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'row row-centered' },
+	            React.createElement(
+	              'div',
+	              null,
+	              React.createElement(
+	                'div',
+	                { className: 'panel panel-default' },
+	                React.createElement(
+	                  'div',
+	                  { className: 'panel-heading' },
+	                  React.createElement(
+	                    'header',
+	                    { className: 'panel-title' },
+	                    React.createElement(
+	                      'div',
+	                      { className: 'text-center' },
+	                      React.createElement(
+	                        'h3',
+	                        null,
+	                        listing.title,
+	                        ' - $',
+	                        listing.price
+	                      )
+	                    )
+	                  )
+	                ),
+	                React.createElement(
+	                  'div',
+	                  { className: 'panel-body' },
+	                  React.createElement(
+	                    'div',
+	                    { className: 'text-center' },
+	                    React.createElement('img', { className: 'detail-img-circle', src: listing.images[0].url }),
+	                    React.createElement('br', null),
+	                    React.createElement('br', null),
+	                    React.createElement(
+	                      'p',
+	                      null,
+	                      listing.description
+	                    ),
+	                    React.createElement('hr', null),
+	                    React.createElement(
+	                      'h3',
+	                      null,
+	                      'Location'
+	                    ),
+	                    React.createElement('hr', null),
+	                    React.createElement(Map, { listings: listings, cname: "map-detail2", cname2: "map-canvas-detail2" })
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    } else {
+	      return React.createElement(
+	        'div',
+	        null,
+	        'listing didnt load yet'
+	      );
+	    }
+	  }
+	});
+	
+	module.exports = ListingDetail3;
+
+/***/ },
+/* 292 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var LandingPageCarousel = __webpack_require__(293);
 	
 	var LandingPage = React.createClass({
 	  displayName: 'LandingPage',
@@ -35865,7 +36032,7 @@
 	module.exports = LandingPage;
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -36077,7 +36244,7 @@
 	module.exports = LandingPageCarousel;
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);

@@ -13,6 +13,8 @@ var Modal = require('react-modal');
 var NavBar2 = require('./components/nav/NavBar2.jsx');
 var ListingSearch2 = require('./components/listings/ListingSearch2.jsx');
 var ListingDetail2 = require('./components/listings/ListingDetail2.jsx');
+var ListingDetail3 = require('./components/listings/ListingDetail3.jsx');
+
 var LandingPage = require('./components/landing_page/LandingPage.jsx');
 var UserDetail = require('./components/users/UserDetail.jsx');
 
@@ -46,7 +48,7 @@ var Router = (
     <Route path="/" component={App}>
       <IndexRoute component={LandingPage}/>
       <Route path="listings" component={ListingSearch2}/>
-      <Route path="listings/:listing_id" component={ListingDetail2}/>
+      <Route path="listings/:listing_id" component={ListingDetail3}/>
       <Route path="user" component={UserDetail}/>
     </Route>
   </Router>

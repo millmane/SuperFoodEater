@@ -33,3 +33,28 @@
   height: 400px;
   width: 100%;
 }
+
+.map-detail2 {
+  height: 100%;
+  width: 100%;
+  display: block;
+  // width: 45%;
+  // position: relative;
+  // right: 10px;
+  // left: auto;
+  // bottom: 10px;
+}
+
+.map-canvas2 {
+  height: 400px;
+  width: 400px;
+}
+
+.map-canvas-detail2 {
+  height: 400px;
+  width: 100%;
+}
+.agm_google_maps,
+.agm_google_maps > div {
+       width: 812px !important;
+}

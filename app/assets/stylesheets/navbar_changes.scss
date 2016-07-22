@@ -1,8 +1,39 @@
-// .navbar {
-//    background-color: #fff;
-//   //  background: transparent;
-//    border-color: transparent;
+.navbar {
+   background-color: #337ab7;
+   border-radius: 0%;
+  //  background: transparent;
+   border-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+  color: #dce0e0;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #dce0e0;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #ea9376;
+}
+
+.navbar-default .navbar-brand:focus {
+  color: #ea9376;
+}
+//
+.navbar-default .navbar-nav > li > a:hover {
+  color: #ea9376;
+}
+
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ea9376;
+}
+
+// .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+//     color: red;
+//     background-color: transparent;
 // }
+
 //
 // .navbar-default .navbar-nav > li > a {
 //       border-left: 1px solid #dce0e0

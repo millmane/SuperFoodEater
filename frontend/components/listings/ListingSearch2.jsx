@@ -47,7 +47,6 @@ var ListingSearch2 = React.createClass({
           <div className="sidebar-header panel-body clearfix panel-bg-medium">
             <h1 className="search-results-header">Explore Local Food Options</h1>
               <Filters filterParams={this.state.filterParams}/>
-
             <hr className="search-hr"></hr>
           </div>
           <ListingIndex2 listings={this.state.listings}/>
